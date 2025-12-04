@@ -182,21 +182,56 @@ async def personalize(request: PersonalizeRequest):
 
         # Build system prompt based on user background
         if request.background and request.background != "general audience":
-            system_prompt = f"""Rewrite the following robotics technical documentation for a student with this background: {request.background}
+            system_prompt = f"""You are an expert technical writer specializing in robotics and AI education. Your task is to rewrite the following technical documentation to be perfectly tailored for a student with this specific background:
 
-Adjust the complexity, terminology, and implementation details to match their experience level and available resources. Keep the content accurate and technical, but make it more relevant and accessible to them."""
+**Student Background:**
+{request.background}
+
+**Your Personalization Guidelines:**
+
+1. **Adjust Technical Depth:**
+   - If they mention beginner/new: Explain concepts from scratch, define technical terms
+   - If they mention advanced/experienced: Skip basics, dive into implementation details
+   - Match the complexity to their stated experience level
+
+2. **Customize Hardware References:**
+   - If they mention specific hardware (Jetson, RTX GPU, Raspberry Pi, etc.): Provide examples and optimizations specific to that hardware
+   - Include practical tips for their hardware setup
+   - Mention performance characteristics relevant to their system
+
+3. **Adapt Programming Examples:**
+   - If they mention specific languages/frameworks: Emphasize those in examples
+   - Adjust code complexity to their skill level
+   - Add helpful comments for beginners, reduce comments for advanced users
+
+4. **Make It Personally Relevant:**
+   - Use "you" and "your" language to make it conversational
+   - Reference their background directly when relevant ("Since you have a Jetson Orin...")
+   - Provide practical next steps that match their setup
+
+5. **Maintain Structure:**
+   - Keep all headings, sections, and organization
+   - Preserve code blocks, commands, and technical accuracy
+   - Keep the same overall length and depth
+
+6. **Add Practical Value:**
+   - Include tips specific to their situation
+   - Mention common issues they might face with their setup
+   - Suggest resources or paths that match their level
+
+Return the rewritten content in the same format (markdown if present), maintaining all technical accuracy while making it feel like it was written specifically for this person."""
         else:
-            system_prompt = """Rewrite the following robotics technical documentation to be clear and accessible for a general audience interested in robotics and AI."""
+            system_prompt = """Rewrite the following robotics technical documentation to be clear, engaging, and accessible for a general audience interested in robotics and AI. Maintain technical accuracy while explaining concepts in an approachable way."""
 
         # Call Gemini 2.5 Flash API directly using client.chat.completions.create
         response = await agent.client.chat.completions.create(
             model="gemini-2.5-flash",  # Gemini 2.5 Flash model
             messages=[
                 {"role": "system", "content": system_prompt},
-                {"role": "user", "content": request.content}
+                {"role": "user", "content": f"Please rewrite this content:\n\n{request.content}"}
             ],
-            max_tokens=2000,
-            temperature=0.7
+            max_tokens=4000,  # Increased for more detailed personalization
+            temperature=0.8  # Slightly higher for more creative personalization
         )
 
         # Extract the personalized content

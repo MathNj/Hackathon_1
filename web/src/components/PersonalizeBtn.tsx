@@ -56,7 +56,36 @@ export default function PersonalizeBtn(): JSX.Element | null {
       return;
     }
 
-    const text = articleElement.innerText;
+    // Extract text content with better formatting
+    let text = "";
+
+    // Try to get the markdown content container first
+    const markdownContainer = articleElement.querySelector(".markdown") ||
+                             articleElement.querySelector('[class*="docItemContainer"]') ||
+                             articleElement;
+
+    // Get text content with basic structure preserved
+    const headings = markdownContainer.querySelectorAll("h1, h2, h3, h4, h5, h6");
+    const paragraphs = markdownContainer.querySelectorAll("p, li, pre, blockquote");
+
+    let contentParts: string[] = [];
+
+    // Extract all text nodes in document order
+    const walker = document.createTreeWalker(
+      markdownContainer,
+      NodeFilter.SHOW_TEXT,
+      null
+    );
+
+    let node;
+    while (node = walker.nextNode()) {
+      const textContent = node.textContent?.trim();
+      if (textContent && textContent.length > 0) {
+        contentParts.push(textContent);
+      }
+    }
+
+    text = contentParts.join("\n\n");
 
     if (!text || text.length < 50) {
       setError("Article content is too short to personalize");
@@ -73,6 +102,8 @@ export default function PersonalizeBtn(): JSX.Element | null {
     setError(null);
 
     try {
+      console.log(`📝 Personalizing content (${text.length} chars) for background: "${background || 'general'}"`);
+
       const response = await fetch("http://localhost:8000/personalize", {
         method: "POST",
         headers: {
@@ -85,31 +116,60 @@ export default function PersonalizeBtn(): JSX.Element | null {
       });
 
       if (!response.ok) {
-        throw new Error("Failed to personalize content");
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.detail || "Failed to personalize content");
       }
 
       const data = await response.json();
+      console.log(`✅ Personalized content received (${data.personalized_content.length} chars)`);
       setPersonalizedContent(data.personalized_content);
 
       if (viewMode === "replace") {
-        // Replace article content with personalized version
-        const personalizedHtml = `
-          <div style="border-left: 4px solid var(--ifm-color-primary); padding-left: 16px; margin-bottom: 20px;">
-            <p style="color: var(--ifm-color-primary); font-weight: bold; margin-bottom: 8px;">
-              ✨ Personalized content for you
+        // Replace article content with personalized markdown-rendered version
+        const articleContainer = document.querySelector("article .markdown") || articleElement;
+
+        // Create a temporary div to render the markdown
+        const tempDiv = document.createElement("div");
+        tempDiv.innerHTML = `
+          <div style="border-left: 4px solid #7c3aed; padding: 16px; margin-bottom: 24px; background: rgba(124, 58, 237, 0.05); border-radius: 8px;">
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+              <span style="font-size: 18px;">✨</span>
+              <strong style="color: #7c3aed; font-size: 16px;">Personalized Content</strong>
+            </div>
+            <p style="margin: 0; font-size: 13px; color: #666; font-style: italic;">
+              Adapted to your background: "${background || 'general audience'}"
             </p>
           </div>
-          <div class="personalized-content" style="white-space: pre-wrap; line-height: 1.6;">
-            ${data.personalized_content.replace(/\n/g, '<br>')}
+          <div class="personalized-content markdown" style="line-height: 1.8; font-size: 16px;">
+            ${data.personalized_content.split('\n\n').map(para => {
+              // Preserve code blocks
+              if (para.trim().startsWith('```')) {
+                return `<pre><code>${para.replace(/```/g, '').trim()}</code></pre>`;
+              }
+              // Preserve headings
+              if (para.trim().startsWith('# ')) {
+                return `<h1>${para.replace(/^#\s+/, '')}</h1>`;
+              }
+              if (para.trim().startsWith('## ')) {
+                return `<h2>${para.replace(/^##\s+/, '')}</h2>`;
+              }
+              if (para.trim().startsWith('### ')) {
+                return `<h3>${para.replace(/^###\s+/, '')}</h3>`;
+              }
+              // Regular paragraphs
+              return `<p>${para}</p>`;
+            }).join('\n')}
           </div>
         `;
-        articleElement.innerHTML = personalizedHtml;
+
+        articleContainer.innerHTML = tempDiv.innerHTML;
       } else {
         // Show side-by-side modal
         setShowModal(true);
       }
 
     } catch (err: any) {
+      console.error("❌ Personalization error:", err);
       setError(err.message || "Failed to personalize content");
       setTimeout(() => setError(null), 5000);
     } finally {
@@ -132,17 +192,39 @@ export default function PersonalizeBtn(): JSX.Element | null {
   const handleApplyPersonalized = () => {
     const articleElement = document.querySelector("article");
     if (articleElement && personalizedContent) {
-      const personalizedHtml = `
-        <div style="border-left: 4px solid var(--ifm-color-primary); padding-left: 16px; margin-bottom: 20px;">
-          <p style="color: var(--ifm-color-primary); font-weight: bold; margin-bottom: 8px;">
-            ✨ Personalized content for you
+      const articleContainer = document.querySelector("article .markdown") || articleElement;
+
+      const tempDiv = document.createElement("div");
+      tempDiv.innerHTML = `
+        <div style="border-left: 4px solid #7c3aed; padding: 16px; margin-bottom: 24px; background: rgba(124, 58, 237, 0.05); border-radius: 8px;">
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+            <span style="font-size: 18px;">✨</span>
+            <strong style="color: #7c3aed; font-size: 16px;">Personalized Content</strong>
+          </div>
+          <p style="margin: 0; font-size: 13px; color: #666; font-style: italic;">
+            Adapted to your background: "${background || 'general audience'}"
           </p>
         </div>
-        <div class="personalized-content" style="white-space: pre-wrap; line-height: 1.6;">
-          ${personalizedContent.replace(/\n/g, '<br>')}
+        <div class="personalized-content markdown" style="line-height: 1.8; font-size: 16px;">
+          ${personalizedContent.split('\n\n').map(para => {
+            if (para.trim().startsWith('```')) {
+              return `<pre><code>${para.replace(/```/g, '').trim()}</code></pre>`;
+            }
+            if (para.trim().startsWith('# ')) {
+              return `<h1>${para.replace(/^#\s+/, '')}</h1>`;
+            }
+            if (para.trim().startsWith('## ')) {
+              return `<h2>${para.replace(/^##\s+/, '')}</h2>`;
+            }
+            if (para.trim().startsWith('### ')) {
+              return `<h3>${para.replace(/^###\s+/, '')}</h3>`;
+            }
+            return `<p>${para}</p>`;
+          }).join('\n')}
         </div>
       `;
-      articleElement.innerHTML = personalizedHtml;
+
+      articleContainer.innerHTML = tempDiv.innerHTML;
       setShowModal(false);
     }
   };
