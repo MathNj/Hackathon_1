@@ -7,7 +7,7 @@ Tests CORS configuration for the API server
 import requests
 import json
 
-API_URL = "https://textbook-f1xli69f2-mathnjs-projects.vercel.app"
+API_URL = "https://textbook-edpneit7q-mathnjs-projects.vercel.app"
 ORIGIN = "https://mathnj.github.io"
 
 print("=" * 70)
