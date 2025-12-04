@@ -1,0 +1,38 @@
+{
+  "id": "module-2-digital-twin/intro-digital-twin",
+  "title": "The Digital Twin",
+  "description": "Learn what a digital twin is and why simulation is critical before deploying physical robots",
+  "source": "@site/docs/en/module-2-digital-twin/01-intro-digital-twin.md",
+  "sourceDirName": "module-2-digital-twin",
+  "slug": "/module-2-digital-twin/intro-digital-twin",
+  "permalink": "/docs/en/module-2-digital-twin/intro-digital-twin",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "id": "intro-digital-twin",
+    "title": "The Digital Twin",
+    "sidebar_label": "The Digital Twin",
+    "sidebar_position": 1,
+    "description": "Learn what a digital twin is and why simulation is critical before deploying physical robots",
+    "keywords": [
+      "digital twin",
+      "simulation",
+      "gazebo",
+      "unity",
+      "virtual robot",
+      "sim-to-real"
+    ]
+  },
+  "sidebar": "docs",
+  "previous": {
+    "title": "URDF Modeling",
+    "permalink": "/docs/en/module-1-nervous-system/urdf-modeling"
+  },
+  "next": {
+    "title": "Gazebo Fortress Setup",
+    "permalink": "/docs/en/module-2-digital-twin/gazebo-fortress-setup"
+  }
+}

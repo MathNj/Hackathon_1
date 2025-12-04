@@ -16,13 +16,38 @@
               "sidebar": "docs"
             },
             {
-              "id": "module-1-nervous-system/intro",
-              "path": "/docs/en/module-1-nervous-system/intro",
+              "id": "module-1-nervous-system/intro-to-ros2",
+              "path": "/docs/en/module-1-nervous-system/intro-to-ros2",
               "sidebar": "docs"
             },
             {
-              "id": "module-2-digital-twin/intro",
-              "path": "/docs/en/module-2-digital-twin/intro",
+              "id": "module-1-nervous-system/nodes-and-topics",
+              "path": "/docs/en/module-1-nervous-system/nodes-and-topics",
+              "sidebar": "docs"
+            },
+            {
+              "id": "module-1-nervous-system/urdf-modeling",
+              "path": "/docs/en/module-1-nervous-system/urdf-modeling",
+              "sidebar": "docs"
+            },
+            {
+              "id": "module-2-digital-twin/gazebo-fortress-setup",
+              "path": "/docs/en/module-2-digital-twin/gazebo-fortress-setup",
+              "sidebar": "docs"
+            },
+            {
+              "id": "module-2-digital-twin/intro-digital-twin",
+              "path": "/docs/en/module-2-digital-twin/intro-digital-twin",
+              "sidebar": "docs"
+            },
+            {
+              "id": "module-2-digital-twin/simulating-sensors",
+              "path": "/docs/en/module-2-digital-twin/simulating-sensors",
+              "sidebar": "docs"
+            },
+            {
+              "id": "module-2-digital-twin/unity-visualization",
+              "path": "/docs/en/module-2-digital-twin/unity-visualization",
               "sidebar": "docs"
             },
             {
@@ -75,8 +100,38 @@
               "sidebar": "docs"
             },
             {
-              "id": "module-2-digital-twin/intro",
-              "path": "/docs/ur/module-2-digital-twin/intro",
+              "id": "module-1-nervous-system/intro-to-ros2",
+              "path": "/docs/ur/module-1-nervous-system/intro-to-ros2",
+              "sidebar": "docs"
+            },
+            {
+              "id": "module-1-nervous-system/nodes-and-topics",
+              "path": "/docs/ur/module-1-nervous-system/nodes-and-topics",
+              "sidebar": "docs"
+            },
+            {
+              "id": "module-1-nervous-system/urdf-modeling",
+              "path": "/docs/ur/module-1-nervous-system/urdf-modeling",
+              "sidebar": "docs"
+            },
+            {
+              "id": "module-2-digital-twin/gazebo-fortress-setup",
+              "path": "/docs/ur/module-2-digital-twin/gazebo-fortress-setup",
+              "sidebar": "docs"
+            },
+            {
+              "id": "module-2-digital-twin/intro-digital-twin",
+              "path": "/docs/ur/module-2-digital-twin/intro-digital-twin",
+              "sidebar": "docs"
+            },
+            {
+              "id": "module-2-digital-twin/simulating-sensors",
+              "path": "/docs/ur/module-2-digital-twin/simulating-sensors",
+              "sidebar": "docs"
+            },
+            {
+              "id": "module-2-digital-twin/unity-visualization",
+              "path": "/docs/ur/module-2-digital-twin/unity-visualization",
               "sidebar": "docs"
             },
             {

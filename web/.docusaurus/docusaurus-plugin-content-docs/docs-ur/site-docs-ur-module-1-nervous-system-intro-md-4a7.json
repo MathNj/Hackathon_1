@@ -1,7 +1,7 @@
 {
   "id": "module-1-nervous-system/intro",
-  "title": "ماڈیول 1: The Nervous System - ROS 2 بنیادی باتیں",
-  "description": "جائزہ",
+  "title": "Module 1: The Nervous System - ROS 2 Fundamentals",
+  "description": "Overview",
   "source": "@site/docs/ur/module-1-nervous-system/intro.md",
   "sourceDirName": "module-1-nervous-system",
   "slug": "/module-1-nervous-system/intro",
@@ -13,11 +13,11 @@
   "frontMatter": {},
   "sidebar": "docs",
   "previous": {
-    "title": "ماڈیول 0: ورک سٹیشن سیٹ اپ",
-    "permalink": "/docs/ur/module-0-setup/intro"
+    "title": "URDF Modeling",
+    "permalink": "/docs/ur/module-1-nervous-system/urdf-modeling"
   },
   "next": {
-    "title": "ماڈیول 2: The Digital Twin - Simulation اور Sensors",
-    "permalink": "/docs/ur/module-2-digital-twin/intro"
+    "title": "ڈیجیٹل ٹوئن",
+    "permalink": "/docs/ur/module-2-digital-twin/intro-digital-twin"
   }
 }

@@ -1,0 +1,39 @@
+{
+  "id": "module-2-digital-twin/gazebo-fortress-setup",
+  "title": "Gazebo Fortress کے ساتھ فزکس",
+  "description": "سخت جسم کی حرکیات، Gazebo Fortress کی تنصیب، اور URDF بمقابلہ SDF فارمیٹس کو سمجھیں",
+  "source": "@site/docs/ur/module-2-digital-twin/02-gazebo-fortress-setup.md",
+  "sourceDirName": "module-2-digital-twin",
+  "slug": "/module-2-digital-twin/gazebo-fortress-setup",
+  "permalink": "/docs/ur/module-2-digital-twin/gazebo-fortress-setup",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "id": "gazebo-fortress-setup",
+    "title": "Gazebo Fortress کے ساتھ فزکس",
+    "sidebar_label": "Gazebo Fortress سیٹ اپ",
+    "sidebar_position": 2,
+    "description": "سخت جسم کی حرکیات، Gazebo Fortress کی تنصیب، اور URDF بمقابلہ SDF فارمیٹس کو سمجھیں",
+    "keywords": [
+      "gazebo",
+      "fortress",
+      "physics",
+      "urdf",
+      "sdf",
+      "rigid body dynamics",
+      "simulation"
+    ]
+  },
+  "sidebar": "docs",
+  "previous": {
+    "title": "ڈیجیٹل ٹوئن",
+    "permalink": "/docs/ur/module-2-digital-twin/intro-digital-twin"
+  },
+  "next": {
+    "title": "سینسرز کی سمیولیشن",
+    "permalink": "/docs/ur/module-2-digital-twin/simulating-sensors"
+  }
+}

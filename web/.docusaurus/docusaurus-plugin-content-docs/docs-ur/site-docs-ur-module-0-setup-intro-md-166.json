@@ -13,7 +13,7 @@
   "frontMatter": {},
   "sidebar": "docs",
   "next": {
-    "title": "ماڈیول 1: The Nervous System - ROS 2 بنیادی باتیں",
-    "permalink": "/docs/ur/module-1-nervous-system/intro"
+    "title": "ROS 2 کا تعارف",
+    "permalink": "/docs/ur/module-1-nervous-system/intro-to-ros2"
   }
 }

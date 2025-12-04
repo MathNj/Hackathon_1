@@ -13,11 +13,11 @@
   "frontMatter": {},
   "sidebar": "docs",
   "previous": {
-    "title": "Module 0: Workstation Setup",
-    "permalink": "/docs/en/module-0-setup/intro"
+    "title": "URDF Modeling",
+    "permalink": "/docs/en/module-1-nervous-system/urdf-modeling"
   },
   "next": {
-    "title": "Module 2: The Digital Twin - Simulation and Sensors",
-    "permalink": "/docs/en/module-2-digital-twin/intro"
+    "title": "The Digital Twin",
+    "permalink": "/docs/en/module-2-digital-twin/intro-digital-twin"
   }
 }

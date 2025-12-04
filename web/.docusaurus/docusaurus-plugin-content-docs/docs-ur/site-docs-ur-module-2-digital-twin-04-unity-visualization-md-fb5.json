@@ -1,0 +1,38 @@
+{
+  "id": "module-2-digital-twin/unity-visualization",
+  "title": "Unity میں High-Fidelity Rendering",
+  "description": "جانیں کہ photorealistic rendering اور human-robot interaction visualization کے لیے Gazebo کے بجائے Unity کب استعمال کرنا ہے",
+  "source": "@site/docs/ur/module-2-digital-twin/04-unity-visualization.md",
+  "sourceDirName": "module-2-digital-twin",
+  "slug": "/module-2-digital-twin/unity-visualization",
+  "permalink": "/docs/ur/module-2-digital-twin/unity-visualization",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 4,
+  "frontMatter": {
+    "id": "unity-visualization",
+    "title": "Unity میں High-Fidelity Rendering",
+    "sidebar_label": "Unity Visualization",
+    "sidebar_position": 4,
+    "description": "جانیں کہ photorealistic rendering اور human-robot interaction visualization کے لیے Gazebo کے بجائے Unity کب استعمال کرنا ہے",
+    "keywords": [
+      "unity",
+      "unity robotics hub",
+      "ros-tcp-connector",
+      "photorealistic rendering",
+      "human-robot interaction",
+      "visualization"
+    ]
+  },
+  "sidebar": "docs",
+  "previous": {
+    "title": "سینسرز کی سمیولیشن",
+    "permalink": "/docs/ur/module-2-digital-twin/simulating-sensors"
+  },
+  "next": {
+    "title": "ماڈیول 3: The Robot Brain - Perception اور Navigation",
+    "permalink": "/docs/ur/module-3-robot-brain/intro"
+  }
+}

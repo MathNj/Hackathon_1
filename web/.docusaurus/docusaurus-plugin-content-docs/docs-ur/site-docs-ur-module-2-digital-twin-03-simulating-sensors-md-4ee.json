@@ -1,0 +1,38 @@
+{
+  "id": "module-2-digital-twin/simulating-sensors",
+  "title": "آنکھیں اور کان شامل کرنا (سینسرز)",
+  "description": "جانیں کہ Gazebo plugins اور GPU ray tracing استعمال کرتے ہوئے روبوٹس میں LiDAR اور depth cameras کیسے شامل کریں",
+  "source": "@site/docs/ur/module-2-digital-twin/03-simulating-sensors.md",
+  "sourceDirName": "module-2-digital-twin",
+  "slug": "/module-2-digital-twin/simulating-sensors",
+  "permalink": "/docs/ur/module-2-digital-twin/simulating-sensors",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 3,
+  "frontMatter": {
+    "id": "simulating-sensors",
+    "title": "آنکھیں اور کان شامل کرنا (سینسرز)",
+    "sidebar_label": "سینسرز کی سمیولیشن",
+    "sidebar_position": 3,
+    "description": "جانیں کہ Gazebo plugins اور GPU ray tracing استعمال کرتے ہوئے روبوٹس میں LiDAR اور depth cameras کیسے شامل کریں",
+    "keywords": [
+      "lidar",
+      "depth camera",
+      "sensors",
+      "gazebo plugins",
+      "ray tracing",
+      "gpu"
+    ]
+  },
+  "sidebar": "docs",
+  "previous": {
+    "title": "Gazebo Fortress سیٹ اپ",
+    "permalink": "/docs/ur/module-2-digital-twin/gazebo-fortress-setup"
+  },
+  "next": {
+    "title": "Unity Visualization",
+    "permalink": "/docs/ur/module-2-digital-twin/unity-visualization"
+  }
+}

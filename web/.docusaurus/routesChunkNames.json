@@ -1,104 +1,191 @@
 {
-  "/exam-f72": {
-    "__comp": "b8aefc04",
+  "/__docusaurus/debug-5ff": {
+    "__comp": "__comp---theme-debug-config-23-a-2ff",
     "__context": {
-      "plugin": "a7456010"
+      "plugin": "plugin---docusaurus-debugb-38-ad3"
+    }
+  },
+  "/__docusaurus/debug/config-5ba": {
+    "__comp": "__comp---theme-debug-config-23-a-2ff",
+    "__context": {
+      "plugin": "plugin---docusaurus-debugb-38-ad3"
+    }
+  },
+  "/__docusaurus/debug/content-a2b": {
+    "__comp": "__comp---theme-debug-contentba-8-ce7",
+    "__context": {
+      "plugin": "plugin---docusaurus-debugb-38-ad3"
     },
-    "config": "5e9f5e1a"
+    "__props": "__props---docusaurus-debug-content-3-c-0-be2"
+  },
+  "/__docusaurus/debug/globalData-c3c": {
+    "__comp": "__comp---theme-debug-global-dataede-0fa",
+    "__context": {
+      "plugin": "plugin---docusaurus-debugb-38-ad3"
+    }
+  },
+  "/__docusaurus/debug/metadata-156": {
+    "__comp": "__comp---theme-debug-site-metadata-68-e-3d4",
+    "__context": {
+      "plugin": "plugin---docusaurus-debugb-38-ad3"
+    }
+  },
+  "/__docusaurus/debug/registry-88c": {
+    "__comp": "__comp---theme-debug-registry-679-501",
+    "__context": {
+      "plugin": "plugin---docusaurus-debugb-38-ad3"
+    }
+  },
+  "/__docusaurus/debug/routes-000": {
+    "__comp": "__comp---theme-debug-routes-946-699",
+    "__context": {
+      "plugin": "plugin---docusaurus-debugb-38-ad3"
+    }
+  },
+  "/exam-f72": {
+    "__comp": "__comp---site-src-pages-exam-tsxb-8-a-1f5",
+    "__context": {
+      "plugin": "plugin---exama-74-04c"
+    },
+    "config": "config---exam-5-e-9-ce5"
   },
   "/login-f43": {
-    "__comp": "34b338d8",
+    "__comp": "__comp---site-src-pages-login-tsx-34-b-c7d",
     "__context": {
-      "plugin": "a7456010"
+      "plugin": "plugin---exama-74-04c"
     },
-    "config": "5e9f5e1a"
+    "config": "config---exam-5-e-9-ce5"
   },
   "/logout-0a7": {
-    "__comp": "f15d0dc5",
+    "__comp": "__comp---site-src-pages-logout-tsxf-15-bbd",
     "__context": {
-      "plugin": "a7456010"
+      "plugin": "plugin---exama-74-04c"
     },
-    "config": "5e9f5e1a"
+    "config": "config---exam-5-e-9-ce5"
   },
-  "/docs/en-b98": {
-    "__comp": "5e95c892",
+  "/docs/en-5b5": {
+    "__comp": "__comp---theme-docs-root-5-e-9-0b6",
     "__context": {
-      "plugin": "4b94de52"
+      "plugin": "plugin---docs-en-4-b-9-383"
     }
   },
-  "/docs/en-126": {
-    "__comp": "a7bd4aaa",
-    "__props": "9033f14e"
+  "/docs/en-666": {
+    "__comp": "__comp---theme-doc-version-roota-7-b-5de",
+    "__props": "__props---docs-en-903-86e"
   },
-  "/docs/en-4b3": {
-    "__comp": "a94703ab"
+  "/docs/en-fa6": {
+    "__comp": "__comp---theme-doc-roota-94-67a"
   },
   "/docs/en/module-0-setup/intro-247": {
-    "__comp": "17896441",
-    "content": "34bdfc08"
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-en-module-0-setup-intro-34-b-96d"
   },
-  "/docs/en/module-1-nervous-system/intro-a1a": {
-    "__comp": "17896441",
-    "content": "541a8301"
+  "/docs/en/module-1-nervous-system/intro-to-ros2-ee9": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-en-module-1-nervous-system-intro-to-ros-2-cad-b4e"
   },
-  "/docs/en/module-2-digital-twin/intro-e1f": {
-    "__comp": "17896441",
-    "content": "f428da01"
+  "/docs/en/module-1-nervous-system/nodes-and-topics-0a0": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-en-module-1-nervous-system-nodes-and-topicsa-92-213"
+  },
+  "/docs/en/module-1-nervous-system/urdf-modeling-0ce": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-en-module-1-nervous-system-urdf-modeling-26-e-ddb"
+  },
+  "/docs/en/module-2-digital-twin/gazebo-fortress-setup-880": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-en-module-2-digital-twin-gazebo-fortress-setup-74-f-629"
+  },
+  "/docs/en/module-2-digital-twin/intro-digital-twin-36e": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-en-module-2-digital-twin-intro-digital-twin-31-c-57c"
+  },
+  "/docs/en/module-2-digital-twin/simulating-sensors-2b7": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-en-module-2-digital-twin-simulating-sensors-4-a-9-36a"
+  },
+  "/docs/en/module-2-digital-twin/unity-visualization-f7d": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-en-module-2-digital-twin-unity-visualization-077-9ad"
   },
   "/docs/en/module-3-robot-brain/intro-76e": {
-    "__comp": "17896441",
-    "content": "577345d8"
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-en-module-3-robot-brain-intro-577-808"
   },
   "/docs/en/module-4-the-mind/intro-319": {
-    "__comp": "17896441",
-    "content": "e576c0ea"
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-en-module-4-the-mind-introe-57-905"
   },
   "/docs/en/module-5-capstone/intro-a84": {
-    "__comp": "17896441",
-    "content": "5d0d72c4"
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-en-module-5-capstone-intro-5-d-0-f11"
   },
-  "/docs/ur-2fa": {
-    "__comp": "5e95c892",
+  "/docs/ur-f48": {
+    "__comp": "__comp---theme-docs-root-5-e-9-0b6",
     "__context": {
-      "plugin": "c5b5a41b"
+      "plugin": "plugin---docs-urc-5-b-4e3"
     }
   },
-  "/docs/ur-c8e": {
-    "__comp": "a7bd4aaa",
-    "__props": "bd6a2ae8"
+  "/docs/ur-18d": {
+    "__comp": "__comp---theme-doc-version-roota-7-b-5de",
+    "__props": "__props---docs-urbd-6-ade"
   },
-  "/docs/ur-7a7": {
-    "__comp": "a94703ab"
+  "/docs/ur-01f": {
+    "__comp": "__comp---theme-doc-roota-94-67a"
   },
   "/docs/ur/module-0-setup/intro-dac": {
-    "__comp": "17896441",
-    "content": "166c1386"
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-ur-module-0-setup-intro-166-146"
   },
   "/docs/ur/module-1-nervous-system/intro-751": {
-    "__comp": "17896441",
-    "content": "4a75f796"
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-ur-module-1-nervous-system-intro-4-a-7-2bf"
   },
-  "/docs/ur/module-2-digital-twin/intro-f47": {
-    "__comp": "17896441",
-    "content": "d3369d4d"
+  "/docs/ur/module-1-nervous-system/intro-to-ros2-0cd": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-ur-module-1-nervous-system-intro-to-ros-2-c-93-5d0"
+  },
+  "/docs/ur/module-1-nervous-system/nodes-and-topics-f61": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-ur-module-1-nervous-system-nodes-and-topicse-98-682"
+  },
+  "/docs/ur/module-1-nervous-system/urdf-modeling-373": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-ur-module-1-nervous-system-urdf-modelingbc-0-f53"
+  },
+  "/docs/ur/module-2-digital-twin/gazebo-fortress-setup-832": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-ur-module-2-digital-twin-gazebo-fortress-setupb-40-c27"
+  },
+  "/docs/ur/module-2-digital-twin/intro-digital-twin-1ed": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-ur-module-2-digital-twin-intro-digital-twin-6-d-1-621"
+  },
+  "/docs/ur/module-2-digital-twin/simulating-sensors-274": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-ur-module-2-digital-twin-simulating-sensors-4-ee-d03"
+  },
+  "/docs/ur/module-2-digital-twin/unity-visualization-9e7": {
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-ur-module-2-digital-twin-unity-visualizationfb-5-196"
   },
   "/docs/ur/module-3-robot-brain/intro-bae": {
-    "__comp": "17896441",
-    "content": "1aab4ef7"
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-ur-module-3-robot-brain-intro-1-aa-498"
   },
   "/docs/ur/module-4-the-mind/intro-a31": {
-    "__comp": "17896441",
-    "content": "d9012d5e"
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-ur-module-4-the-mind-introd-90-5e0"
   },
   "/docs/ur/module-5-capstone/intro-8d4": {
-    "__comp": "17896441",
-    "content": "eca41255"
+    "__comp": "__comp---theme-doc-item-178-a40",
+    "content": "content---docs-ur-module-5-capstone-introeca-72a"
   },
   "/-e5f": {
-    "__comp": "1df93b7f",
+    "__comp": "__comp---site-src-pages-index-tsx-1-df-d3e",
     "__context": {
-      "plugin": "a7456010"
+      "plugin": "plugin---exama-74-04c"
     },
-    "config": "5e9f5e1a"
+    "config": "config---exam-5-e-9-ce5"
   }
 }

@@ -1,0 +1,38 @@
+{
+  "id": "module-2-digital-twin/intro-digital-twin",
+  "title": "ڈیجیٹل ٹوئن",
+  "description": "جانیں کہ ڈیجیٹل ٹوئن کیا ہے اور فزیکل روبوٹس کی تعیناتی سے پہلے سمیولیشن کیوں اہم ہے",
+  "source": "@site/docs/ur/module-2-digital-twin/01-intro-digital-twin.md",
+  "sourceDirName": "module-2-digital-twin",
+  "slug": "/module-2-digital-twin/intro-digital-twin",
+  "permalink": "/docs/ur/module-2-digital-twin/intro-digital-twin",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "id": "intro-digital-twin",
+    "title": "ڈیجیٹل ٹوئن",
+    "sidebar_label": "ڈیجیٹل ٹوئن",
+    "sidebar_position": 1,
+    "description": "جانیں کہ ڈیجیٹل ٹوئن کیا ہے اور فزیکل روبوٹس کی تعیناتی سے پہلے سمیولیشن کیوں اہم ہے",
+    "keywords": [
+      "digital twin",
+      "simulation",
+      "gazebo",
+      "unity",
+      "virtual robot",
+      "sim-to-real"
+    ]
+  },
+  "sidebar": "docs",
+  "previous": {
+    "title": "Module 1: The Nervous System - ROS 2 Fundamentals",
+    "permalink": "/docs/ur/module-1-nervous-system/intro"
+  },
+  "next": {
+    "title": "Gazebo Fortress سیٹ اپ",
+    "permalink": "/docs/ur/module-2-digital-twin/gazebo-fortress-setup"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "id": "module-2-digital-twin/unity-visualization",
+  "title": "High-Fidelity Rendering in Unity",
+  "description": "Learn when to use Unity instead of Gazebo for photorealistic rendering and human-robot interaction visualization",
+  "source": "@site/docs/en/module-2-digital-twin/04-unity-visualization.md",
+  "sourceDirName": "module-2-digital-twin",
+  "slug": "/module-2-digital-twin/unity-visualization",
+  "permalink": "/docs/en/module-2-digital-twin/unity-visualization",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 4,
+  "frontMatter": {
+    "id": "unity-visualization",
+    "title": "High-Fidelity Rendering in Unity",
+    "sidebar_label": "Unity Visualization",
+    "sidebar_position": 4,
+    "description": "Learn when to use Unity instead of Gazebo for photorealistic rendering and human-robot interaction visualization",
+    "keywords": [
+      "unity",
+      "unity robotics hub",
+      "ros-tcp-connector",
+      "photorealistic rendering",
+      "human-robot interaction",
+      "visualization"
+    ]
+  },
+  "sidebar": "docs",
+  "previous": {
+    "title": "Simulating Sensors",
+    "permalink": "/docs/en/module-2-digital-twin/simulating-sensors"
+  },
+  "next": {
+    "title": "Module 3: The Robot Brain - Perception and Navigation",
+    "permalink": "/docs/en/module-3-robot-brain/intro"
+  }
+}

@@ -14,7 +14,7 @@ export const AUTH_API_URL = isProduction
 
 // API Server (Vercel Serverless)
 export const API_BASE_URL = isProduction
-  ? 'https://textbook-hvqhdgkym-mathnjs-projects.vercel.app'
+  ? 'https://textbook-iq4cebqvo-mathnjs-projects.vercel.app'
   : 'http://localhost:8000';
 
 // Auth Client Base URL (for Better Auth)

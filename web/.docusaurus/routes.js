@@ -3,6 +3,41 @@ import ComponentCreator from '@docusaurus/ComponentCreator';
 
 export default [
   {
+    path: '/__docusaurus/debug',
+    component: ComponentCreator('/__docusaurus/debug', '5ff'),
+    exact: true
+  },
+  {
+    path: '/__docusaurus/debug/config',
+    component: ComponentCreator('/__docusaurus/debug/config', '5ba'),
+    exact: true
+  },
+  {
+    path: '/__docusaurus/debug/content',
+    component: ComponentCreator('/__docusaurus/debug/content', 'a2b'),
+    exact: true
+  },
+  {
+    path: '/__docusaurus/debug/globalData',
+    component: ComponentCreator('/__docusaurus/debug/globalData', 'c3c'),
+    exact: true
+  },
+  {
+    path: '/__docusaurus/debug/metadata',
+    component: ComponentCreator('/__docusaurus/debug/metadata', '156'),
+    exact: true
+  },
+  {
+    path: '/__docusaurus/debug/registry',
+    component: ComponentCreator('/__docusaurus/debug/registry', '88c'),
+    exact: true
+  },
+  {
+    path: '/__docusaurus/debug/routes',
+    component: ComponentCreator('/__docusaurus/debug/routes', '000'),
+    exact: true
+  },
+  {
     path: '/exam',
     component: ComponentCreator('/exam', 'f72'),
     exact: true
@@ -19,15 +54,15 @@ export default [
   },
   {
     path: '/docs/en',
-    component: ComponentCreator('/docs/en', 'b98'),
+    component: ComponentCreator('/docs/en', '5b5'),
     routes: [
       {
         path: '/docs/en',
-        component: ComponentCreator('/docs/en', '126'),
+        component: ComponentCreator('/docs/en', '666'),
         routes: [
           {
             path: '/docs/en',
-            component: ComponentCreator('/docs/en', '4b3'),
+            component: ComponentCreator('/docs/en', 'fa6'),
             routes: [
               {
                 path: '/docs/en/module-0-setup/intro',
@@ -36,14 +71,44 @@ export default [
                 sidebar: "docs"
               },
               {
-                path: '/docs/en/module-1-nervous-system/intro',
-                component: ComponentCreator('/docs/en/module-1-nervous-system/intro', 'a1a'),
+                path: '/docs/en/module-1-nervous-system/intro-to-ros2',
+                component: ComponentCreator('/docs/en/module-1-nervous-system/intro-to-ros2', 'ee9'),
                 exact: true,
                 sidebar: "docs"
               },
               {
-                path: '/docs/en/module-2-digital-twin/intro',
-                component: ComponentCreator('/docs/en/module-2-digital-twin/intro', 'e1f'),
+                path: '/docs/en/module-1-nervous-system/nodes-and-topics',
+                component: ComponentCreator('/docs/en/module-1-nervous-system/nodes-and-topics', '0a0'),
+                exact: true,
+                sidebar: "docs"
+              },
+              {
+                path: '/docs/en/module-1-nervous-system/urdf-modeling',
+                component: ComponentCreator('/docs/en/module-1-nervous-system/urdf-modeling', '0ce'),
+                exact: true,
+                sidebar: "docs"
+              },
+              {
+                path: '/docs/en/module-2-digital-twin/gazebo-fortress-setup',
+                component: ComponentCreator('/docs/en/module-2-digital-twin/gazebo-fortress-setup', '880'),
+                exact: true,
+                sidebar: "docs"
+              },
+              {
+                path: '/docs/en/module-2-digital-twin/intro-digital-twin',
+                component: ComponentCreator('/docs/en/module-2-digital-twin/intro-digital-twin', '36e'),
+                exact: true,
+                sidebar: "docs"
+              },
+              {
+                path: '/docs/en/module-2-digital-twin/simulating-sensors',
+                component: ComponentCreator('/docs/en/module-2-digital-twin/simulating-sensors', '2b7'),
+                exact: true,
+                sidebar: "docs"
+              },
+              {
+                path: '/docs/en/module-2-digital-twin/unity-visualization',
+                component: ComponentCreator('/docs/en/module-2-digital-twin/unity-visualization', 'f7d'),
                 exact: true,
                 sidebar: "docs"
               },
@@ -73,15 +138,15 @@ export default [
   },
   {
     path: '/docs/ur',
-    component: ComponentCreator('/docs/ur', '2fa'),
+    component: ComponentCreator('/docs/ur', 'f48'),
     routes: [
       {
         path: '/docs/ur',
-        component: ComponentCreator('/docs/ur', 'c8e'),
+        component: ComponentCreator('/docs/ur', '18d'),
         routes: [
           {
             path: '/docs/ur',
-            component: ComponentCreator('/docs/ur', '7a7'),
+            component: ComponentCreator('/docs/ur', '01f'),
             routes: [
               {
                 path: '/docs/ur/module-0-setup/intro',
@@ -96,8 +161,44 @@ export default [
                 sidebar: "docs"
               },
               {
-                path: '/docs/ur/module-2-digital-twin/intro',
-                component: ComponentCreator('/docs/ur/module-2-digital-twin/intro', 'f47'),
+                path: '/docs/ur/module-1-nervous-system/intro-to-ros2',
+                component: ComponentCreator('/docs/ur/module-1-nervous-system/intro-to-ros2', '0cd'),
+                exact: true,
+                sidebar: "docs"
+              },
+              {
+                path: '/docs/ur/module-1-nervous-system/nodes-and-topics',
+                component: ComponentCreator('/docs/ur/module-1-nervous-system/nodes-and-topics', 'f61'),
+                exact: true,
+                sidebar: "docs"
+              },
+              {
+                path: '/docs/ur/module-1-nervous-system/urdf-modeling',
+                component: ComponentCreator('/docs/ur/module-1-nervous-system/urdf-modeling', '373'),
+                exact: true,
+                sidebar: "docs"
+              },
+              {
+                path: '/docs/ur/module-2-digital-twin/gazebo-fortress-setup',
+                component: ComponentCreator('/docs/ur/module-2-digital-twin/gazebo-fortress-setup', '832'),
+                exact: true,
+                sidebar: "docs"
+              },
+              {
+                path: '/docs/ur/module-2-digital-twin/intro-digital-twin',
+                component: ComponentCreator('/docs/ur/module-2-digital-twin/intro-digital-twin', '1ed'),
+                exact: true,
+                sidebar: "docs"
+              },
+              {
+                path: '/docs/ur/module-2-digital-twin/simulating-sensors',
+                component: ComponentCreator('/docs/ur/module-2-digital-twin/simulating-sensors', '274'),
+                exact: true,
+                sidebar: "docs"
+              },
+              {
+                path: '/docs/ur/module-2-digital-twin/unity-visualization',
+                component: ComponentCreator('/docs/ur/module-2-digital-twin/unity-visualization', '9e7'),
                 exact: true,
                 sidebar: "docs"
               },

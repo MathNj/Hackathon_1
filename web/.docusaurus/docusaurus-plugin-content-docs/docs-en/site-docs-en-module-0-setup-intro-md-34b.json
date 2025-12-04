@@ -13,7 +13,7 @@
   "frontMatter": {},
   "sidebar": "docs",
   "next": {
-    "title": "Module 1: The Nervous System - ROS 2 Fundamentals",
-    "permalink": "/docs/en/module-1-nervous-system/intro"
+    "title": "Introduction to ROS 2",
+    "permalink": "/docs/en/module-1-nervous-system/intro-to-ros2"
   }
 }

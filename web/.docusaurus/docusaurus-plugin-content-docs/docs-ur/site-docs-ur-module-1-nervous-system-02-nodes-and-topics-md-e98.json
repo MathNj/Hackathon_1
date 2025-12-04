@@ -1,0 +1,40 @@
+{
+  "id": "module-1-nervous-system/nodes-and-topics",
+  "title": "عملی طور پر Nodes اور Topics - آپ کا پہلا ROS 2 Code",
+  "description": "Python میں اپنے پہلے ROS 2 nodes لکھیں - rclpy publish-subscribe pattern استعمال کرتے ہوئے Talker اور Listener",
+  "source": "@site/docs/ur/module-1-nervous-system/02-nodes-and-topics.md",
+  "sourceDirName": "module-1-nervous-system",
+  "slug": "/module-1-nervous-system/nodes-and-topics",
+  "permalink": "/docs/ur/module-1-nervous-system/nodes-and-topics",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "id": "nodes-and-topics",
+    "title": "عملی طور پر Nodes اور Topics - آپ کا پہلا ROS 2 Code",
+    "sidebar_label": "Nodes اور Topics",
+    "sidebar_position": 2,
+    "description": "Python میں اپنے پہلے ROS 2 nodes لکھیں - rclpy publish-subscribe pattern استعمال کرتے ہوئے Talker اور Listener",
+    "keywords": [
+      "ros2",
+      "rclpy",
+      "publisher",
+      "subscriber",
+      "python",
+      "nodes",
+      "topics",
+      "tutorial"
+    ]
+  },
+  "sidebar": "docs",
+  "previous": {
+    "title": "ROS 2 کا تعارف",
+    "permalink": "/docs/ur/module-1-nervous-system/intro-to-ros2"
+  },
+  "next": {
+    "title": "URDF Modeling",
+    "permalink": "/docs/ur/module-1-nervous-system/urdf-modeling"
+  }
+}

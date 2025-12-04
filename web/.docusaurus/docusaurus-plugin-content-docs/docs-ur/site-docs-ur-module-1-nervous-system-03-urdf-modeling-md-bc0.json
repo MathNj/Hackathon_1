@@ -1,0 +1,40 @@
+{
+  "id": "module-1-nervous-system/urdf-modeling",
+  "title": "URDF Modeling - دماغ اور جسم کو جوڑنا",
+  "description": "Links اور joints کے ساتھ robot structure کو model کرنے کے لیے URDF (Unified Robot Description Format) سیکھیں",
+  "source": "@site/docs/ur/module-1-nervous-system/03-urdf-modeling.md",
+  "sourceDirName": "module-1-nervous-system",
+  "slug": "/module-1-nervous-system/urdf-modeling",
+  "permalink": "/docs/ur/module-1-nervous-system/urdf-modeling",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 3,
+  "frontMatter": {
+    "id": "urdf-modeling",
+    "title": "URDF Modeling - دماغ اور جسم کو جوڑنا",
+    "sidebar_label": "URDF Modeling",
+    "sidebar_position": 3,
+    "description": "Links اور joints کے ساتھ robot structure کو model کرنے کے لیے URDF (Unified Robot Description Format) سیکھیں",
+    "keywords": [
+      "urdf",
+      "robot modeling",
+      "links",
+      "joints",
+      "rviz",
+      "coordinate frames",
+      "tf",
+      "xml"
+    ]
+  },
+  "sidebar": "docs",
+  "previous": {
+    "title": "Nodes اور Topics",
+    "permalink": "/docs/ur/module-1-nervous-system/nodes-and-topics"
+  },
+  "next": {
+    "title": "Module 1: The Nervous System - ROS 2 Fundamentals",
+    "permalink": "/docs/ur/module-1-nervous-system/intro"
+  }
+}

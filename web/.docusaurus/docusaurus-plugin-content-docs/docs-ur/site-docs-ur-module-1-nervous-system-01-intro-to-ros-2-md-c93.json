@@ -1,0 +1,39 @@
+{
+  "id": "module-1-nervous-system/intro-to-ros2",
+  "title": "ROS 2 کا تعارف - روبوٹ کا اعصابی نظام",
+  "description": "حیاتیاتی اعصابی نظام کی تشبیہ استعمال کرتے ہوئے ROS 2 architecture سیکھیں - nodes، topics، اور services کو سمجھنا",
+  "source": "@site/docs/ur/module-1-nervous-system/01-intro-to-ros2.md",
+  "sourceDirName": "module-1-nervous-system",
+  "slug": "/module-1-nervous-system/intro-to-ros2",
+  "permalink": "/docs/ur/module-1-nervous-system/intro-to-ros2",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "id": "intro-to-ros2",
+    "title": "ROS 2 کا تعارف - روبوٹ کا اعصابی نظام",
+    "sidebar_label": "ROS 2 کا تعارف",
+    "sidebar_position": 1,
+    "description": "حیاتیاتی اعصابی نظام کی تشبیہ استعمال کرتے ہوئے ROS 2 architecture سیکھیں - nodes، topics، اور services کو سمجھنا",
+    "keywords": [
+      "ros2",
+      "nervous system",
+      "nodes",
+      "topics",
+      "services",
+      "middleware",
+      "robotics architecture"
+    ]
+  },
+  "sidebar": "docs",
+  "previous": {
+    "title": "ماڈیول 0: ورک سٹیشن سیٹ اپ",
+    "permalink": "/docs/ur/module-0-setup/intro"
+  },
+  "next": {
+    "title": "Nodes اور Topics",
+    "permalink": "/docs/ur/module-1-nervous-system/nodes-and-topics"
+  }
+}
