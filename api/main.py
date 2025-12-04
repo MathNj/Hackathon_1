@@ -35,7 +35,12 @@ app = FastAPI(
 
 # CORS Configuration
 # Allow requests from GitHub Pages and localhost
-CORS_ORIGINS = os.getenv("CORS_ORIGINS", "http://localhost:3000").split(",")
+CORS_ORIGINS_RAW = os.getenv("CORS_ORIGINS", "http://localhost:3000,https://mathnj.github.io")
+CORS_ORIGINS = [origin.strip() for origin in CORS_ORIGINS_RAW.split(",") if origin.strip()]
+
+# Ensure we have at least some origins configured
+if not CORS_ORIGINS:
+    CORS_ORIGINS = ["http://localhost:3000", "https://mathnj.github.io"]
 
 app.add_middleware(
     CORSMiddleware,
