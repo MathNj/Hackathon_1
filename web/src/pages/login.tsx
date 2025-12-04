@@ -30,12 +30,16 @@ export default function Login(): JSX.Element {
     try {
       if (isSignup) {
         // Signup
-        await authClient.signUp.email({
+        const result = await authClient.signUp.email({
           email,
           password,
           name,
-          callbackURL: "/",
         });
+
+        // Check for errors in result
+        if (result.error) {
+          throw new Error(result.error.message || "Signup failed");
+        }
 
         // Get the user ID from session
         const session = await authClient.getSession();
@@ -64,17 +68,23 @@ export default function Login(): JSX.Element {
         }
       } else {
         // Login
-        await authClient.signIn.email({
+        const result = await authClient.signIn.email({
           email,
           password,
-          callbackURL: "/",
         });
+
+        // Check for errors in result
+        if (result.error) {
+          throw new Error(result.error.message || "Login failed");
+        }
       }
 
-      // Redirect to home on success
+      // Only redirect to home on successful auth (no errors thrown)
       history.push("/");
     } catch (err: any) {
-      setError(err.message || "Authentication failed");
+      console.error("Authentication error:", err);
+      setError(err.message || "Authentication failed. Please try again.");
+      // Do NOT redirect on error - user stays on login page to see error
     } finally {
       setLoading(false);
     }

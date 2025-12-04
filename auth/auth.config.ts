@@ -114,6 +114,9 @@ export const auth = betterAuth({
   // Secret for JWT signing and session encryption
   secret: AUTH_SECRET,
 
+  // CORS Configuration - Allow frontend origin
+  trustedOrigins: ["http://localhost:3000"],
+
   // Email and password authentication
   emailAndPassword: {
     enabled: true,
