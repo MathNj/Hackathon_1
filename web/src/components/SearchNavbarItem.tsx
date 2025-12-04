@@ -73,7 +73,7 @@ export default function SearchNavbarItem(): JSX.Element {
             fontWeight: "600",
           }}
         >
-          {navigator.platform.toUpperCase().indexOf("MAC") >= 0 ? "⌘" : "Ctrl"}K
+          {typeof navigator !== 'undefined' && navigator.platform.toUpperCase().indexOf("MAC") >= 0 ? "⌘" : "Ctrl"}K
         </kbd>
       </button>
 
