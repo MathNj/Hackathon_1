@@ -5,11 +5,12 @@
  * - Toggle button (floating bottom-right)
  * - Context chips display above input
  * - Remove context with X button
- * - Send message to RAG backend at http://localhost:8000/chat
+ * - Send message to RAG backend (Vercel serverless in production)
  * - Display chat history
  */
 import React, { useState, useRef, useEffect } from "react";
 import { useChatContext } from "../context/ChatContext";
+import { API_ENDPOINTS } from "../config/api";
 
 interface Message {
   role: "user" | "assistant";
@@ -54,7 +55,7 @@ export default function ChatWidget(): JSX.Element {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:8000/chat", {
+      const response = await fetch(API_ENDPOINTS.chat, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

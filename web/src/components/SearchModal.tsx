@@ -4,12 +4,13 @@
  * Features:
  * - Cmd+K (Mac) / Ctrl+K (Windows) keyboard shortcut
  * - Auto-focused search input
- * - Real-time vector search via /search endpoint
+ * - Real-time vector search via API endpoint (Vercel serverless in production)
  * - Results with content previews and links
  * - "Ask AI" action to escalate to ChatWidget
  * - ESC to close, click outside to close
  */
 import React, { useState, useEffect, useRef } from "react";
+import { API_ENDPOINTS } from "../config/api";
 
 interface SearchResult {
   title: string;
@@ -64,7 +65,7 @@ export default function SearchModal({ isOpen, onClose, onAskAI }: SearchModalPro
       setError(null);
 
       try {
-        const response = await fetch("http://localhost:8000/search", {
+        const response = await fetch(API_ENDPOINTS.search, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -117,7 +118,7 @@ export default function SearchModal({ isOpen, onClose, onAskAI }: SearchModalPro
         left: 0,
         right: 0,
         bottom: 0,
-        background: "rgba(0, 0, 0, 0.6)",
+        background: "transparent",
         display: "flex",
         alignItems: "flex-start",
         justifyContent: "center",

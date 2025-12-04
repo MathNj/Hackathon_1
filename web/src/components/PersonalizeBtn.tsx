@@ -13,6 +13,7 @@ import React, { useState, useEffect } from "react";
 import { useSession } from "../contexts/SessionContext";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { API_ENDPOINTS } from "../config/api";
 
 type ViewMode = "replace" | "side-by-side";
 
@@ -43,6 +44,11 @@ export default function PersonalizeBtn(): JSX.Element | null {
   }, [showModal]);
 
   if (!session?.user) {
+    return null;
+  }
+
+  // Hide on homepage
+  if (typeof window !== "undefined" && (window.location.pathname === "/" || window.location.pathname === "")) {
     return null;
   }
 
@@ -104,7 +110,7 @@ export default function PersonalizeBtn(): JSX.Element | null {
     try {
       console.log(`📝 Personalizing content (${text.length} chars) for background: "${background || 'general'}"`);
 
-      const response = await fetch("http://localhost:8000/personalize", {
+      const response = await fetch(API_ENDPOINTS.personalize, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -11,6 +11,7 @@
  * - Auto-refresh session on mount
  */
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { AUTH_API_URL, API_ENDPOINTS } from '../config/api';
 
 interface User {
   id: string;
@@ -37,7 +38,6 @@ interface SessionContextType {
 
 const SessionContext = createContext<SessionContextType | undefined>(undefined);
 
-const AUTH_API_URL = 'http://localhost:3001/api/auth';
 const SESSION_TOKEN_KEY = 'textbook_session_token';
 
 export function SessionProvider({ children }: { children: ReactNode }) {
@@ -218,7 +218,7 @@ export function SessionProvider({ children }: { children: ReactNode }) {
       // If background provided, save it
       if (background && background.trim() && data.user.id) {
         try {
-          const bgResponse = await fetch('http://localhost:3001/api/user/preferences', {
+          const bgResponse = await fetch(API_ENDPOINTS.userPreferences, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',

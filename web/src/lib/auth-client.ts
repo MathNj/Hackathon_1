@@ -1,12 +1,13 @@
 /**
  * Better Auth React Client
  *
- * Connects to the Node.js auth service running on port 3001
+ * Connects to the auth service (localhost dev or Vercel production)
  */
 import { createAuthClient } from "better-auth/react";
+import { AUTH_BASE_URL } from "../config/api";
 
 export const authClient = createAuthClient({
-  baseURL: "http://localhost:3001",
+  baseURL: AUTH_BASE_URL,
   fetchOptions: {
     credentials: "include", // Send cookies with requests
   },
