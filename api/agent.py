@@ -32,9 +32,9 @@ class RAGAgent:
         - Embeddings: OpenAI (text-embedding-3-small) via direct OpenAI API
         - Vector DB: Qdrant
         """
-        # Get API configuration from environment
-        self.gemini_api_key = os.getenv("GEMINI_API_KEY")
-        self.openai_api_key = os.getenv("OPENAI_API_KEY")
+        # Get API configuration from environment (strip whitespace/newlines)
+        self.gemini_api_key = os.getenv("GEMINI_API_KEY", "").strip()
+        self.openai_api_key = os.getenv("OPENAI_API_KEY", "").strip()
         self.gemini_base_url = os.getenv("OPENAI_API_BASE", "https://generativelanguage.googleapis.com/v1beta/openai/").strip()
 
         if not self.gemini_api_key:
