@@ -2,25 +2,37 @@
  * Auth Navbar Item Component
  *
  * Displays dynamic authentication button in the Docusaurus navbar
- * - Shows "Login" button when user is not authenticated
- * - Shows user name and "Logout" button when authenticated
+ * - Shows user name when authenticated
+ * - Shows nothing (no login button) when not authenticated
  * - Uses Better-Auth React client for session management
  */
-import React from 'react';
+import React, { useEffect } from 'react';
 import { authClient } from '../lib/auth-client';
-import Link from '@docusaurus/Link';
 
 export default function AuthNavbarItem() {
-  const { data: session, isPending } = authClient.useSession();
+  const { data: session, isPending, refetch } = authClient.useSession();
 
+  // Debug logging
+  useEffect(() => {
+    console.log('AuthNavbarItem - Session state:', {
+      session,
+      isPending,
+      hasUser: !!session?.user,
+      userName: session?.user?.name,
+    });
+  }, [session, isPending]);
+
+  // Force refetch session on mount
+  useEffect(() => {
+    refetch();
+  }, []);
+
+  // Don't show anything while loading
   if (isPending) {
-    return (
-      <div className='navbar__item'>
-        <span style={{ fontSize: '14px', opacity: 0.7 }}>Loading...</span>
-      </div>
-    );
+    return null;
   }
 
+  // If logged in, show user name and logout button
   if (session?.user) {
     return (
       <div className='navbar__item' style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
@@ -42,13 +54,6 @@ export default function AuthNavbarItem() {
     );
   }
 
-  return (
-    <Link
-      to='/login'
-      className='button button--primary button--sm navbar__item'
-      style={{ textDecoration: 'none' }}
-    >
-      Login
-    </Link>
-  );
+  // If not logged in, show nothing (no login button)
+  return null;
 }

@@ -87,9 +87,16 @@ export default function Login(): JSX.Element {
         setSuccess("Login successful! You're now signed in.");
       }
 
+      // Debug: Check session after login
+      console.log("Checking session after authentication...");
+      const newSession = await authClient.getSession();
+      console.log("Session after login:", newSession);
+      console.log("Cookies:", document.cookie);
+
       // Force page reload to update session in navbar
       // This ensures the useSession() hook picks up the new session
       setTimeout(() => {
+        console.log("Reloading page to update navbar...");
         window.location.reload();
       }, 1500); // Wait 1.5 seconds so user can see success message
 
