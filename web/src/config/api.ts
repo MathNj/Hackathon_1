@@ -4,7 +4,7 @@
  */
 
 // Determine if we're in production (GitHub Pages)
-const isProduction = window.location.hostname.includes('github.io');
+const isProduction = window.location.hostname === 'mathnj.github.io';
 
 // Auth Server (Vercel Serverless)
 export const AUTH_API_URL = isProduction

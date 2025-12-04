@@ -7,11 +7,11 @@ const config: Config = {
   tagline: 'Master Humanoid Robotics & Intelligent Physical Systems',
   favicon: 'img/favicon.ico',
 
-  url: 'https://your-docusaurus-site.example.com',
-  baseUrl: '/',
+  url: 'https://mathnj.github.io',
+  baseUrl: '/Hackathon_1/',
 
-  organizationName: 'physical-ai',
-  projectName: 'textbook',
+  organizationName: 'MathNj',
+  projectName: 'Hackathon_1',
 
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'ignore',
