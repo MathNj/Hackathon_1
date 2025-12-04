@@ -20,11 +20,13 @@ export default function Login(): JSX.Element {
   const [name, setName] = useState("");
   const [background, setBackground] = useState("");
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
+    setSuccess("");
     setLoading(true);
 
     try {
@@ -66,6 +68,9 @@ export default function Login(): JSX.Element {
             // Don't block signup on background save failure
           }
         }
+
+        // Show success message for signup
+        setSuccess("Account created successfully! You can now explore the platform or update your profile.");
       } else {
         // Login
         const result = await authClient.signIn.email({
@@ -77,15 +82,18 @@ export default function Login(): JSX.Element {
         if (result.error) {
           throw new Error(result.error.message || "Login failed");
         }
+
+        // Show success message for login
+        setSuccess("Login successful! You're now signed in.");
       }
 
-      // Only redirect to home on successful auth (no errors thrown)
-      // Use window.location to force a full page reload so session updates in navbar
-      window.location.href = "/";
+      // No automatic redirect - user stays on page
+      console.log("Authentication successful!");
+
     } catch (err: any) {
       console.error("Authentication error:", err);
       setError(err.message || "Authentication failed. Please try again.");
-      // Do NOT redirect on error - user stays on login page to see error
+      setSuccess(""); // Clear any success message
     } finally {
       setLoading(false);
     }
@@ -128,6 +136,21 @@ export default function Login(): JSX.Element {
               }}
             >
               {error}
+            </div>
+          )}
+
+          {success && (
+            <div
+              style={{
+                padding: "12px",
+                marginBottom: "20px",
+                background: "#28a745",
+                color: "white",
+                borderRadius: "6px",
+                fontSize: "14px",
+              }}
+            >
+              {success}
             </div>
           )}
 
