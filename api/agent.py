@@ -35,7 +35,7 @@ class RAGAgent:
         # Get API configuration from environment
         self.gemini_api_key = os.getenv("GEMINI_API_KEY")
         self.openai_api_key = os.getenv("OPENAI_API_KEY")
-        self.gemini_base_url = os.getenv("OPENAI_API_BASE", "https://generativelanguage.googleapis.com/v1beta/openai/")
+        self.gemini_base_url = os.getenv("OPENAI_API_BASE", "https://generativelanguage.googleapis.com/v1beta/openai/").strip()
 
         if not self.gemini_api_key:
             raise ValueError("GEMINI_API_KEY not found in environment variables")
