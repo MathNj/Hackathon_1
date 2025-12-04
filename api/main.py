@@ -345,21 +345,37 @@ async def startup_event():
 
     # DEBUG: Verify critical environment variables
     print("=" * 60)
-    print("🔍 DEBUG: LLM Connection Configuration")
+    print("🔍 DEBUG: LLM & Embedding Configuration")
     print("=" * 60)
-    print(f"DEBUG: OPENAI_API_BASE = {os.getenv('OPENAI_API_BASE')}")
-    print(f"DEBUG: GEMINI_API_KEY Loaded = {bool(os.getenv('GEMINI_API_KEY'))}")
+    print(f"DEBUG: OPENAI_API_BASE (Gemini) = {os.getenv('OPENAI_API_BASE')}")
+    print(f"DEBUG: GEMINI_API_KEY = {bool(os.getenv('GEMINI_API_KEY'))} (for Gemini 2.5 Flash)")
     if os.getenv("GEMINI_API_KEY"):
         key_preview = os.getenv("GEMINI_API_KEY")[:10] + "..." if len(os.getenv("GEMINI_API_KEY", "")) > 10 else "invalid"
-        print(f"DEBUG: API Key Preview = {key_preview}")
+        print(f"       Preview: {key_preview}")
     else:
-        print("❌ WARNING: GEMINI_API_KEY not set - RAG functionality will not work")
+        print("       ❌ WARNING: Not set - Chat will not work")
+
+    print(f"DEBUG: OPENAI_API_KEY = {bool(os.getenv('OPENAI_API_KEY'))} (for embeddings)")
+    if os.getenv("OPENAI_API_KEY"):
+        key_preview = os.getenv("OPENAI_API_KEY")[:10] + "..." if len(os.getenv("OPENAI_API_KEY", "")) > 10 else "invalid"
+        print(f"       Preview: {key_preview}")
+    else:
+        print("       ❌ WARNING: Not set - Search/RAG will not work")
+
     print(f"DEBUG: DATABASE_URL = {os.getenv('DATABASE_URL')[:30]}..." if os.getenv('DATABASE_URL') else "Not set")
     print(f"DEBUG: QDRANT_URL = {os.getenv('QDRANT_URL', 'Not set')}")
     print("=" * 60)
+    print("📊 Model Configuration:")
+    print("  - Chat: Gemini 2.5 Flash (via Google Generative AI)")
+    print("  - Embeddings: text-embedding-3-small (via OpenAI)")
+    print("  - Vector DB: Qdrant")
+    print("=" * 60)
 
     if not os.getenv("GEMINI_API_KEY"):
-        logger.warning("GEMINI_API_KEY not set - RAG functionality will not work")
+        logger.warning("GEMINI_API_KEY not set - Chat functionality will not work")
+
+    if not os.getenv("OPENAI_API_KEY"):
+        logger.warning("OPENAI_API_KEY not set - Embeddings/Search/RAG will not work")
 
     logger.info("Startup complete - API ready to accept requests")
 

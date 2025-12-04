@@ -29,21 +29,30 @@ class RAGAgent:
 
         Configuration:
         - Chat completions: Gemini 2.5 Flash (gemini-2.5-flash)
-        - Embeddings: OpenAI (text-embedding-3-small)
+        - Embeddings: OpenAI (text-embedding-3-small) via direct OpenAI API
         - Vector DB: Qdrant
         """
         # Get API configuration from environment
-        self.api_key = os.getenv("GEMINI_API_KEY")
-        self.base_url = os.getenv("OPENAI_API_BASE", "https://generativelanguage.googleapis.com/v1beta/openai/")
+        self.gemini_api_key = os.getenv("GEMINI_API_KEY")
+        self.openai_api_key = os.getenv("OPENAI_API_KEY")
+        self.gemini_base_url = os.getenv("OPENAI_API_BASE", "https://generativelanguage.googleapis.com/v1beta/openai/")
 
-        if not self.api_key:
+        if not self.gemini_api_key:
             raise ValueError("GEMINI_API_KEY not found in environment variables")
 
-        # Initialize AsyncOpenAI client with Gemini compatibility
-        # Uses Gemini 2.5 Flash for chat, OpenAI embeddings via Gemini proxy
+        if not self.openai_api_key:
+            raise ValueError("OPENAI_API_KEY not found in environment variables")
+
+        # Initialize Gemini client for chat completions (Gemini 2.5 Flash)
         self.client = AsyncOpenAI(
-            api_key=self.api_key,
-            base_url=self.base_url
+            api_key=self.gemini_api_key,
+            base_url=self.gemini_base_url
+        )
+
+        # Initialize OpenAI client for embeddings (text-embedding-3-small)
+        self.embedding_client = AsyncOpenAI(
+            api_key=self.openai_api_key,
+            base_url="https://api.openai.com/v1"
         )
 
         # Initialize Qdrant client for vector search
@@ -56,7 +65,7 @@ class RAGAgent:
         )
         self.collection_name = "robotics_textbook"
 
-        logger.info("RAG Agent initialized with Gemini API backend and Qdrant")
+        logger.info("RAG Agent initialized: Gemini 2.5 Flash (chat) + OpenAI (embeddings) + Qdrant (vector DB)")
 
     async def generate_response(
         self,
@@ -188,16 +197,17 @@ Note: Full RAG context retrieval is not yet configured. Please provide a helpful
     async def embed_text(self, text: str) -> List[float]:
         """
         Generate embeddings for text using OpenAI's embedding model
-        Will be used for Qdrant indexing in Phase 3
+        Uses direct OpenAI API (not Gemini proxy) for embeddings
 
         Args:
             text: Text to embed
 
         Returns:
-            List of floats representing the embedding vector
+            List of floats representing the embedding vector (1536 dimensions)
         """
         try:
-            response = await self.client.embeddings.create(
+            # Use the dedicated OpenAI embedding client
+            response = await self.embedding_client.embeddings.create(
                 model="text-embedding-3-small",
                 input=text
             )
@@ -265,14 +275,28 @@ Note: Full RAG context retrieval is not yet configured. Please provide a helpful
             return []
 
     async def health_check(self) -> Dict[str, Any]:
-        """Check if the API connection is working"""
+        """Check if the API connections are working"""
         try:
-            # Make a simple API call to test connectivity with Gemini 2.5 Flash
-            response = await self.client.chat.completions.create(
+            # Test Gemini 2.5 Flash for chat
+            chat_response = await self.client.chat.completions.create(
                 model="gemini-2.5-flash",
                 messages=[{"role": "user", "content": "Hello"}],
                 max_tokens=10
             )
+            gemini_status = "healthy"
+            gemini_model = chat_response.model
+
+            # Test OpenAI embeddings
+            try:
+                embedding_response = await self.embedding_client.embeddings.create(
+                    model="text-embedding-3-small",
+                    input="test"
+                )
+                openai_status = "healthy"
+                embedding_dimensions = len(embedding_response.data[0].embedding)
+            except Exception as e:
+                openai_status = f"unhealthy: {str(e)}"
+                embedding_dimensions = 0
 
             # Check Qdrant connection
             try:
@@ -285,10 +309,21 @@ Note: Full RAG context retrieval is not yet configured. Please provide a helpful
 
             return {
                 "status": "healthy",
-                "model": response.model,
-                "api_base": self.base_url,
-                "qdrant": qdrant_status,
-                "collection_exists": collection_exists
+                "gemini": {
+                    "status": gemini_status,
+                    "model": gemini_model,
+                    "api_base": self.gemini_base_url
+                },
+                "openai": {
+                    "status": openai_status,
+                    "model": "text-embedding-3-small",
+                    "embedding_dimensions": embedding_dimensions
+                },
+                "qdrant": {
+                    "status": qdrant_status,
+                    "collection_exists": collection_exists,
+                    "collection_name": self.collection_name
+                }
             }
 
         except Exception as e:
@@ -298,8 +333,9 @@ Note: Full RAG context retrieval is not yet configured. Please provide a helpful
             print("=" * 60)
             print(f"Error Type: {type(e).__name__}")
             print(f"Error Message: {str(e)}")
-            print(f"API Base URL: {self.base_url}")
-            print(f"API Key Present: {bool(self.api_key)}")
+            print(f"Gemini Base URL: {self.gemini_base_url}")
+            print(f"Gemini API Key Present: {bool(self.gemini_api_key)}")
+            print(f"OpenAI API Key Present: {bool(self.openai_api_key)}")
             print("\nFull Traceback:")
             traceback.print_exc()
             print("=" * 60)
