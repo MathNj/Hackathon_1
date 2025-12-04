@@ -52,3 +52,40 @@ Physical AI اور Humanoid Robotics میں غوطہ لگانے سے پہلے، 
 ---
 
 **مدد چاہیے؟** ہماری Discord community میں شامل ہوں یا اس ماڈیول کے آخر میں troubleshooting section دیکھیں۔
+
+## جائزہ Flashcards
+
+import FlashCard from '@site/src/components/FlashCard';
+
+<FlashCard cards={[
+  {
+    id: 1,
+    question: "اس کورس کے لیے کم سے کم تجویز کردہ GPU کیا ہے؟",
+    answer: "NVIDIA RTX 4070 Ti جس میں 12GB VRAM یا بہتر ہو",
+    category: "ہارڈویئر"
+  },
+  {
+    id: 2,
+    question: "ROS 2 Humble کے لیے کون سا Ubuntu version ضروری ہے؟",
+    answer: "Ubuntu 22.04 LTS (native install، WSL نہیں)",
+    category: "سافٹ ویئر"
+  },
+  {
+    id: 3,
+    question: "Robotics development میں Docker کا بنیادی مقصد کیا ہے؟",
+    answer: "الگ تھلگ، دوبارہ بنائے جا سکنے والے development environments فراہم کرنا جو مختلف systems میں مستقل رویہ یقینی بناتے ہیں",
+    category: "ٹولز"
+  },
+  {
+    id: 4,
+    question: "Module 4 اور اس کے بعد کے لیے کون سا edge device ضروری ہے؟",
+    answer: "NVIDIA Jetson Orin Nano (8GB) یا Jetson Orin NX (16GB)",
+    category: "ہارڈویئر"
+  },
+  {
+    id: 5,
+    question: "Workstation کے لیے کتنی RAM تجویز کی جاتی ہے؟",
+    answer: "32GB DDR4/DDR5",
+    category: "ہارڈویئر"
+  }
+]} />

@@ -123,3 +123,52 @@ Data handling کی ضروریات کے لیے [GDPR Compliance](../appendix/gdpr
 ---
 
 **Pro Tip**: GPT-4V API پر switch کرنے سے پہلے تیز iteration کے لیے Llama 3 70B کو locally چلانے کے لیے `ollama` استعمال کریں۔
+
+## جائزہ Flashcards
+
+import FlashCard from '@site/src/components/FlashCard';
+
+<FlashCard cards={[
+  {
+    id: 1,
+    question: "VLA کا مطلب کیا ہے اور یہ کیا ہے؟",
+    answer: "Vision-Language-Action model - ایک AI model جو visual input اور language commands لیتا ہے، پھر براہ راست robot actions کا output دیتا ہے",
+    category: "Concepts"
+  },
+  {
+    id: 2,
+    question: "روایتی control کے مقابلے میں VLA models کے main فوائد کیا ہیں؟",
+    answer: "Ambiguous instructions handle کرتے ہیں، نئے objects/scenarios میں عام کرتے ہیں، کم manual programming کی ضرورت ہے، اور demonstrations سے سیکھتے ہیں",
+    category: "AI"
+  },
+  {
+    id: 3,
+    question: "دو popular VLA model architectures کون سے ہیں؟",
+    answer: "OpenVLA (7B parameters) اور RT-2 (Robotics Transformer 2)",
+    category: "Models"
+  },
+  {
+    id: 4,
+    question: "Whisper کیا ہے اور یہ کیا کرتا ہے؟",
+    answer: "OpenAI کا Automatic Speech Recognition (ASR) model جو robot control کے لیے voice commands کو text میں convert کرتا ہے",
+    category: "ٹولز"
+  },
+  {
+    id: 5,
+    question: "TensorRT کے ساتھ RTX 4070 Ti پر OpenVLA کے لیے typical inference time کیا ہے؟",
+    answer: "ہر action prediction کے لیے 50ms (FP16 precision)",
+    category: "Performance"
+  },
+  {
+    id: 6,
+    question: "Edge deployment کے لیے INT8 quantization کیوں اہم ہے؟",
+    answer: "یہ model size کم کرتا ہے اور Jetson Orin جیسے edge devices پر inference کو تیز کرتا ہے جبکہ قابل قبول accuracy برقرار رکھتا ہے",
+    category: "Optimization"
+  },
+  {
+    id: 7,
+    question: "Robot AI systems میں safety layer کیا ہے؟",
+    answer: "نقصان دہ commands کو filter کرنے اور human oversight یقینی بنانے کا ایک mechanism، جو robot کو خطرناک actions execute کرنے سے روکتا ہے",
+    category: "Safety"
+  }
+]} />

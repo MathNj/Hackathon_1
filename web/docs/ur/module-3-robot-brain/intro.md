@@ -97,3 +97,46 @@ Omniverse install کرنے کے لیے [Isaac Sim Setup](./isaac-sim-setup.md) �
 ---
 
 **Pro Tip**: Isaac Sim پر deploy کرنے سے پہلے Gazebo میں Nav2 test کرنے کے لیے `ros2 launch nav2_bringup tb3_simulation_launch.py` استعمال کریں۔
+
+## جائزہ Flashcards
+
+import FlashCard from '@site/src/components/FlashCard';
+
+<FlashCard cards={[
+  {
+    id: 1,
+    question: "SLAM کا مطلب کیا ہے اور یہ کیا کرتا ہے؟",
+    answer: "Simultaneous Localization and Mapping - ایک unknown environment کا map بناتا ہے جبکہ بیک وقت robot کے location کو اس کے اندر track کرتا ہے",
+    category: "Navigation"
+  },
+  {
+    id: 2,
+    question: "Path planning algorithms کی دو main types کون سی ہیں؟",
+    answer: "Global path planning (A*، Dijkstra) long-range routes کے لیے، اور local path planning (DWA، TEB) dynamic obstacle avoidance کے لیے",
+    category: "Planning"
+  },
+  {
+    id: 3,
+    question: "Nav2 کی costmap کا مقصد کیا ہے؟",
+    answer: "Environment کو grid کے طور پر represent کرنا جہاں ہر cell کی cost value ہے، جو robot کو obstacles سے بچنے اور safe paths plan کرنے میں مدد کرتی ہے",
+    category: "Navigation"
+  },
+  {
+    id: 4,
+    question: "Nav2 replanning کے لیے typical latency requirement کیا ہے؟",
+    answer: "50m² map کے لیے 100ms سے کم تاکہ responsive navigation یقینی بنائی جا سکے",
+    category: "Performance"
+  },
+  {
+    id: 5,
+    question: "اس module میں دو popular SLAM algorithms کے نام بتائیں۔",
+    answer: "ORB-SLAM3 (visual SLAM) اور Cartographer (LiDAR SLAM)",
+    category: "Algorithms"
+  },
+  {
+    id: 6,
+    question: "Isaac Sim کیا ہے اور یہ کیوں استعمال ہوتا ہے؟",
+    answer: "NVIDIA کا photorealistic robotics simulator جو Omniverse پر بنایا گیا ہے، realistic environments میں accurate physics اور sensor simulation کے ساتھ robots test کرنے کے لیے استعمال ہوتا ہے",
+    category: "ٹولز"
+  }
+]} />

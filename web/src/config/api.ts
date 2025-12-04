@@ -4,7 +4,8 @@
  */
 
 // Determine if we're in production (GitHub Pages)
-const isProduction = window.location.hostname === 'mathnj.github.io';
+// Use typeof window to check if we're in a browser environment (not SSR)
+const isProduction = typeof window !== 'undefined' && window.location.hostname === 'mathnj.github.io';
 
 // Auth Server (Vercel Serverless)
 export const AUTH_API_URL = isProduction
