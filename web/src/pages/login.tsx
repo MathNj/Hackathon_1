@@ -80,7 +80,8 @@ export default function Login(): JSX.Element {
       }
 
       // Only redirect to home on successful auth (no errors thrown)
-      history.push("/");
+      // Use window.location to force a full page reload so session updates in navbar
+      window.location.href = "/";
     } catch (err: any) {
       console.error("Authentication error:", err);
       setError(err.message || "Authentication failed. Please try again.");

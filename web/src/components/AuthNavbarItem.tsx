@@ -29,7 +29,11 @@ export default function AuthNavbarItem() {
         </span>
         <button
           className='button button--secondary button--sm'
-          onClick={() => authClient.signOut()}
+          onClick={async () => {
+            await authClient.signOut();
+            // Force page reload to update session in navbar
+            window.location.href = '/';
+          }}
           style={{ cursor: 'pointer' }}
         >
           Logout
