@@ -1,4 +1,4 @@
-# FastAPI Backend Dependencies
+# FastAPI Backend Dependencies - Production Only
 # Physical AI Textbook Platform
 
 # Web Framework
@@ -6,42 +6,16 @@ fastapi==0.109.0
 uvicorn[standard]==0.27.0
 
 # OpenAI SDK (compatible with Gemini API)
-openai==1.12.0
-
-# OpenAI Agents SDK (for agentic workflows)
-openai-agents==0.1.0
+openai>=1.0.0
 
 # Environment Management
 python-dotenv==1.0.1
 
-# CORS Support (included in FastAPI but explicit for clarity)
-# fastapi.middleware.cors
-
-# Database (to be used in Phase 3)
-# sqlalchemy==2.0.25
-# psycopg2-binary==2.9.9  # For Neon Postgres
-# alembic==1.13.1  # Database migrations
-
-# Vector Database (Phase 3)
+# Vector Database
 qdrant-client==1.7.3
 
-# Authentication (to be used in Phase 4)
-# python-jose[cryptography]==3.3.0  # JWT tokens
-# passlib[bcrypt]==1.7.4  # Password hashing
-# python-multipart==0.0.9  # Form data support
-
-# HTTP Client (for external API calls)
+# HTTP Client
 httpx==0.26.0
 
-# Logging and Monitoring
-# sentry-sdk==1.40.0  # Error tracking (optional)
-
-# Testing
-pytest==8.0.0
-pytest-asyncio==0.23.4
-httpx==0.26.0  # For testing API endpoints
-
-# Development Tools
-black==24.1.1  # Code formatting
-ruff==0.2.1  # Linting
-mypy==1.8.0  # Type checking
+# Pydantic (for data validation)
+pydantic>=2.0.0
