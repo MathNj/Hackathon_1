@@ -23,6 +23,26 @@ export default function Login(): JSX.Element {
   const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
 
+  // Check if user is already logged in on mount
+  React.useEffect(() => {
+    const checkSession = async () => {
+      try {
+        const session = await authClient.getSession();
+        console.log("Checking existing session on login page:", session);
+
+        if (session?.user) {
+          console.log("User already logged in, redirecting to home...");
+          // User is already logged in, redirect to home
+          window.location.href = "/";
+        }
+      } catch (err) {
+        console.error("Error checking session:", err);
+      }
+    };
+
+    checkSession();
+  }, []);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
