@@ -1,0 +1,23 @@
+{
+  "id": "module-4-the-mind/intro",
+  "title": "ماڈیول 4: The Mind - Vision-Language-Action Models",
+  "description": "جائزہ",
+  "source": "@site/docs/ur/module-4-the-mind/intro.md",
+  "sourceDirName": "module-4-the-mind",
+  "slug": "/module-4-the-mind/intro",
+  "permalink": "/docs/ur/module-4-the-mind/intro",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "docs",
+  "previous": {
+    "title": "ماڈیول 3: The Robot Brain - Perception اور Navigation",
+    "permalink": "/docs/ur/module-3-robot-brain/intro"
+  },
+  "next": {
+    "title": "Capstone Project: Autonomous Humanoid Robot",
+    "permalink": "/docs/ur/module-5-capstone/intro"
+  }
+}

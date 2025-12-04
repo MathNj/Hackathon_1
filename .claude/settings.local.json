@@ -1,0 +1,33 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(bash:*)",
+      "Bash(powershell:*)",
+      "Bash(mkdir:*)",
+      "Bash(git rev-parse:*)",
+      "Bash(python validate_links.py:*)",
+      "Bash(python scripts/lint_code.py:*)",
+      "Bash(npx create-docusaurus@latest . classic --typescript)",
+      "Bash(npm init:*)",
+      "Bash(npm install:*)",
+      "Bash(npx @better-auth/cli generate)",
+      "Bash(npm run build:*)",
+      "Bash(npm start)",
+      "Bash(test:*)",
+      "Bash(npm run clear:*)",
+      "Bash(netstat:*)",
+      "Bash(findstr:*)",
+      "Bash(cmd //c taskkill //F //PID 9060)",
+      "Bash(cat:*)",
+      "Bash(cmd //c \"taskkill //F //IM node.exe\")",
+      "Bash(set PORT=3001)",
+      "Bash(grep:*)",
+      "Bash(ls:*)",
+      "Bash(npx better-auth:*)",
+      "Bash(npx @better-auth/cli@latest migrate:*)",
+      "Bash(node -e:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

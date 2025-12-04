@@ -1,0 +1,112 @@
+{
+  "docusaurus-plugin-content-docs": {
+    "docs-en": {
+      "path": "/docs/en",
+      "versions": [
+        {
+          "name": "current",
+          "label": "Next",
+          "isLast": true,
+          "path": "/docs/en",
+          "mainDocId": "module-0-setup/intro",
+          "docs": [
+            {
+              "id": "module-0-setup/intro",
+              "path": "/docs/en/module-0-setup/intro",
+              "sidebar": "docs"
+            },
+            {
+              "id": "module-1-nervous-system/intro",
+              "path": "/docs/en/module-1-nervous-system/intro",
+              "sidebar": "docs"
+            },
+            {
+              "id": "module-2-digital-twin/intro",
+              "path": "/docs/en/module-2-digital-twin/intro",
+              "sidebar": "docs"
+            },
+            {
+              "id": "module-3-robot-brain/intro",
+              "path": "/docs/en/module-3-robot-brain/intro",
+              "sidebar": "docs"
+            },
+            {
+              "id": "module-4-the-mind/intro",
+              "path": "/docs/en/module-4-the-mind/intro",
+              "sidebar": "docs"
+            },
+            {
+              "id": "module-5-capstone/intro",
+              "path": "/docs/en/module-5-capstone/intro",
+              "sidebar": "docs"
+            }
+          ],
+          "draftIds": [],
+          "sidebars": {
+            "docs": {
+              "link": {
+                "path": "/docs/en/module-0-setup/intro",
+                "label": "module-0-setup/intro"
+              }
+            }
+          }
+        }
+      ],
+      "breadcrumbs": true
+    },
+    "docs-ur": {
+      "path": "/docs/ur",
+      "versions": [
+        {
+          "name": "current",
+          "label": "Next",
+          "isLast": true,
+          "path": "/docs/ur",
+          "mainDocId": "module-0-setup/intro",
+          "docs": [
+            {
+              "id": "module-0-setup/intro",
+              "path": "/docs/ur/module-0-setup/intro",
+              "sidebar": "docs"
+            },
+            {
+              "id": "module-1-nervous-system/intro",
+              "path": "/docs/ur/module-1-nervous-system/intro",
+              "sidebar": "docs"
+            },
+            {
+              "id": "module-2-digital-twin/intro",
+              "path": "/docs/ur/module-2-digital-twin/intro",
+              "sidebar": "docs"
+            },
+            {
+              "id": "module-3-robot-brain/intro",
+              "path": "/docs/ur/module-3-robot-brain/intro",
+              "sidebar": "docs"
+            },
+            {
+              "id": "module-4-the-mind/intro",
+              "path": "/docs/ur/module-4-the-mind/intro",
+              "sidebar": "docs"
+            },
+            {
+              "id": "module-5-capstone/intro",
+              "path": "/docs/ur/module-5-capstone/intro",
+              "sidebar": "docs"
+            }
+          ],
+          "draftIds": [],
+          "sidebars": {
+            "docs": {
+              "link": {
+                "path": "/docs/ur/module-0-setup/intro",
+                "label": "module-0-setup/intro"
+              }
+            }
+          }
+        }
+      ],
+      "breadcrumbs": true
+    }
+  }
+}

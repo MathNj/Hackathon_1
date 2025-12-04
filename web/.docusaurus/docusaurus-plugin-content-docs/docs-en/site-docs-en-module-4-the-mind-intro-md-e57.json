@@ -1,0 +1,23 @@
+{
+  "id": "module-4-the-mind/intro",
+  "title": "Module 4: The Mind - Vision-Language-Action Models",
+  "description": "Overview",
+  "source": "@site/docs/en/module-4-the-mind/intro.md",
+  "sourceDirName": "module-4-the-mind",
+  "slug": "/module-4-the-mind/intro",
+  "permalink": "/docs/en/module-4-the-mind/intro",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "docs",
+  "previous": {
+    "title": "Module 3: The Robot Brain - Perception and Navigation",
+    "permalink": "/docs/en/module-3-robot-brain/intro"
+  },
+  "next": {
+    "title": "Capstone Project: Autonomous Humanoid Robot",
+    "permalink": "/docs/en/module-5-capstone/intro"
+  }
+}

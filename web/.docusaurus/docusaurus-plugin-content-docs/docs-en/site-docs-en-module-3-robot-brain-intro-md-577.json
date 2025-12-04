@@ -1,0 +1,23 @@
+{
+  "id": "module-3-robot-brain/intro",
+  "title": "Module 3: The Robot Brain - Perception and Navigation",
+  "description": "Overview",
+  "source": "@site/docs/en/module-3-robot-brain/intro.md",
+  "sourceDirName": "module-3-robot-brain",
+  "slug": "/module-3-robot-brain/intro",
+  "permalink": "/docs/en/module-3-robot-brain/intro",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "docs",
+  "previous": {
+    "title": "Module 2: The Digital Twin - Simulation and Sensors",
+    "permalink": "/docs/en/module-2-digital-twin/intro"
+  },
+  "next": {
+    "title": "Module 4: The Mind - Vision-Language-Action Models",
+    "permalink": "/docs/en/module-4-the-mind/intro"
+  }
+}

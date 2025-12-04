@@ -1,0 +1,19 @@
+{
+  "id": "module-0-setup/intro",
+  "title": "Module 0: Workstation Setup",
+  "description": "Overview",
+  "source": "@site/docs/en/module-0-setup/intro.md",
+  "sourceDirName": "module-0-setup",
+  "slug": "/module-0-setup/intro",
+  "permalink": "/docs/en/module-0-setup/intro",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "docs",
+  "next": {
+    "title": "Module 1: The Nervous System - ROS 2 Fundamentals",
+    "permalink": "/docs/en/module-1-nervous-system/intro"
+  }
+}

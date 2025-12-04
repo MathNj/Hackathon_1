@@ -1,0 +1,19 @@
+{
+  "id": "module-0-setup/intro",
+  "title": "ماڈیول 0: ورک سٹیشن سیٹ اپ",
+  "description": "جائزہ",
+  "source": "@site/docs/ur/module-0-setup/intro.md",
+  "sourceDirName": "module-0-setup",
+  "slug": "/module-0-setup/intro",
+  "permalink": "/docs/ur/module-0-setup/intro",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "docs",
+  "next": {
+    "title": "ماڈیول 1: The Nervous System - ROS 2 بنیادی باتیں",
+    "permalink": "/docs/ur/module-1-nervous-system/intro"
+  }
+}
