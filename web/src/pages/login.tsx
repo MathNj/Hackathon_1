@@ -4,16 +4,18 @@
  * Features:
  * - Email/password authentication
  * - Name field for signup
- * - Hardware preferences dropdown (RTX 4090, Jetson Orin, Laptop CPU, Google Colab)
+ * - Background textarea for user preferences
  * - Toggle between login/signup modes
+ * - Uses custom SessionContext instead of Better Auth client
  */
 import React, { useState } from "react";
 import Layout from "@theme/Layout";
-import { authClient, HardwareBackground, SkillLevel } from "../lib/auth-client";
+import { useSession } from "../contexts/SessionContext";
 import { useHistory } from "@docusaurus/router";
 
 export default function Login(): JSX.Element {
   const history = useHistory();
+  const { session, login: sessionLogin, signup: sessionSignup, loading: sessionLoading } = useSession();
   const [isSignup, setIsSignup] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -23,26 +25,13 @@ export default function Login(): JSX.Element {
   const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // Check if user is already logged in on mount
+  // Redirect if already logged in
   React.useEffect(() => {
-    const checkSession = async () => {
-      try {
-        const session = await authClient.getSession();
-        console.log("Checking existing session on login page:", session);
-
-        if (session?.user) {
-          console.log("User already logged in, redirecting to home...");
-          // TEMPORARILY DISABLED FOR DEBUGGING
-          // window.location.href = "/";
-          console.log("🔧 DEBUG MODE: Redirect disabled. Remove this to enable redirect.");
-        }
-      } catch (err) {
-        console.error("Error checking session:", err);
-      }
-    };
-
-    checkSession();
-  }, []);
+    if (!sessionLoading && session?.user) {
+      console.log("User already logged in, redirecting to home...");
+      window.location.href = "/";
+    }
+  }, [session, sessionLoading]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -51,92 +40,25 @@ export default function Login(): JSX.Element {
     setLoading(true);
 
     try {
-      let authResult: any = null;
-
       if (isSignup) {
-        // Signup
-        authResult = await authClient.signUp.email({
-          email,
-          password,
-          name,
-        });
-
-        // Check for errors in result
-        if (authResult.error) {
-          throw new Error(authResult.error.message || "Signup failed");
-        }
-
-        // Get the user ID from session
-        const session = await authClient.getSession();
-
-        if (session?.user?.id && background.trim()) {
-          // Update user background after signup
-          try {
-            const response = await fetch("http://localhost:3001/api/user/preferences", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                userId: session.user.id,
-                background: background.trim(),
-              }),
-            });
-
-            if (!response.ok) {
-              console.error("Failed to save background:", await response.text());
-            }
-          } catch (prefError) {
-            console.error("Error saving background:", prefError);
-            // Don't block signup on background save failure
-          }
-        }
-
-        // Show success message for signup
-        setSuccess("Account created successfully! You can now explore the platform or update your profile.");
+        // Signup with custom session context
+        await sessionSignup(email, password, name, background.trim());
+        setSuccess("Account created successfully! Redirecting...");
       } else {
-        // Login
-        authResult = await authClient.signIn.email({
-          email,
-          password,
-        });
-
-        // Check for errors in result
-        if (authResult.error) {
-          throw new Error(authResult.error.message || "Login failed");
-        }
-
-        // Show success message for login
-        setSuccess("Login successful! You're now signed in.");
+        // Login with custom session context
+        await sessionLogin(email, password);
+        setSuccess("Login successful! Redirecting...");
       }
 
-      // Debug: Check session after login
-      console.log("Checking session after authentication...");
-      console.log("Auth result:", authResult);
-      const newSession = await authClient.getSession();
-      console.log("Session after login:", newSession);
-      console.log("Cookies:", document.cookie);
-
-      // If session is still null, there's a cookie/CORS issue
-      if (!newSession?.user) {
-        console.error("⚠️ WARNING: Login succeeded but session is null!");
-        console.error("This means cookies are not being set/read correctly");
-        console.error("Check Network tab → Login request → Response Headers → Set-Cookie");
-        console.error("DO NOT RELOAD - session will be lost. Staying on page for debugging.");
-        // Don't reload if session is null - need to debug
-        return;
-      }
-
-      // Only reload if session is valid
-      console.log("✅ Session is valid! Reloading to update navbar...");
+      // Reload page to update navbar and session state
       setTimeout(() => {
-        window.location.reload();
-      }, 1500); // Wait 1.5 seconds so user can see success message
+        window.location.href = "/";
+      }, 1000);
 
     } catch (err: any) {
       console.error("Authentication error:", err);
       setError(err.message || "Authentication failed. Please try again.");
-      setSuccess(""); // Clear any success message
+      setSuccess("");
     } finally {
       setLoading(false);
     }

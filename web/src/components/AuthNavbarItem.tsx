@@ -4,31 +4,16 @@
  * Displays dynamic authentication button in the Docusaurus navbar
  * - Shows user name when authenticated
  * - Shows nothing (no login button) when not authenticated
- * - Uses Better-Auth React client for session management
+ * - Uses custom SessionContext for session management
  */
-import React, { useEffect } from 'react';
-import { authClient } from '../lib/auth-client';
+import React from 'react';
+import { useSession } from '../contexts/SessionContext';
 
 export default function AuthNavbarItem() {
-  const { data: session, isPending, refetch } = authClient.useSession();
-
-  // Debug logging
-  useEffect(() => {
-    console.log('AuthNavbarItem - Session state:', {
-      session,
-      isPending,
-      hasUser: !!session?.user,
-      userName: session?.user?.name,
-    });
-  }, [session, isPending]);
-
-  // Force refetch session on mount
-  useEffect(() => {
-    refetch();
-  }, []);
+  const { session, loading, logout } = useSession();
 
   // Don't show anything while loading
-  if (isPending) {
+  if (loading) {
     return null;
   }
 
@@ -42,7 +27,7 @@ export default function AuthNavbarItem() {
         <button
           className='button button--secondary button--sm'
           onClick={async () => {
-            await authClient.signOut();
+            await logout();
             // Force page reload to update session in navbar
             window.location.href = '/';
           }}

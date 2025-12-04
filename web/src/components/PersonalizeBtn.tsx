@@ -6,65 +6,27 @@
  * - Two view modes: Replace (overwrites article) or Side-by-Side (modal view)
  * - ReactMarkdown rendering for proper formatting
  * - Shows 'Rewriting...' state during processing
- * - Uses user's skill level and hardware preferences from session
+ * - Uses user's background from custom SessionContext
  * - Only visible when user is logged in
  */
 import React, { useState, useEffect } from "react";
-import { authClient } from "../lib/auth-client";
+import { useSession } from "../contexts/SessionContext";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
 type ViewMode = "replace" | "side-by-side";
 
 export default function PersonalizeBtn(): JSX.Element | null {
-  const { data: session } = authClient.useSession();
+  const { session } = useSession();
   const [isPersonalizing, setIsPersonalizing] = useState(false);
   const [originalContent, setOriginalContent] = useState<string | null>(null);
   const [personalizedContent, setPersonalizedContent] = useState<string | null>(null);
   const [viewMode, setViewMode] = useState<ViewMode>("side-by-side");
   const [showModal, setShowModal] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [background, setBackground] = useState<string>("");
-  const [loadingPreferences, setLoadingPreferences] = useState(true);
-  const [showTooltip, setShowTooltip] = useState(false);
 
-  // Fetch user background from database
-  useEffect(() => {
-    const fetchUserBackground = async () => {
-      if (!session?.user?.id) {
-        setLoadingPreferences(false);
-        return;
-      }
-
-      try {
-        // Try to get from session first
-        if (session.user.background) {
-          setBackground(session.user.background);
-          setLoadingPreferences(false);
-          return;
-        }
-
-        // If not in session, fetch from database
-        const response = await fetch(`http://localhost:3001/api/user/profile`, {
-          credentials: 'include',
-          headers: {
-            'Authorization': `Bearer ${session.user.id}`,
-          },
-        });
-
-        if (response.ok) {
-          const data = await response.json();
-          if (data.background) setBackground(data.background);
-        }
-      } catch (err) {
-        console.error('Failed to fetch user background:', err);
-      } finally {
-        setLoadingPreferences(false);
-      }
-    };
-
-    fetchUserBackground();
-  }, [session]);
+  // Get background from session (already loaded by SessionContext)
+  const background = session?.user?.background || "";
 
   // ESC key to close modal
   useEffect(() => {
@@ -130,7 +92,7 @@ export default function PersonalizeBtn(): JSX.Element | null {
       setPersonalizedContent(data.personalized_content);
 
       if (viewMode === "replace") {
-        // Replace article content with ReactMarkdown rendered version
+        // Replace article content with personalized version
         const personalizedHtml = `
           <div style="border-left: 4px solid var(--ifm-color-primary); padding-left: 16px; margin-bottom: 20px;">
             <p style="color: var(--ifm-color-primary); font-weight: bold; margin-bottom: 8px;">
@@ -173,7 +135,7 @@ export default function PersonalizeBtn(): JSX.Element | null {
       const personalizedHtml = `
         <div style="border-left: 4px solid var(--ifm-color-primary); padding-left: 16px; margin-bottom: 20px;">
           <p style="color: var(--ifm-color-primary); font-weight: bold; margin-bottom: 8px;">
-            ✨ Personalized for ${skillLevel} using ${hardwareBg}
+            ✨ Personalized content for you
           </p>
         </div>
         <div class="personalized-content" style="white-space: pre-wrap; line-height: 1.6;">
@@ -213,7 +175,7 @@ export default function PersonalizeBtn(): JSX.Element | null {
         <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
           <button
             onClick={handlePersonalize}
-            disabled={isPersonalizing || loadingPreferences}
+            disabled={isPersonalizing}
             style={{
               padding: "12px 20px",
               background: isPersonalizing ? "#6c757d" : "var(--ifm-color-primary)",
@@ -223,8 +185,8 @@ export default function PersonalizeBtn(): JSX.Element | null {
               fontWeight: "700",
               color: "white",
               boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
-              cursor: (isPersonalizing || loadingPreferences) ? "not-allowed" : "pointer",
-              opacity: (isPersonalizing || loadingPreferences) ? 0.7 : 1,
+              cursor: isPersonalizing ? "not-allowed" : "pointer",
+              opacity: isPersonalizing ? 0.7 : 1,
               transition: "all 0.2s ease",
               display: "flex",
               alignItems: "center",
@@ -232,7 +194,7 @@ export default function PersonalizeBtn(): JSX.Element | null {
               whiteSpace: "nowrap",
             }}
             onMouseEnter={(e) => {
-              if (!isPersonalizing && !loadingPreferences) {
+              if (!isPersonalizing) {
                 e.currentTarget.style.transform = "translateY(-2px)";
                 e.currentTarget.style.boxShadow = "0 6px 16px rgba(0, 0, 0, 0.2)";
               }
@@ -244,7 +206,7 @@ export default function PersonalizeBtn(): JSX.Element | null {
             title="Personalize article based on your background"
           >
             <span style={{ fontSize: "16px" }}>✨</span>
-            {loadingPreferences ? "Loading..." : isPersonalizing ? "Personalizing..." : "Personalize"}
+            {isPersonalizing ? "Personalizing..." : "Personalize"}
           </button>
 
           {(originalContent || personalizedContent) && (
@@ -437,7 +399,7 @@ export default function PersonalizeBtn(): JSX.Element | null {
               }}
             >
               <h3 style={{ margin: 0, color: "var(--ifm-color-primary)" }}>
-                Original vs Personalized ({skillLevel} • {hardwareBg})
+                Original vs Personalized
               </h3>
               <div style={{ display: "flex", gap: "12px" }}>
                 <button
@@ -542,7 +504,7 @@ export default function PersonalizeBtn(): JSX.Element | null {
                     letterSpacing: "0.5px",
                   }}
                 >
-                  ✨ Personalized for {skillLevel}
+                  ✨ Personalized for You
                 </h4>
                 <div
                   className="markdown-content"
