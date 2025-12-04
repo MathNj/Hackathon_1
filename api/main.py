@@ -138,10 +138,10 @@ async def chat(request: ChatRequest):
         # Get the agent instance
         agent = get_agent()
 
-        # Generate response using RAG
+        # Generate response using RAG (temporarily disabled for testing)
         result = await agent.generate_response(
             query=request.message,
-            use_rag=True
+            use_rag=False  # Disabled RAG to bypass embedding API issues
         )
 
         if not result.get("success", False):
