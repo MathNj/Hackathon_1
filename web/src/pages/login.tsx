@@ -87,8 +87,11 @@ export default function Login(): JSX.Element {
         setSuccess("Login successful! You're now signed in.");
       }
 
-      // No automatic redirect - user stays on page
-      console.log("Authentication successful!");
+      // Force page reload to update session in navbar
+      // This ensures the useSession() hook picks up the new session
+      setTimeout(() => {
+        window.location.reload();
+      }, 1500); // Wait 1.5 seconds so user can see success message
 
     } catch (err: any) {
       console.error("Authentication error:", err);
