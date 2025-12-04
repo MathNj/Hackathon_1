@@ -24,14 +24,13 @@ export default function PersonalizeBtn(): JSX.Element | null {
   const [viewMode, setViewMode] = useState<ViewMode>("side-by-side");
   const [showModal, setShowModal] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [hardwareBg, setHardwareBg] = useState<string>("Laptop CPU");
-  const [skillLevel, setSkillLevel] = useState<string>("Beginner");
+  const [background, setBackground] = useState<string>("");
   const [loadingPreferences, setLoadingPreferences] = useState(true);
   const [showTooltip, setShowTooltip] = useState(false);
 
-  // Fetch user preferences from database
+  // Fetch user background from database
   useEffect(() => {
-    const fetchUserPreferences = async () => {
+    const fetchUserBackground = async () => {
       if (!session?.user?.id) {
         setLoadingPreferences(false);
         return;
@@ -39,9 +38,8 @@ export default function PersonalizeBtn(): JSX.Element | null {
 
       try {
         // Try to get from session first
-        if (session.user.hardware_bg && session.user.skill_level) {
-          setHardwareBg(session.user.hardware_bg);
-          setSkillLevel(session.user.skill_level);
+        if (session.user.background) {
+          setBackground(session.user.background);
           setLoadingPreferences(false);
           return;
         }
@@ -56,17 +54,16 @@ export default function PersonalizeBtn(): JSX.Element | null {
 
         if (response.ok) {
           const data = await response.json();
-          if (data.hardware_bg) setHardwareBg(data.hardware_bg);
-          if (data.skill_level) setSkillLevel(data.skill_level);
+          if (data.background) setBackground(data.background);
         }
       } catch (err) {
-        console.error('Failed to fetch user preferences:', err);
+        console.error('Failed to fetch user background:', err);
       } finally {
         setLoadingPreferences(false);
       }
     };
 
-    fetchUserPreferences();
+    fetchUserBackground();
   }, [session]);
 
   // ESC key to close modal
@@ -121,8 +118,7 @@ export default function PersonalizeBtn(): JSX.Element | null {
         },
         body: JSON.stringify({
           content: text,
-          hardware_bg: hardwareBg,
-          skill_level: skillLevel,
+          background: background || "general audience",
         }),
       });
 
@@ -138,7 +134,7 @@ export default function PersonalizeBtn(): JSX.Element | null {
         const personalizedHtml = `
           <div style="border-left: 4px solid var(--ifm-color-primary); padding-left: 16px; margin-bottom: 20px;">
             <p style="color: var(--ifm-color-primary); font-weight: bold; margin-bottom: 8px;">
-              ✨ Personalized for ${skillLevel} using ${hardwareBg}
+              ✨ Personalized content for you
             </p>
           </div>
           <div class="personalized-content" style="white-space: pre-wrap; line-height: 1.6;">
@@ -245,10 +241,10 @@ export default function PersonalizeBtn(): JSX.Element | null {
               e.currentTarget.style.transform = "translateY(0)";
               e.currentTarget.style.boxShadow = "0 4px 12px rgba(0, 0, 0, 0.15)";
             }}
-            title={`Personalize article for ${skillLevel} using ${hardwareBg}`}
+            title="Personalize article based on your background"
           >
             <span style={{ fontSize: "16px" }}>✨</span>
-            {loadingPreferences ? "Loading..." : isPersonalizing ? "Personalizing..." : `Personalize (${skillLevel})`}
+            {loadingPreferences ? "Loading..." : isPersonalizing ? "Personalizing..." : "Personalize"}
           </button>
 
           {(originalContent || personalizedContent) && (
@@ -365,9 +361,15 @@ export default function PersonalizeBtn(): JSX.Element | null {
             <span>AI Personalization</span>
           </div>
           <div style={{ fontSize: "11px", opacity: 0.9 }}>
-            Content adapted for:<br />
-            <strong>{skillLevel}</strong> level<br />
-            <strong>{hardwareBg}</strong> hardware
+            {background ? (
+              <>
+                Adapting content based on your background
+              </>
+            ) : (
+              <>
+                Update your profile to enable personalized content
+              </>
+            )}
           </div>
         </div>
       </div>

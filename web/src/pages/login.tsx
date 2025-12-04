@@ -12,23 +12,13 @@ import Layout from "@theme/Layout";
 import { authClient, HardwareBackground, SkillLevel } from "../lib/auth-client";
 import { useHistory } from "@docusaurus/router";
 
-const HARDWARE_OPTIONS: HardwareBackground[] = [
-  "RTX 4090",
-  "Jetson Orin",
-  "Laptop CPU",
-  "Google Colab",
-];
-
-const SKILL_LEVEL_OPTIONS: SkillLevel[] = ["Beginner", "Advanced"];
-
 export default function Login(): JSX.Element {
   const history = useHistory();
   const [isSignup, setIsSignup] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
-  const [hardwareBg, setHardwareBg] = useState<HardwareBackground>("Laptop CPU");
-  const [skillLevel, setSkillLevel] = useState<SkillLevel>("Beginner");
+  const [background, setBackground] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -50,8 +40,8 @@ export default function Login(): JSX.Element {
         // Get the user ID from session
         const session = await authClient.getSession();
 
-        if (session?.user?.id) {
-          // Update hardware preference and skill level after signup
+        if (session?.user?.id && background.trim()) {
+          // Update user background after signup
           try {
             const response = await fetch("http://localhost:3001/api/user/preferences", {
               method: "POST",
@@ -60,17 +50,16 @@ export default function Login(): JSX.Element {
               },
               body: JSON.stringify({
                 userId: session.user.id,
-                hardware_bg: hardwareBg,
-                skill_level: skillLevel,
+                background: background.trim(),
               }),
             });
 
             if (!response.ok) {
-              console.error("Failed to save preferences:", await response.text());
+              console.error("Failed to save background:", await response.text());
             }
           } catch (prefError) {
-            console.error("Error saving preferences:", prefError);
-            // Don't block signup on preferences save failure
+            console.error("Error saving background:", prefError);
+            // Don't block signup on background save failure
           }
         }
       } else {
@@ -216,75 +205,44 @@ export default function Login(): JSX.Element {
             </div>
 
             {isSignup && (
-              <>
-                <div style={{ marginBottom: "20px" }}>
-                  <label
-                    htmlFor="hardware"
-                    style={{
-                      display: "block",
-                      marginBottom: "8px",
-                      fontWeight: "600",
-                    }}
-                  >
-                    Hardware Background
-                  </label>
-                  <select
-                    id="hardware"
-                    value={hardwareBg}
-                    onChange={(e) =>
-                      setHardwareBg(e.target.value as HardwareBackground)
-                    }
-                    style={{
-                      width: "100%",
-                      padding: "10px",
-                      borderRadius: "6px",
-                      border: "1px solid var(--ifm-color-emphasis-300)",
-                      fontSize: "16px",
-                      background: "var(--ifm-background-surface-color)",
-                    }}
-                  >
-                    {HARDWARE_OPTIONS.map((option) => (
-                      <option key={option} value={option}>
-                        {option}
-                      </option>
-                    ))}
-                  </select>
+              <div style={{ marginBottom: "20px" }}>
+                <label
+                  htmlFor="background"
+                  style={{
+                    display: "block",
+                    marginBottom: "8px",
+                    fontWeight: "600",
+                  }}
+                >
+                  Tell us about your background
+                </label>
+                <textarea
+                  id="background"
+                  value={background}
+                  onChange={(e) => setBackground(e.target.value)}
+                  placeholder="What's your experience with robotics, programming, or AI? What hardware do you have access to? (Optional)"
+                  rows={4}
+                  style={{
+                    width: "100%",
+                    padding: "10px",
+                    borderRadius: "6px",
+                    border: "1px solid var(--ifm-color-emphasis-300)",
+                    fontSize: "16px",
+                    background: "var(--ifm-background-surface-color)",
+                    fontFamily: "inherit",
+                    resize: "vertical",
+                  }}
+                />
+                <div
+                  style={{
+                    fontSize: "13px",
+                    color: "var(--ifm-color-emphasis-600)",
+                    marginTop: "6px",
+                  }}
+                >
+                  This helps us personalize your learning experience
                 </div>
-
-                <div style={{ marginBottom: "20px" }}>
-                  <label
-                    htmlFor="skillLevel"
-                    style={{
-                      display: "block",
-                      marginBottom: "8px",
-                      fontWeight: "600",
-                    }}
-                  >
-                    Skill Level
-                  </label>
-                  <select
-                    id="skillLevel"
-                    value={skillLevel}
-                    onChange={(e) =>
-                      setSkillLevel(e.target.value as SkillLevel)
-                    }
-                    style={{
-                      width: "100%",
-                      padding: "10px",
-                      borderRadius: "6px",
-                      border: "1px solid var(--ifm-color-emphasis-300)",
-                      fontSize: "16px",
-                      background: "var(--ifm-background-surface-color)",
-                    }}
-                  >
-                    {SKILL_LEVEL_OPTIONS.map((option) => (
-                      <option key={option} value={option}>
-                        {option}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </>
+              </div>
             )}
 
             <button

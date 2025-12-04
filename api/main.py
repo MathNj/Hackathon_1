@@ -88,10 +88,9 @@ class ChatResponse(BaseModel):
     usage: Optional[dict] = None
 
 class PersonalizeRequest(BaseModel):
-    """Personalization request with content and user preferences"""
+    """Personalization request with content and user background"""
     content: str
-    hardware_bg: str
-    skill_level: str
+    background: str
 
 class PersonalizeResponse(BaseModel):
     """Personalized content response"""
@@ -168,11 +167,11 @@ async def chat(request: ChatRequest):
 @app.post("/personalize", response_model=PersonalizeResponse)
 async def personalize(request: PersonalizeRequest):
     """
-    Personalize content based on user's hardware and skill level
+    Personalize content based on user's background
     Uses direct Gemini API call with custom system prompt
 
     Args:
-        request: PersonalizeRequest with content, hardware_bg, and skill_level
+        request: PersonalizeRequest with content and background
 
     Returns:
         PersonalizeResponse with personalized content
@@ -181,8 +180,13 @@ async def personalize(request: PersonalizeRequest):
         # Get the agent instance to access the client
         agent = get_agent()
 
-        # Build system prompt with the specified format
-        system_prompt = f"""Rewrite the following robotics technical documentation for a {request.skill_level} level student using {request.hardware_bg}. Adjust complexity and implementation details accordingly."""
+        # Build system prompt based on user background
+        if request.background and request.background != "general audience":
+            system_prompt = f"""Rewrite the following robotics technical documentation for a student with this background: {request.background}
+
+Adjust the complexity, terminology, and implementation details to match their experience level and available resources. Keep the content accurate and technical, but make it more relevant and accessible to them."""
+        else:
+            system_prompt = """Rewrite the following robotics technical documentation to be clear and accessible for a general audience interested in robotics and AI."""
 
         # Call Gemini 2.5 Flash API directly using client.chat.completions.create
         response = await agent.client.chat.completions.create(
@@ -211,8 +215,7 @@ async def personalize(request: PersonalizeRequest):
         print(f"Error Type: {type(e).__name__}")
         print(f"Error Message: {str(e)}")
         print(f"Content Length: {len(request.content)} chars")
-        print(f"Skill Level: {request.skill_level}")
-        print(f"Hardware: {request.hardware_bg}")
+        print(f"Background: {request.background}")
         print("\nFull Traceback:")
         traceback.print_exc()
         print("=" * 60)

@@ -120,71 +120,32 @@ app.all("/api/auth/*", async (req, res) => {
 // Additional custom endpoints
 
 /**
- * Update user preferences (hardware background and skill level)
+ * Update user preferences (background information)
  * POST /api/user/preferences
  */
 app.post("/api/user/preferences", async (req, res) => {
   try {
-    const { hardware_bg, skill_level, userId } = req.body;
+    const { background, userId } = req.body;
 
     if (!userId) {
       return res.status(400).json({ error: "userId is required" });
     }
 
-    // Validate hardware_bg if provided
-    if (hardware_bg) {
-      const validHardware = ["RTX 4090", "Jetson Orin", "Laptop CPU", "Google Colab"];
-      if (!validHardware.includes(hardware_bg)) {
-        return res.status(400).json({
-          error: "Invalid hardware_bg",
-          validValues: validHardware,
-        });
-      }
-    }
-
-    // Validate skill_level if provided
-    if (skill_level) {
-      const validSkills = ["Beginner", "Advanced"];
-      if (!validSkills.includes(skill_level)) {
-        return res.status(400).json({
-          error: "Invalid skill_level",
-          validValues: validSkills,
-        });
-      }
+    if (!background || typeof background !== 'string') {
+      return res.status(400).json({ error: "background text is required" });
     }
 
     // Update user in database
     const { pool } = await import("./auth.config.js");
 
-    const updates: string[] = [];
-    const values: any[] = [];
-    let paramCount = 1;
-
-    if (hardware_bg) {
-      updates.push(`hardware_bg = $${paramCount}`);
-      values.push(hardware_bg);
-      paramCount++;
-    }
-
-    if (skill_level) {
-      updates.push(`skill_level = $${paramCount}`);
-      values.push(skill_level);
-      paramCount++;
-    }
-
-    if (updates.length === 0) {
-      return res.status(400).json({ error: "No fields to update" });
-    }
-
-    values.push(userId);
     const query = `
-      UPDATE user
-      SET ${updates.join(", ")}, "updatedAt" = NOW()
-      WHERE id = $${paramCount}
-      RETURNING id, email, name, hardware_bg, skill_level, "createdAt", "updatedAt"
+      UPDATE "user"
+      SET background = $1, "updatedAt" = NOW()
+      WHERE id = $2
+      RETURNING id, email, name, background, "createdAt", "updatedAt"
     `;
 
-    const result = await pool.query(query, values);
+    const result = await pool.query(query, [background, userId]);
 
     if (result.rows.length === 0) {
       return res.status(404).json({ error: "User not found" });
@@ -193,7 +154,7 @@ app.post("/api/user/preferences", async (req, res) => {
     res.json({
       success: true,
       user: result.rows[0],
-      message: "User preferences updated successfully",
+      message: "User background updated successfully",
     });
   } catch (error) {
     console.error("Preferences update error:", error);
@@ -205,7 +166,7 @@ app.post("/api/user/preferences", async (req, res) => {
 });
 
 /**
- * Get user profile with hardware background and skill level
+ * Get user profile with background information
  * GET /api/user/profile
  */
 app.get("/api/user/profile", async (req, res) => {
@@ -228,7 +189,7 @@ app.get("/api/user/profile", async (req, res) => {
     const { pool } = await import("./auth.config.js");
 
     const result = await pool.query(
-      `SELECT id, email, name, hardware_bg, skill_level, "createdAt", "updatedAt"
+      `SELECT id, email, name, background, "createdAt", "updatedAt"
        FROM "user"
        WHERE id = $1`,
       [userId]
