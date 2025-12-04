@@ -245,16 +245,23 @@ export default function PersonalizeBtn(): JSX.Element | null {
         className="personalize-btn-container"
         style={{
           position: "fixed",
-          top: "80px",
-          right: "20px",
+          bottom: "20px",
+          left: "50%",
+          transform: "translateX(-50%)",
           display: "flex",
-          flexDirection: "column",
-          gap: "8px",
+          flexDirection: "row",
+          alignItems: "center",
+          gap: "12px",
           zIndex: 1000,
+          background: "var(--ifm-background-surface-color)",
+          padding: "12px 20px",
+          borderRadius: "12px",
+          boxShadow: "0 8px 32px rgba(0, 0, 0, 0.2)",
+          border: "1px solid var(--ifm-color-emphasis-300)",
           transition: "all 0.3s ease",
         }}
       >
-        <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+        <div style={{ display: "flex", flexDirection: "row", alignItems: "center", gap: "12px" }}>
           <button
             onClick={handlePersonalize}
             disabled={isPersonalizing}
@@ -318,15 +325,20 @@ export default function PersonalizeBtn(): JSX.Element | null {
           )}
         </div>
 
+        {/* Separator */}
+        <div style={{
+          width: "1px",
+          height: "32px",
+          background: "var(--ifm-color-emphasis-300)",
+        }}></div>
+
         {/* View Mode Toggle */}
         <div style={{
           display: "flex",
-          background: "var(--ifm-background-surface-color)",
           borderRadius: "8px",
           padding: "4px",
           gap: "4px",
           border: "1px solid var(--ifm-color-emphasis-300)",
-          boxShadow: "0 2px 4px rgba(0, 0, 0, 0.05)",
         }}>
           <button
             onClick={() => setViewMode("replace")}
@@ -386,36 +398,29 @@ export default function PersonalizeBtn(): JSX.Element | null {
           </button>
         </div>
 
-        {/* Info Tooltip */}
-        <div
-          style={{
-            background: "var(--ifm-color-emphasis-100)",
-            border: "1px solid var(--ifm-color-emphasis-300)",
-            borderRadius: "8px",
-            padding: "12px",
-            fontSize: "12px",
-            lineHeight: "1.4",
-            color: "var(--ifm-color-emphasis-800)",
-            maxWidth: "220px",
-            boxShadow: "0 2px 4px rgba(0, 0, 0, 0.05)",
-          }}
-        >
-          <div style={{ fontWeight: "700", marginBottom: "6px", display: "flex", alignItems: "center", gap: "4px" }}>
-            <span>💡</span>
-            <span>AI Personalization</span>
-          </div>
-          <div style={{ fontSize: "11px", opacity: 0.9 }}>
-            {background ? (
-              <>
-                Adapting content based on your background
-              </>
-            ) : (
-              <>
-                Update your profile to enable personalized content
-              </>
-            )}
-          </div>
-        </div>
+        {/* Info */}
+        {background && (
+          <>
+            <div style={{
+              width: "1px",
+              height: "32px",
+              background: "var(--ifm-color-emphasis-300)",
+            }}></div>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "6px",
+                fontSize: "13px",
+                color: "var(--ifm-color-emphasis-700)",
+                fontStyle: "italic",
+              }}
+            >
+              <span>💡</span>
+              <span>Adapts to your background</span>
+            </div>
+          </>
+        )}
       </div>
 
       {/* Error Toast */}
@@ -423,16 +428,18 @@ export default function PersonalizeBtn(): JSX.Element | null {
         <div
           style={{
             position: "fixed",
-            top: "180px",
-            right: "20px",
+            bottom: "100px",
+            left: "50%",
+            transform: "translateX(-50%)",
             padding: "12px 16px",
             background: "#ff4444",
             color: "white",
             borderRadius: "8px",
             fontSize: "14px",
-            boxShadow: "0 2px 8px rgba(0, 0, 0, 0.2)",
-            zIndex: 1000,
-            maxWidth: "300px",
+            boxShadow: "0 4px 16px rgba(0, 0, 0, 0.3)",
+            zIndex: 1001,
+            maxWidth: "400px",
+            textAlign: "center",
           }}
         >
           {error}
