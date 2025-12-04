@@ -32,8 +32,9 @@ export default function Login(): JSX.Element {
 
         if (session?.user) {
           console.log("User already logged in, redirecting to home...");
-          // User is already logged in, redirect to home
-          window.location.href = "/";
+          // TEMPORARILY DISABLED FOR DEBUGGING
+          // window.location.href = "/";
+          console.log("🔧 DEBUG MODE: Redirect disabled. Remove this to enable redirect.");
         }
       } catch (err) {
         console.error("Error checking session:", err);
@@ -121,12 +122,14 @@ export default function Login(): JSX.Element {
         console.error("⚠️ WARNING: Login succeeded but session is null!");
         console.error("This means cookies are not being set/read correctly");
         console.error("Check Network tab → Login request → Response Headers → Set-Cookie");
+        console.error("DO NOT RELOAD - session will be lost. Staying on page for debugging.");
+        // Don't reload if session is null - need to debug
+        return;
       }
 
-      // Force page reload to update session in navbar
-      // This ensures the useSession() hook picks up the new session
+      // Only reload if session is valid
+      console.log("✅ Session is valid! Reloading to update navbar...");
       setTimeout(() => {
-        console.log("Reloading page to update navbar...");
         window.location.reload();
       }, 1500); // Wait 1.5 seconds so user can see success message
 
