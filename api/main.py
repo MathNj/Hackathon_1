@@ -280,11 +280,11 @@ async def search(request: SearchRequest):
 
         # Search Qdrant (bypasses LLM for speed)
         logger.info(f"Searching Qdrant with limit={request.limit}")
-        search_results = agent.qdrant_client.search(
+        search_results = agent.qdrant_client.query_points(
             collection_name=agent.collection_name,
-            query_vector=query_embedding,
+            query=query_embedding,
             limit=request.limit
-        )
+        ).points
 
         # Format results
         results = []

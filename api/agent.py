@@ -242,11 +242,11 @@ Note: Full RAG context retrieval is not yet configured. Please provide a helpful
             query_embedding = await self.embed_text(query)
 
             # Search Qdrant
-            search_results = self.qdrant_client.search(
+            search_results = self.qdrant_client.query_points(
                 collection_name=self.collection_name,
-                query_vector=query_embedding,
+                query=query_embedding,
                 limit=top_k
-            )
+            ).points
 
             # Format results
             results = []
