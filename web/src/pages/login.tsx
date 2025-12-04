@@ -50,17 +50,19 @@ export default function Login(): JSX.Element {
     setLoading(true);
 
     try {
+      let authResult: any = null;
+
       if (isSignup) {
         // Signup
-        const result = await authClient.signUp.email({
+        authResult = await authClient.signUp.email({
           email,
           password,
           name,
         });
 
         // Check for errors in result
-        if (result.error) {
-          throw new Error(result.error.message || "Signup failed");
+        if (authResult.error) {
+          throw new Error(authResult.error.message || "Signup failed");
         }
 
         // Get the user ID from session
@@ -93,14 +95,14 @@ export default function Login(): JSX.Element {
         setSuccess("Account created successfully! You can now explore the platform or update your profile.");
       } else {
         // Login
-        const result = await authClient.signIn.email({
+        authResult = await authClient.signIn.email({
           email,
           password,
         });
 
         // Check for errors in result
-        if (result.error) {
-          throw new Error(result.error.message || "Login failed");
+        if (authResult.error) {
+          throw new Error(authResult.error.message || "Login failed");
         }
 
         // Show success message for login
@@ -109,10 +111,10 @@ export default function Login(): JSX.Element {
 
       // Debug: Check session after login
       console.log("Checking session after authentication...");
+      console.log("Auth result:", authResult);
       const newSession = await authClient.getSession();
       console.log("Session after login:", newSession);
       console.log("Cookies:", document.cookie);
-      console.log("Login result data:", result.data);
 
       // If session is still null, there's a cookie/CORS issue
       if (!newSession?.user) {
