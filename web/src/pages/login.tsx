@@ -112,6 +112,14 @@ export default function Login(): JSX.Element {
       const newSession = await authClient.getSession();
       console.log("Session after login:", newSession);
       console.log("Cookies:", document.cookie);
+      console.log("Login result data:", result.data);
+
+      // If session is still null, there's a cookie/CORS issue
+      if (!newSession?.user) {
+        console.error("⚠️ WARNING: Login succeeded but session is null!");
+        console.error("This means cookies are not being set/read correctly");
+        console.error("Check Network tab → Login request → Response Headers → Set-Cookie");
+      }
 
       // Force page reload to update session in navbar
       // This ensures the useSession() hook picks up the new session
