@@ -20,6 +20,24 @@
   --ifm-color-primary-lighter: #c7d2fe;
   --ifm-color-primary-lightest: #e0e7ff;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  --ifm-background-color: #1a1a1a;
+  --ifm-background-surface-color: #242424;
+  --ifm-navbar-background-color: #1a1a1a;
+}
+
+/* Ensure dark mode applies to entire page */
+[data-theme='dark'] body {
+  background-color: var(--ifm-background-color);
+  color: var(--ifm-font-color-base);
+}
+
+[data-theme='dark'] .main-wrapper {
+  background-color: var(--ifm-background-color);
+}
+
+[data-theme='dark'] article {
+  background-color: var(--ifm-background-surface-color);
+  color: var(--ifm-font-color-base);
 }
 
 /* Enhanced Navbar */

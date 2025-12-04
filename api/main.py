@@ -259,10 +259,10 @@ Return the rewritten content in the same format (markdown if present), maintaini
 @app.post("/search", response_model=SearchResponse)
 async def search(request: SearchRequest):
     """
-    Fast vector-based search endpoint (no LLM generation)
+    Direct markdown file search endpoint
 
-    Searches the Qdrant vector database for relevant content chunks.
-    Returns results in <200ms for instant search experience.
+    Searches through all markdown documentation files for matching content.
+    Returns results based on text matching (case-insensitive).
 
     Args:
         request: SearchRequest with query and optional limit
@@ -271,45 +271,72 @@ async def search(request: SearchRequest):
         SearchResponse with matched content chunks and scores
     """
     try:
-        # Get the agent instance to access Qdrant client
-        agent = get_agent()
+        import os
+        import re
+        from pathlib import Path
 
-        # Generate embedding for the search query
-        logger.info(f"Generating embedding for search query: {request.query[:50]}...")
-        query_embedding = await agent.embed_text(request.query)
+        logger.info(f"Searching for: {request.query}")
 
-        # Search Qdrant (bypasses LLM for speed)
-        logger.info(f"Searching Qdrant with limit={request.limit}")
-        search_results = agent.qdrant_client.query_points(
-            collection_name=agent.collection_name,
-            query=query_embedding,
-            limit=request.limit
-        ).points
+        # Define the docs directory path
+        docs_base_path = Path(__file__).parent.parent / "web" / "docs" / "en"
 
-        # Format results
+        if not docs_base_path.exists():
+            logger.warning(f"Docs path not found: {docs_base_path}")
+            return SearchResponse(results=[], query=request.query, total=0)
+
+        # Search through all markdown files
         results = []
-        for result in search_results:
-            # Extract metadata from payload
-            filename = result.payload.get("filename", "Unknown")
-            header = result.payload.get("header", "")
-            text = result.payload.get("text", "")
+        query_lower = request.query.lower()
 
-            # Generate URL based on filename
-            # Example: "module-1-ros2/basics.md" -> "/docs/en/module-1-ros2/basics"
-            url = f"/docs/en/{filename.replace('.md', '')}" if filename != "Unknown" else "#"
+        # Walk through all .md files
+        for md_file in docs_base_path.rglob("*.md"):
+            try:
+                # Read file content
+                with open(md_file, 'r', encoding='utf-8') as f:
+                    content = f.read()
 
-            # Create title from header or filename
-            title = header if header else filename.replace(".md", "").replace("-", " ").title()
+                # Check if query matches (case-insensitive)
+                if query_lower in content.lower():
+                    # Extract title from first heading or filename
+                    title_match = re.search(r'^#\s+(.+)$', content, re.MULTILINE)
+                    title = title_match.group(1) if title_match else md_file.stem.replace('-', ' ').title()
 
-            # Truncate content for preview (max 200 chars)
-            content_preview = text[:200] + "..." if len(text) > 200 else text
+                    # Find matching context (surrounding text)
+                    content_lower = content.lower()
+                    match_pos = content_lower.find(query_lower)
 
-            results.append(SearchResult(
-                title=title,
-                content=content_preview,
-                url=url,
-                score=result.score
-            ))
+                    # Extract context around match (100 chars before and after)
+                    start = max(0, match_pos - 100)
+                    end = min(len(content), match_pos + len(request.query) + 100)
+                    context = content[start:end].strip()
+
+                    # Add ellipsis if truncated
+                    if start > 0:
+                        context = "..." + context
+                    if end < len(content):
+                        context = context + "..."
+
+                    # Generate URL from file path
+                    relative_path = md_file.relative_to(docs_base_path)
+                    url = f"/docs/en/{relative_path.parent}/{relative_path.stem}"
+
+                    # Calculate simple relevance score (number of matches)
+                    score = content_lower.count(query_lower) / 10.0  # Normalize
+
+                    results.append(SearchResult(
+                        title=title,
+                        content=context,
+                        url=url,
+                        score=score
+                    ))
+
+            except Exception as file_error:
+                logger.warning(f"Error reading {md_file}: {file_error}")
+                continue
+
+        # Sort by score (descending) and limit results
+        results.sort(key=lambda x: x.score, reverse=True)
+        results = results[:request.limit]
 
         logger.info(f"Search completed: found {len(results)} results")
 
