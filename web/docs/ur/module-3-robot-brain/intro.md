@@ -100,9 +100,11 @@ Omniverse install کرنے کے لیے [Isaac Sim Setup](./isaac-sim-setup.md) �
 
 ## جائزہ Flashcards
 
-import FlashCard from '@site/src/components/FlashCard';
+import Flashcards from '@site/src/components/Flashcards';
 
-<FlashCard cards={[
+<Flashcards
+  title="Robot Brain - Perception اور Navigation کا جائزہ"
+  cards={[
   {
     id: 1,
     question: "SLAM کا مطلب کیا ہے اور یہ کیا کرتا ہے؟",
@@ -139,4 +141,5 @@ import FlashCard from '@site/src/components/FlashCard';
     answer: "NVIDIA کا photorealistic robotics simulator جو Omniverse پر بنایا گیا ہے، realistic environments میں accurate physics اور sensor simulation کے ساتھ robots test کرنے کے لیے استعمال ہوتا ہے",
     category: "ٹولز"
   }
-]} />
+]}
+/>

@@ -100,43 +100,46 @@ Start with [Isaac Sim Setup](./isaac-sim-setup.md) to install Omniverse →
 
 ## Review Flashcards
 
-import FlashCard from '@site/src/components/FlashCard';
+import Flashcards from '@site/src/components/Flashcards';
 
-<FlashCard cards={[
-  {
-    id: 1,
-    question: "What does SLAM stand for and what does it do?",
-    answer: "Simultaneous Localization and Mapping - builds a map of an unknown environment while simultaneously tracking the robot's location within it",
-    category: "Navigation"
-  },
-  {
-    id: 2,
-    question: "What are the two main types of path planning algorithms?",
-    answer: "Global path planning (A*, Dijkstra) for long-range routes, and local path planning (DWA, TEB) for dynamic obstacle avoidance",
-    category: "Planning"
-  },
-  {
-    id: 3,
-    question: "What is the purpose of Nav2's costmap?",
-    answer: "To represent the environment as a grid where each cell has a cost value, helping the robot avoid obstacles and plan safe paths",
-    category: "Navigation"
-  },
-  {
-    id: 4,
-    question: "What is the typical latency requirement for Nav2 replanning?",
-    answer: "Less than 100ms for a 50m² map to ensure responsive navigation",
-    category: "Performance"
-  },
-  {
-    id: 5,
-    question: "Name two popular SLAM algorithms mentioned in this module.",
-    answer: "ORB-SLAM3 (visual SLAM) and Cartographer (LiDAR SLAM)",
-    category: "Algorithms"
-  },
-  {
-    id: 6,
-    question: "What is Isaac Sim and why is it used?",
-    answer: "NVIDIA's photorealistic robotics simulator built on Omniverse, used for testing robots in realistic environments with accurate physics and sensor simulation",
-    category: "Tools"
-  }
-]} />
+<Flashcards
+  title="Robot Brain - Perception and Navigation Review"
+  cards={[
+    {
+      id: 1,
+      question: "What does SLAM stand for and what does it do?",
+      answer: "Simultaneous Localization and Mapping - builds a map of an unknown environment while simultaneously tracking the robot's location within it",
+      category: "Navigation"
+    },
+    {
+      id: 2,
+      question: "What are the two main types of path planning algorithms?",
+      answer: "Global path planning (A*, Dijkstra) for long-range routes, and local path planning (DWA, TEB) for dynamic obstacle avoidance",
+      category: "Planning"
+    },
+    {
+      id: 3,
+      question: "What is the purpose of Nav2's costmap?",
+      answer: "To represent the environment as a grid where each cell has a cost value, helping the robot avoid obstacles and plan safe paths",
+      category: "Navigation"
+    },
+    {
+      id: 4,
+      question: "What is the typical latency requirement for Nav2 replanning?",
+      answer: "Less than 100ms for a 50m² map to ensure responsive navigation",
+      category: "Performance"
+    },
+    {
+      id: 5,
+      question: "Name two popular SLAM algorithms mentioned in this module.",
+      answer: "ORB-SLAM3 (visual SLAM) and Cartographer (LiDAR SLAM)",
+      category: "Algorithms"
+    },
+    {
+      id: 6,
+      question: "What is Isaac Sim and why is it used?",
+      answer: "NVIDIA's photorealistic robotics simulator built on Omniverse, used for testing robots in realistic environments with accurate physics and sensor simulation",
+      category: "Tools"
+    }
+  ]}
+/>

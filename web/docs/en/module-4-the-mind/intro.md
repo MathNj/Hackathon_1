@@ -126,49 +126,52 @@ Start with [VLA Architecture Overview](./vla-overview.md) to understand how visi
 
 ## Review Flashcards
 
-import FlashCard from '@site/src/components/FlashCard';
+import Flashcards from '@site/src/components/Flashcards';
 
-<FlashCard cards={[
-  {
-    id: 1,
-    question: "What does VLA stand for and what is it?",
-    answer: "Vision-Language-Action model - an AI model that takes visual input and language commands, then outputs robot actions directly",
-    category: "Concepts"
-  },
-  {
-    id: 2,
-    question: "What are the main advantages of VLA models over traditional control?",
-    answer: "Handle ambiguous instructions, generalize to new objects/scenarios, require less manual programming, and learn from demonstrations",
-    category: "AI"
-  },
-  {
-    id: 3,
-    question: "What are two popular VLA model architectures?",
-    answer: "OpenVLA (7B parameters) and RT-2 (Robotics Transformer 2)",
-    category: "Models"
-  },
-  {
-    id: 4,
-    question: "What is Whisper and what does it do?",
-    answer: "OpenAI's Automatic Speech Recognition (ASR) model that converts voice commands to text for robot control",
-    category: "Tools"
-  },
-  {
-    id: 5,
-    question: "What is the typical inference time for OpenVLA on RTX 4070 Ti with TensorRT?",
-    answer: "50ms per action prediction (FP16 precision)",
-    category: "Performance"
-  },
-  {
-    id: 6,
-    question: "Why is INT8 quantization important for edge deployment?",
-    answer: "It reduces model size and speeds up inference on edge devices like Jetson Orin while maintaining acceptable accuracy",
-    category: "Optimization"
-  },
-  {
-    id: 7,
-    question: "What is a safety layer in robot AI systems?",
-    answer: "A mechanism to filter harmful commands and ensure human oversight, preventing the robot from executing dangerous actions",
-    category: "Safety"
-  }
-]} />
+<Flashcards
+  title="The Mind - Vision-Language-Action Review"
+  cards={[
+    {
+      id: 1,
+      question: "What does VLA stand for and what is it?",
+      answer: "Vision-Language-Action model - an AI model that takes visual input and language commands, then outputs robot actions directly",
+      category: "Concepts"
+    },
+    {
+      id: 2,
+      question: "What are the main advantages of VLA models over traditional control?",
+      answer: "Handle ambiguous instructions, generalize to new objects/scenarios, require less manual programming, and learn from demonstrations",
+      category: "AI"
+    },
+    {
+      id: 3,
+      question: "What are two popular VLA model architectures?",
+      answer: "OpenVLA (7B parameters) and RT-2 (Robotics Transformer 2)",
+      category: "Models"
+    },
+    {
+      id: 4,
+      question: "What is Whisper and what does it do?",
+      answer: "OpenAI's Automatic Speech Recognition (ASR) model that converts voice commands to text for robot control",
+      category: "Tools"
+    },
+    {
+      id: 5,
+      question: "What is the typical inference time for OpenVLA on RTX 4070 Ti with TensorRT?",
+      answer: "50ms per action prediction (FP16 precision)",
+      category: "Performance"
+    },
+    {
+      id: 6,
+      question: "Why is INT8 quantization important for edge deployment?",
+      answer: "It reduces model size and speeds up inference on edge devices like Jetson Orin while maintaining acceptable accuracy",
+      category: "Optimization"
+    },
+    {
+      id: 7,
+      question: "What is a safety layer in robot AI systems?",
+      answer: "A mechanism to filter harmful commands and ensure human oversight, preventing the robot from executing dangerous actions",
+      category: "Safety"
+    }
+  ]}
+/>

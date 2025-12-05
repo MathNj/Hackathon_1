@@ -55,37 +55,40 @@ By the end of this module, you will:
 
 ## Review Flashcards
 
-import FlashCard from '@site/src/components/FlashCard';
+import Flashcards from '@site/src/components/Flashcards';
 
-<FlashCard cards={[
-  {
-    id: 1,
-    question: "What is the minimum recommended GPU for this course?",
-    answer: "NVIDIA RTX 4070 Ti with 12GB VRAM or better",
-    category: "Hardware"
-  },
-  {
-    id: 2,
-    question: "Which Ubuntu version is required for ROS 2 Humble?",
-    answer: "Ubuntu 22.04 LTS (native install, not WSL)",
-    category: "Software"
-  },
-  {
-    id: 3,
-    question: "What is Docker's primary purpose in robotics development?",
-    answer: "To provide isolated, reproducible development environments that ensure consistent behavior across different systems",
-    category: "Tools"
-  },
-  {
-    id: 4,
-    question: "What edge device is required for Module 4 and beyond?",
-    answer: "NVIDIA Jetson Orin Nano (8GB) or Jetson Orin NX (16GB)",
-    category: "Hardware"
-  },
-  {
-    id: 5,
-    question: "How much RAM is recommended for the workstation?",
-    answer: "32GB DDR4/DDR5",
-    category: "Hardware"
-  }
-]} />
+<Flashcards
+  title="Hardware Setup Review"
+  cards={[
+    {
+      id: 1,
+      question: "What is the minimum recommended GPU for this course?",
+      answer: "NVIDIA RTX 4070 Ti with 12GB VRAM or better",
+      category: "Hardware"
+    },
+    {
+      id: 2,
+      question: "Which Ubuntu version is required for ROS 2 Humble?",
+      answer: "Ubuntu 22.04 LTS (native install, not WSL)",
+      category: "Software"
+    },
+    {
+      id: 3,
+      question: "What is Docker's primary purpose in robotics development?",
+      answer: "To provide isolated, reproducible development environments that ensure consistent behavior across different systems",
+      category: "Tools"
+    },
+    {
+      id: 4,
+      question: "What edge device is required for Module 4 and beyond?",
+      answer: "NVIDIA Jetson Orin Nano (8GB) or Jetson Orin NX (16GB)",
+      category: "Hardware"
+    },
+    {
+      id: 5,
+      question: "How much RAM is recommended for the workstation?",
+      answer: "32GB DDR4/DDR5",
+      category: "Hardware"
+    }
+  ]}
+/>

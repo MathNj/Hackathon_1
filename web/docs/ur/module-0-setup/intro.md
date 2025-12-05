@@ -55,9 +55,11 @@ Physical AI اور Humanoid Robotics میں غوطہ لگانے سے پہلے، 
 
 ## جائزہ Flashcards
 
-import FlashCard from '@site/src/components/FlashCard';
+import Flashcards from '@site/src/components/Flashcards';
 
-<FlashCard cards={[
+<Flashcards
+  title="ہارڈویئر سیٹ اپ کا جائزہ"
+  cards={[
   {
     id: 1,
     question: "اس کورس کے لیے کم سے کم تجویز کردہ GPU کیا ہے؟",
@@ -88,4 +90,5 @@ import FlashCard from '@site/src/components/FlashCard';
     answer: "32GB DDR4/DDR5",
     category: "ہارڈویئر"
   }
-]} />
+]}
+/>

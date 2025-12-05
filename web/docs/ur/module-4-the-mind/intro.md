@@ -126,9 +126,11 @@ Data handling کی ضروریات کے لیے [GDPR Compliance](../appendix/gdpr
 
 ## جائزہ Flashcards
 
-import FlashCard from '@site/src/components/FlashCard';
+import Flashcards from '@site/src/components/Flashcards';
 
-<FlashCard cards={[
+<Flashcards
+  title="The Mind - Vision-Language-Action کا جائزہ"
+  cards={[
   {
     id: 1,
     question: "VLA کا مطلب کیا ہے اور یہ کیا ہے؟",
@@ -171,4 +173,5 @@ import FlashCard from '@site/src/components/FlashCard';
     answer: "نقصان دہ commands کو filter کرنے اور human oversight یقینی بنانے کا ایک mechanism، جو robot کو خطرناک actions execute کرنے سے روکتا ہے",
     category: "Safety"
   }
-]} />
+]}
+/>
