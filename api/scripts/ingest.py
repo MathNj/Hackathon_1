@@ -42,10 +42,24 @@ class DocumentIngester:
         qdrant_url = os.getenv("QDRANT_URL", "http://localhost:6333")
         qdrant_api_key = os.getenv("QDRANT_API_KEY")
 
-        self.qdrant_client = QdrantClient(
-            url=qdrant_url,
-            api_key=qdrant_api_key
-        )
+        # Determine if using Qdrant Cloud (https URL) or local instance
+        is_cloud = qdrant_url.startswith("https://")
+
+        if is_cloud:
+            # For Qdrant Cloud, use URL without port and prefer REST API
+            self.qdrant_client = QdrantClient(
+                url=qdrant_url,
+                api_key=qdrant_api_key,
+                prefer_grpc=False,
+                https=True,
+                port=None  # Don't add port for cloud
+            )
+        else:
+            # For local Qdrant, use standard connection
+            self.qdrant_client = QdrantClient(
+                url=qdrant_url,
+                api_key=qdrant_api_key
+            )
 
         self.collection_name = "robotics_textbook"
         self.embedding_dimension = 1536  # text-embedding-3-small dimension

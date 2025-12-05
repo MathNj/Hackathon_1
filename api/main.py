@@ -265,10 +265,10 @@ Return the rewritten content in the same format (markdown if present), maintaini
 @app.post("/search", response_model=SearchResponse)
 async def search(request: SearchRequest):
     """
-    Direct markdown file search endpoint
+    Vector search endpoint using Qdrant
 
-    Searches through all markdown documentation files for matching content.
-    Returns results based on text matching (case-insensitive).
+    Searches documentation using semantic similarity via Qdrant vector database.
+    Returns results based on cosine similarity scores.
 
     Args:
         request: SearchRequest with query and optional limit
@@ -277,72 +277,42 @@ async def search(request: SearchRequest):
         SearchResponse with matched content chunks and scores
     """
     try:
-        import os
-        import re
-        from pathlib import Path
-
         logger.info(f"Searching for: {request.query}")
 
-        # Define the docs directory path
-        docs_base_path = Path(__file__).parent.parent / "web" / "docs" / "en"
+        # Use the agent's search_textbook method which queries Qdrant
+        search_results = await agent.search_textbook(request.query, top_k=request.limit)
 
-        if not docs_base_path.exists():
-            logger.warning(f"Docs path not found: {docs_base_path}")
-            return SearchResponse(results=[], query=request.query, total=0)
-
-        # Search through all markdown files
+        # Convert agent results to SearchResult format
         results = []
-        query_lower = request.query.lower()
+        for result in search_results:
+            # Extract title from header or filename
+            title = result.get("header", "Unknown")
+            if title == "Introduction" and result.get("filename"):
+                # Use filename as title if header is generic
+                filename = result["filename"].split("/")[-1].replace(".md", "").replace("-", " ").title()
+                title = filename
 
-        # Walk through all .md files
-        for md_file in docs_base_path.rglob("*.md"):
-            try:
-                # Read file content
-                with open(md_file, 'r', encoding='utf-8') as f:
-                    content = f.read()
+            # Generate URL from filename
+            filename = result.get("filename", "")
+            if filename:
+                # Convert filename to URL path
+                # e.g., "module-0-setup/intro.md" -> "/docs/en/module-0-setup/intro"
+                url_path = filename.replace(".md", "").replace("\\", "/")
+                url = f"/docs/en/{url_path}"
+            else:
+                url = "/docs/en"
 
-                # Check if query matches (case-insensitive)
-                if query_lower in content.lower():
-                    # Extract title from first heading or filename
-                    title_match = re.search(r'^#\s+(.+)$', content, re.MULTILINE)
-                    title = title_match.group(1) if title_match else md_file.stem.replace('-', ' ').title()
+            # Get content preview (limit to 200 chars)
+            content = result.get("text", "")[:200]
+            if len(result.get("text", "")) > 200:
+                content += "..."
 
-                    # Find matching context (surrounding text)
-                    content_lower = content.lower()
-                    match_pos = content_lower.find(query_lower)
-
-                    # Extract context around match (100 chars before and after)
-                    start = max(0, match_pos - 100)
-                    end = min(len(content), match_pos + len(request.query) + 100)
-                    context = content[start:end].strip()
-
-                    # Add ellipsis if truncated
-                    if start > 0:
-                        context = "..." + context
-                    if end < len(content):
-                        context = context + "..."
-
-                    # Generate URL from file path
-                    relative_path = md_file.relative_to(docs_base_path)
-                    url = f"/docs/en/{relative_path.parent}/{relative_path.stem}"
-
-                    # Calculate simple relevance score (number of matches)
-                    score = content_lower.count(query_lower) / 10.0  # Normalize
-
-                    results.append(SearchResult(
-                        title=title,
-                        content=context,
-                        url=url,
-                        score=score
-                    ))
-
-            except Exception as file_error:
-                logger.warning(f"Error reading {md_file}: {file_error}")
-                continue
-
-        # Sort by score (descending) and limit results
-        results.sort(key=lambda x: x.score, reverse=True)
-        results = results[:request.limit]
+            results.append(SearchResult(
+                title=title,
+                content=content,
+                url=url,
+                score=float(result.get("score", 0.0))
+            ))
 
         logger.info(f"Search completed: found {len(results)} results")
 
