@@ -4,13 +4,13 @@
  * Features:
  * - Cmd+K (Mac) / Ctrl+K (Windows) keyboard shortcut
  * - Auto-focused search input
- * - Real-time vector search via API endpoint (Vercel serverless in production)
+ * - Client-side text search through all documentation pages
  * - Results with content previews and links
  * - "Ask AI" action to escalate to ChatWidget
  * - ESC to close, click outside to close
  */
 import React, { useState, useEffect, useRef } from "react";
-import { API_ENDPOINTS } from "../config/api";
+import { searchDocuments as performSearch } from "../utils/searchIndex";
 
 interface SearchResult {
   title: string;
@@ -53,42 +53,29 @@ export default function SearchModal({ isOpen, onClose, onAskAI }: SearchModalPro
     }
   }, [isOpen, onClose]);
 
-  // Debounced search
+  // Debounced search (client-side)
   useEffect(() => {
     if (!query.trim()) {
       setResults([]);
       return;
     }
 
-    const timeoutId = setTimeout(async () => {
+    const timeoutId = setTimeout(() => {
       setIsSearching(true);
       setError(null);
 
       try {
-        const response = await fetch(API_ENDPOINTS.search, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            query: query,
-            limit: 5,
-          }),
-        });
-
-        if (!response.ok) {
-          throw new Error("Search failed");
-        }
-
-        const data = await response.json();
-        setResults(data.results || []);
+        // Perform client-side search
+        const searchResults = performSearch(query, 5);
+        setResults(searchResults);
       } catch (err: any) {
+        console.error("Search error:", err);
         setError(err.message || "Failed to search");
         setResults([]);
       } finally {
         setIsSearching(false);
       }
-    }, 300); // 300ms debounce
+    }, 200); // 200ms debounce
 
     return () => clearTimeout(timeoutId);
   }, [query]);
@@ -205,7 +192,7 @@ export default function SearchModal({ isOpen, onClose, onAskAI }: SearchModalPro
                 Start typing to search documentation...
               </p>
               <p style={{ margin: "8px 0 0 0", fontSize: "12px" }}>
-                Powered by AI vector search
+                Instant client-side search
               </p>
             </div>
           )}
