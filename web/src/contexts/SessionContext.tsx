@@ -78,7 +78,7 @@ export function SessionProvider({ children }: { children: ReactNode }) {
 
     // Try to get session from server
     try {
-      const response = await fetch(`${AUTH_API_URL}/get-session`, {
+      const response = await fetch(`${AUTH_API_URL}/session`, {
         method: 'GET',
         credentials: 'include',
       });
