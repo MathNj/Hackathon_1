@@ -5,13 +5,6 @@
 
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 
-// CRITICAL: Load environment variables FIRST
-import dotenv from 'dotenv';
-import { join } from 'path';
-
-// Load .env from parent directory
-dotenv.config({ path: join(__dirname, '../../.env') });
-
 // Now import dependencies (environment is loaded)
 import cors from 'cors';
 import { auth } from '../auth.config.js';
