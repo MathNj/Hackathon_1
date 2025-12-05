@@ -111,6 +111,9 @@ export const auth = betterAuth({
   // Base URL for auth service
   baseURL: AUTH_URL,
 
+  // Base path for auth routes (defaults to /api/auth, we want just /api)
+  basePath: "/api",
+
   // Secret for JWT signing and session encryption
   secret: AUTH_SECRET,
 
