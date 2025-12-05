@@ -124,4 +124,46 @@ nvidia-smi
 
 ---
 
+## انٹرایکٹو فلیش کارڈز
+
+import Flashcards from '@site/src/components/Flashcards';
+
+<Flashcards
+  title="ڈیجیٹل ٹوئن تصورات کا جائزہ"
+  cards={[
+    {
+      id: 1,
+      question: "ڈیجیٹل ٹوئن کیا ہے؟",
+      answer: "ڈیجیٹل ٹوئن آپ کے فزیکل روبوٹ کا ایک ورچوئل کلون ہے جو مکمل طور پر سافٹ ویئر میں موجود ہے، خطرناک منظرناموں کو test کرنے، تیزی سے iterate کرنے، کامل ڈیٹا جمع کرنے، اور حقیقی ہارڈویئر پر deploy کرنے سے پہلے پیسے بچانے کے لیے محفوظ testing ground کے طور پر استعمال ہوتا ہے۔",
+      category: "بنیادی باتیں"
+    },
+    {
+      id: 2,
+      question: "Boston Dynamics جیسی کمپنیاں سمیولیشن کیوں استعمال کرتی ہیں؟",
+      answer: "Boston Dynamics نے Spot کو اپنے پہلے physical test سے پہلے 100,000 سے زیادہ بار سمیولیشن میں test کیا۔ یہ فزیکل خطرے کے بغیر algorithms کو perfect کرنے، تیزی سے iterate کرنے، اور مہنگے ہارڈویئر پر لاگت کی بچت کی اجازت دیتا ہے۔",
+      category: "صنعتی عمل"
+    },
+    {
+      id: 3,
+      question: "سم-ٹو-ریئل ورک فلو کیا ہے؟",
+      answer: "Robot URDF design کریں → Gazebo میں simulate کریں → Debug اور refine کریں → Physical prototype بنائیں → Hardware validate کریں → ضرورت پڑنے پر digital twin update کریں → Production میں deploy کریں۔ زیادہ تر iteration ہارڈویئر چھونے سے پہلے simulation میں ہوتی ہے۔",
+      category: "ورک فلو"
+    },
+    {
+      id: 4,
+      question: "سینسر سمیولیشن کے لیے NVIDIA RTX GPU کیوں ضروری ہے؟",
+      answer: "حقیقت پسند سینسر سمیولیشن (LiDAR، depth cameras) کو real-time میں روشنی/لیزر reflections calculate کرنے کے لیے GPU ray tracing کی ضرورت ہے۔ RTX 4070 Ti LiDAR کے لیے 300 FPS حاصل کرتا ہے بمقابلہ CPU پر 2 FPS - 150x speedup جو development کو ممکن بناتا ہے۔",
+      category: "ہارڈویئر کی ضروریات"
+    },
+    {
+      id: 5,
+      question: "اس ماڈیول کے لیے کم سے کم system requirements کیا ہیں؟",
+      answer: "Ubuntu 22.04 LTS، 16GB RAM (32GB تجویز کردہ)، NVIDIA RTX 4060 یا بہتر GPU، 50GB storage، ROS 2 Humble، Gazebo Fortress، اور NVIDIA Driver 525+۔",
+      category: "سیٹ اپ"
+    }
+  ]}
+/>
+
+---
+
 **اپنا پہلا ڈیجیٹل ٹوئن بنانے کے لیے تیار ہیں؟** سمیولیشن دنیائیں بنانے کے لیے [**Gazebo Fortress کے ساتھ فزکس**](./02-gazebo-fortress-setup.md) پر جائیں! 🚀

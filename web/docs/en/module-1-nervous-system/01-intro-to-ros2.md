@@ -276,6 +276,54 @@ By the end of the next tutorial, you'll have running code that demonstrates the 
 
 ---
 
+## Interactive Flashcards
+
+import Flashcards from '@site/src/components/Flashcards';
+
+<Flashcards
+  title="ROS 2 Concepts Review"
+  cards={[
+    {
+      id: 1,
+      question: "What is ROS 2?",
+      answer: "ROS 2 is a middleware framework (not an operating system) that provides communication infrastructure, hardware abstraction, distributed computing capabilities, and tools for building intelligent robot systems.",
+      category: "Fundamentals"
+    },
+    {
+      id: 2,
+      question: "What is a ROS 2 Node?",
+      answer: "A node is a single-purpose executable process that performs one well-defined task. Each node runs independently, has a unique name, and can be written in Python, C++, or other supported languages.",
+      category: "Architecture"
+    },
+    {
+      id: 3,
+      question: "What is a ROS 2 Topic?",
+      answer: "A topic is a named communication channel for streaming data using the publish-subscribe pattern. Publishers send data asynchronously, and multiple subscribers can receive the same data simultaneously.",
+      category: "Communication"
+    },
+    {
+      id: 4,
+      question: "When should you use ROS 2 Services instead of Topics?",
+      answer: "Use services for one-time calculations or configuration queries that require a response (request-response pattern). Use topics for continuous data streams like sensor readings or motor commands.",
+      category: "Communication"
+    },
+    {
+      id: 5,
+      question: "What are the key advantages of ROS 2 over ROS 1?",
+      answer: "ROS 2 offers real-time support with DDS middleware, distributed architecture (no master node), built-in security, better support for embedded systems, Python 3 support, and cross-platform compatibility.",
+      category: "ROS 2 vs ROS 1"
+    },
+    {
+      id: 6,
+      question: "How does ROS 2 connect AI to hardware?",
+      answer: "ROS 2 serves as a bridge between abstract AI algorithms (perception, planning) and physical hardware. Sensors publish data to topics, AI nodes process it and publish commands, and actuator nodes translate those commands into motor signals.",
+      category: "Integration"
+    }
+  ]}
+/>
+
+---
+
 ## Key Takeaways
 
 ✅ **ROS 2 is middleware**, not an operating system — it provides communication infrastructure for robot software

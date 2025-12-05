@@ -358,4 +358,137 @@ ros2 topic echo /joint_states
 
 ---
 
+## Module 2 کوئز
+
+import Quiz from '@site/src/components/Quiz';
+
+<Quiz
+  title="Module 2: ڈیجیٹل ٹوئن اور سمیولیشن مہارت کوئز"
+  questions={[
+    {
+      id: 1,
+      question: "آپ کو Gazebo کی بجائے Unity کب استعمال کرنا چاہیے؟",
+      options: [
+        "Physics testing اور control algorithm development کے لیے",
+        "Photorealistic visualization، human-robot interaction، اور synthetic dataset generation کے لیے",
+        "LiDAR کے ساتھ real-time sensor simulation کے لیے",
+        "Unity کو robotics کے لیے کبھی استعمال نہیں کرنا چاہیے"
+      ],
+      correctAnswer: 1,
+      explanation: "Unity photorealistic rendering (HDRP، ray tracing)، human-robot interaction (NavMesh، crowd simulation)، اور synthetic dataset generation (perfect segmentation masks) میں بہترین ہے۔ Gazebo physics testing، sensor simulation، اور deterministic time steps کے ساتھ control algorithm development کے لیے بہتر ہے۔"
+    },
+    {
+      id: 2,
+      question: "Robotics میں digital twin کیا ہے؟",
+      options: [
+        "Cloud میں محفوظ robot software کی backup copy",
+        "آپ کے physical robot کا ایک virtual clone جو محفوظ testing کے لیے مکمل طور پر software میں موجود ہے",
+        "Spare parts کے لیے استعمال ہونے والا دوسرا identical physical robot",
+        "دو robots کے درمیان network connection"
+      ],
+      correctAnswer: 1,
+      explanation: "Digital twin آپ کے physical robot کا ایک virtual clone ہے جو مکمل طور پر software میں موجود ہے۔ یہ خطرناک scenarios test کرنے، تیزی سے iterate کرنے، perfect data جمع کرنے، اور algorithms کو حقیقی hardware پر deploy کرنے سے پہلے پیسے بچانے کے لیے محفوظ testing ground کا کام کرتا ہے۔"
+    },
+    {
+      id: 3,
+      question: "Gazebo میں sensor simulation کے لیے NVIDIA RTX GPU کیوں ضروری ہے؟",
+      options: [
+        "RTX GPUs میں عام GPUs سے زیادہ RAM ہوتی ہے",
+        "RTX GPUs GPU ray tracing acceleration فراہم کرتے ہیں، 10-100x speedup حاصل کرتے ہیں (LiDAR کے لیے 300 FPS بمقابلہ 2 FPS)",
+        "Unity کو RTX GPUs چلانے کی ضرورت ہے",
+        "RTX GPUs دوسرے options سے سستے ہیں"
+      ],
+      correctAnswer: 1,
+      explanation: "حقیقت پسند sensor simulation (LiDAR، depth cameras) کو real-time میں light/laser reflections calculate کرنے کے لیے GPU ray tracing کی ضرورت ہے۔ 10 Hz پر 16-beam LiDAR 2.3 million rays فی سیکنڈ shoot کرتا ہے۔ RTX GPUs 300 FPS بمقابلہ CPU پر 2 FPS حاصل کرتے ہیں - 150x speedup جو real-time development کو ممکن بناتا ہے۔"
+    },
+    {
+      id: 4,
+      question: "URDF اور SDF formats کے درمیان بنیادی فرق کیا ہے؟",
+      options: [
+        "URDF صرف robots کے لیے ہے، SDF worlds (ground planes، obstacles، lighting) اور advanced physics کو support کرتا ہے",
+        "SDF پرانا اور deprecated ہے، URDF جدید معیار ہے",
+        "URDF صرف simulation کے لیے ہے، SDF صرف حقیقی robots کے لیے",
+        "یہ مختلف file extensions کے ساتھ identical formats ہیں"
+      ],
+      correctAnswer: 0,
+      explanation: "URDF robot descriptions کے لیے ہے (فی file ایک model، basic physics)۔ SDF متعدد models، ground planes، obstacles، lighting، اور advanced physics (friction، damping، complex surface properties) کے ساتھ simulation worlds کو support کرتا ہے۔ بہترین عمل: robots کے لیے URDF، worlds کے لیے SDF۔"
+    },
+    {
+      id: 5,
+      question: "Unity ROS 2 کے ساتھ کیسے communicate کرتا ہے؟",
+      options: [
+        "Gazebo کی طرح DDS middleware کے ذریعے",
+        "Port 10000 پر ROS-TCP-Connector استعمال کرتے ہوئے TCP sockets کے ذریعے",
+        "روبوٹ سے منسلک USB cables کے ذریعے",
+        "Unity ROS 2 کے ساتھ communicate نہیں کر سکتا"
+      ],
+      correctAnswer: 1,
+      explanation: "Unity port 10000 پر TCP sockets کے ذریعے ROS 2 کے ساتھ bidirectional communication کے لیے ROS-TCP-Connector استعمال کرتا ہے۔ یہ Gazebo کے DDS approach سے مختلف ہے اور cross-platform compatibility فعال کرتا ہے (Unity Windows پر چل سکتا ہے جہاں ROS 2 DDS کی limitations ہیں)۔"
+    },
+    {
+      id: 6,
+      question: "Gazebo میں تجویز کردہ physics time step کیا ہے اور کیوں؟",
+      options: [
+        "سادگی کے لیے 1 second (1.0s)",
+        "1 millisecond (0.001s) - stability اور speed کو balance کرتا ہے، objects کو ایک دوسرے سے tunnel through ہونے سے روکتا ہے",
+        "زیادہ سے زیادہ accuracy کے لیے 0.0001s",
+        "تیز ترین performance کے لیے 0.1s"
+      ],
+      correctAnswer: 1,
+      explanation: "1ms (0.001s) زیادہ تر robotics applications کے لیے sweet spot ہے۔ چھوٹے time steps (0.0001s) زیادہ accurate لیکن سست ہوتے ہیں۔ بڑے time steps (0.01s) تیز لیکن collisions کے دوران objects ایک دوسرے سے tunnel through ہو سکتی ہیں۔ 1ms دونوں خدشات کو balance کرتا ہے۔"
+    },
+    {
+      id: 7,
+      question: "Robotics development کے لیے کون سا Unity version تجویز کیا جاتا ہے؟",
+      options: [
+        "Unity 2023 (تازہ ترین version)",
+        "Unity 2021.3 LTS (Long-Term Support، Unity Robotics Hub کے ساتھ tested)",
+        "Unity 2018 (سب سے زیادہ stable)",
+        "کوئی بھی version یکساں طور پر اچھا کام کرتا ہے"
+      ],
+      correctAnswer: 1,
+      explanation: "Unity 2021.3 LTS (Long-Term Support) تجویز کیا جاتا ہے کیونکہ Unity Robotics Hub اس version کے لیے tested اور optimized ہے۔ LTS versions breaking changes کے بغیر bug fixes اور stability updates حاصل کرتے ہیں۔ نئے versions (2022+) میں compatibility issues ہو سکتے ہیں۔"
+    },
+    {
+      id: 8,
+      question: "Gazebo LiDAR sensor میں update_rate parameter کیا control کرتا ہے؟",
+      options: [
+        "GPU clock speed",
+        "کتنے scans فی سیکنڈ (Hz) sensor publish کرتا ہے",
+        "Meters میں maximum detection range",
+        "Laser beams کی تعداد"
+      ],
+      correctAnswer: 1,
+      explanation: "update_rate سیٹ کرتا ہے کہ کتنے scans فی سیکنڈ (Hz) ہوں۔ زیادہ rate = زیادہ data لیکن زیادہ CPU/GPU load۔ 10 Hz navigation کے لیے معیاری ہے (اچھا balance)، 20 Hz autonomous cars جیسے high-speed applications کے لیے، 5 Hz low-end systems کے لیے۔"
+    },
+    {
+      id: 9,
+      question: "سم-ٹو-ریئل workflow کیا ہے؟",
+      options: [
+        "حقیقی روبوٹ سے simulation میں code copy کریں",
+        "URDF design کریں → Gazebo میں test کریں → Debug کریں → Prototype بنائیں → Validate کریں → Production میں deploy کریں",
+        "ہمیشہ پہلے حقیقی hardware پر test کریں، پھر simulate کریں",
+        "Simulation اور حقیقی robots الگ الگ develop کیے جاتے ہیں"
+      ],
+      correctAnswer: 1,
+      explanation: "سم-ٹو-ریئل workflow یہ ہے: Robot URDF design کریں → Gazebo میں simulate کریں → Physics test کریں → Debug اور refine کریں → Physical prototype بنائیں → Hardware کو sim سے match کرنا validate کریں → ضرورت پڑنے پر digital twin update کریں → Production میں deploy کریں۔ ہارڈویئر چھونے سے پہلے زیادہ تر iteration simulation میں ہوتی ہے تاکہ وقت اور پیسے بچائے جائیں۔"
+    },
+    {
+      id: 10,
+      question: "Simulated sensors میں Gaussian noise کیوں شامل کریں؟",
+      options: [
+        "Simulation کو تیزی سے چلانے کے لیے",
+        "Simulation کو زیادہ realistic بنانے اور algorithm کی robustness کو real-world sensor کی خامیوں کے خلاف test کرنے کے لیے",
+        "GPU memory کا استعمال کم کرنے کے لیے",
+        "Sensors میں کبھی noise شامل نہیں کرنا چاہیے"
+      ],
+      correctAnswer: 1,
+      explanation: "حقیقی sensors میں noise ہوتا ہے! Gaussian noise شامل کرنا (مثلاً LiDAR میں ±1cm error کے لیے stddev 0.01) simulation کو زیادہ realistic بناتا ہے اور آپ کے algorithms کو real-world sensor کی خامیوں کے خلاف robust بننے میں مدد کرتا ہے۔ آپ debugging کے وقت perfect measurements کے لیے noise ہٹا سکتے ہیں، پھر realistic testing کے لیے واپس شامل کر سکتے ہیں۔"
+    }
+  ]}
+  passingScore={70}
+/>
+
+---
+
 **اگلا**: اب جب آپ نے digital twins میں مہارت حاصل کر لی ہے، تو sensor processing اور perception algorithms کے ساتھ اپنے روبوٹ کو **ذہین** بنانے کا وقت ہے **Module 3: Sensory Processing** میں! 🧠

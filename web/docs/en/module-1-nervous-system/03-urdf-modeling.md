@@ -556,7 +556,140 @@ Now that you understand how robots communicate (nodes/topics) and how they're st
 - Use Unity for photorealistic rendering
 - Learn how to test algorithms in simulation before deploying to real hardware
 
-**Ready to simulate?** Continue to **[Module 2: The Digital Twin - Simulation and Sensors](../02-digital-twin/01-intro.md)** 🚀
+**Ready to simulate?** Continue to **[Module 2: The Digital Twin - Simulation and Sensors](../module-2-digital-twin/01-intro-digital-twin.md)** 🚀
+
+---
+
+## Module 1 Quiz
+
+import Quiz from '@site/src/components/Quiz';
+
+<Quiz
+  title="Module 1: ROS 2 and URDF Mastery Quiz"
+  questions={[
+    {
+      id: 1,
+      question: "What is the primary purpose of URDF in ROS 2?",
+      options: [
+        "To write Python code for robot control",
+        "To describe robot structure with links, joints, and sensor placements",
+        "To compile C++ programs for embedded systems",
+        "To create graphical user interfaces"
+      ],
+      correctAnswer: 1,
+      explanation: "URDF (Unified Robot Description Format) is an XML-based language for describing robot structure including links (bones), joints (motors), and sensor positions. It bridges software algorithms and physical hardware."
+    },
+    {
+      id: 2,
+      question: "In ROS 2, what is a 'node'?",
+      options: [
+        "A physical motor or actuator",
+        "A single-purpose executable process that performs one well-defined task",
+        "A data storage location in memory",
+        "A type of sensor reading"
+      ],
+      correctAnswer: 1,
+      explanation: "A node is a single-purpose executable process (like a neuron in the nervous system). Each node runs independently, has a unique name, and can be written in Python, C++, or other supported languages."
+    },
+    {
+      id: 3,
+      question: "What is the difference between a revolute joint and a prismatic joint?",
+      options: [
+        "Revolute joints are for robots, prismatic joints are for drones",
+        "Revolute joints rotate around an axis (like an elbow), prismatic joints slide linearly (like a telescope)",
+        "Revolute joints are fixed, prismatic joints move freely",
+        "There is no difference, they are interchangeable"
+      ],
+      correctAnswer: 1,
+      explanation: "Revolute joints allow rotational movement around an axis (1 degree of freedom rotation) like an elbow or shoulder. Prismatic joints allow linear sliding motion (1 degree of freedom translation) like an elevator or telescope extension."
+    },
+    {
+      id: 4,
+      question: "What command is used to visualize URDF models in 3D?",
+      options: [
+        "gazebo_viewer",
+        "ros2_visualizer",
+        "rviz2",
+        "urdf_display"
+      ],
+      correctAnswer: 2,
+      explanation: "RViz2 (ROS Visualization 2) is the tool for visualizing URDF models, TF frames, sensor data, and robot states in real-time 3D. You add a RobotModel display and set the fixed frame to see your robot."
+    },
+    {
+      id: 5,
+      question: "In the publish-subscribe pattern, what happens if a publisher publishes but no subscribers are listening?",
+      options: [
+        "The program crashes with an error",
+        "Messages are published anyway (publishers don't wait for subscribers)",
+        "The publisher automatically shuts down",
+        "All nodes in the system are notified"
+      ],
+      correctAnswer: 1,
+      explanation: "Publishers are decoupled from subscribers - they publish messages asynchronously regardless of whether anyone is listening. This is a key advantage of the publish-subscribe pattern for flexibility and scalability."
+    },
+    {
+      id: 6,
+      question: "What does rclpy.spin() do in a ROS 2 Python node?",
+      options: [
+        "Rotates the robot physically",
+        "Keeps the node running and processing callbacks (timers, messages) until interrupted",
+        "Compiles the Python code",
+        "Creates a new subscriber"
+      ],
+      correctAnswer: 1,
+      explanation: "rclpy.spin() is a blocking call that keeps the node alive and processes callbacks (timer ticks, incoming messages). The program stays in this function until you press Ctrl+C to shut down the node."
+    },
+    {
+      id: 7,
+      question: "What is the purpose of the TF (Transform) tree in ROS 2?",
+      options: [
+        "To store log files from robot operations",
+        "To define coordinate frame relationships and enable position queries between different parts of the robot",
+        "To manage network connections between nodes",
+        "To compile URDF files into executable code"
+      ],
+      correctAnswer: 1,
+      explanation: "The TF tree defines coordinate frame relationships (transforms) between different parts of the robot. It allows ROS 2 to answer questions like 'where is the camera relative to the base?' or 'what is link2's position in world coordinates?' - essential for sensor fusion and control."
+    },
+    {
+      id: 8,
+      question: "Which ROS 2 CLI command shows all messages flowing through a topic in real-time?",
+      options: [
+        "ros2 topic list",
+        "ros2 topic info /topic_name",
+        "ros2 topic echo /topic_name",
+        "ros2 topic show /topic_name"
+      ],
+      correctAnswer: 2,
+      explanation: "ros2 topic echo /topic_name displays all messages published to that topic in real-time. This is essential for debugging - you can see exactly what data is being sent, at what rate, and in what format."
+    },
+    {
+      id: 9,
+      question: "What are the three key properties every URDF link has?",
+      options: [
+        "Name, color, and size",
+        "Visual geometry, collision geometry, and inertial properties",
+        "X, Y, and Z coordinates",
+        "Publisher, subscriber, and service"
+      ],
+      correctAnswer: 1,
+      explanation: "Every link has: (1) Visual geometry - how it looks in RViz/simulation, (2) Collision geometry - shape used for physics collision detection (often simplified), (3) Inertial properties - mass, center of mass, and moment of inertia for dynamics simulation."
+    },
+    {
+      id: 10,
+      question: "When should you use ROS 2 services instead of topics?",
+      options: [
+        "For continuous sensor data streaming",
+        "For emergency stop broadcasts to all nodes",
+        "For one-time calculations or configuration queries that require a response",
+        "For motor control commands sent every 50ms"
+      ],
+      correctAnswer: 2,
+      explanation: "Use services for request-response interactions like one-time calculations (inverse kinematics) or configuration queries ('get current robot state'). Use topics for continuous data streams (sensor readings, motor commands). Services wait for responses; topics are asynchronous."
+    }
+  ]}
+  passingScore={70}
+/>
 
 ---
 

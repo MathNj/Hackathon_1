@@ -124,4 +124,46 @@ If the command fails, revisit **Module 0: Hardware Setup** to install NVIDIA dri
 
 ---
 
+## Interactive Flashcards
+
+import Flashcards from '@site/src/components/Flashcards';
+
+<Flashcards
+  title="Digital Twin Concepts Review"
+  cards={[
+    {
+      id: 1,
+      question: "What is a digital twin?",
+      answer: "A digital twin is a virtual clone of your physical robot that exists entirely in software, used as a safe testing ground to test dangerous scenarios, iterate rapidly, collect perfect data, and save money before deploying to real hardware.",
+      category: "Fundamentals"
+    },
+    {
+      id: 2,
+      question: "Why do companies like Boston Dynamics use simulation?",
+      answer: "Boston Dynamics tested Spot over 100,000 times in simulation before its first physical test. This allows perfecting algorithms without physical risk, rapid iteration, and cost savings on expensive hardware.",
+      category: "Industry Practice"
+    },
+    {
+      id: 3,
+      question: "What is the sim-to-real workflow?",
+      answer: "Design robot URDF → Simulate in Gazebo → Debug and refine → Build physical prototype → Validate hardware → Update digital twin if needed → Deploy to production. Most iteration happens in simulation before touching hardware.",
+      category: "Workflow"
+    },
+    {
+      id: 4,
+      question: "Why is an NVIDIA RTX GPU required for sensor simulation?",
+      answer: "Realistic sensor simulation (LiDAR, depth cameras) requires GPU ray tracing to calculate light/laser reflections in real-time. RTX 4070 Ti achieves 300 FPS for LiDAR vs. 2 FPS on CPU - a 150x speedup that makes development feasible.",
+      category: "Hardware Requirements"
+    },
+    {
+      id: 5,
+      question: "What are the minimum system requirements for this module?",
+      answer: "Ubuntu 22.04 LTS, 16GB RAM (32GB recommended), NVIDIA RTX 4060 or better GPU, 50GB storage, ROS 2 Humble, Gazebo Fortress, and NVIDIA Driver 525+.",
+      category: "Setup"
+    }
+  ]}
+/>
+
+---
+
 **Ready to build your first digital twin?** Continue to [**Physics with Gazebo Fortress**](./02-gazebo-fortress-setup.md) to create simulation worlds! 🚀

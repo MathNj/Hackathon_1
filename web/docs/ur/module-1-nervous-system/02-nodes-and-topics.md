@@ -614,6 +614,60 @@ if __name__ == '__main__':
 
 ---
 
+## انٹرایکٹو فلیش کارڈز
+
+import Flashcards from '@site/src/components/Flashcards';
+
+<Flashcards
+  title="ROS 2 پروگرامنگ کا جائزہ"
+  cards={[
+    {
+      id: 1,
+      question: "rclpy کیا ہے؟",
+      answer: "rclpy ROS 2 Python client library ہے جو Node class اور Python میں publishers، subscribers، timers، اور services بنانے کے لیے functions فراہم کرتی ہے۔",
+      category: "Python Client"
+    },
+    {
+      id: 2,
+      question: "Publisher بنانے کے لیے کون سے تین parameters ضروری ہیں؟",
+      answer: "Message type (مثلاً String)، topic name (مثلاً 'topic')، اور queue size (مثلاً 10 messages buffer کرنے کے لیے)۔",
+      category: "Publishers"
+    },
+    {
+      id: 3,
+      question: "ROS 2 میں timer کیسے بنایا جاتا ہے؟",
+      answer: "self.create_timer(period, callback_function) استعمال کریں جہاں period seconds میں ہے (مثلاً 0.5 ہر 0.5 seconds کے لیے) اور callback_function ہر interval پر call ہوتا ہے۔",
+      category: "Timers"
+    },
+    {
+      id: 4,
+      question: "ROS 2 میں callback function کیا ہے؟",
+      answer: "Callback function automatically trigger ہوتا ہے جب events واقع ہوں، جیسے timer ticks یا message arrivals۔ یہ reflex arc کی طرح ہے - stimulus response کو trigger کرتا ہے۔",
+      category: "Callbacks"
+    },
+    {
+      id: 5,
+      question: "Publisher اور subscriber کو ایک ہی topic name کیوں استعمال کرنا چاہیے؟",
+      answer: "Topics named communication channels ہیں - phone numbers کی طرح۔ اگر publisher 'topic' استعمال کرے اور subscriber 'topic2' استعمال کرے، تو وہ communicate نہیں کریں گے۔ Names بالکل match ہونے چاہئیں (case-sensitive)۔",
+      category: "Topics"
+    },
+    {
+      id: 6,
+      question: "rclpy.spin() کیا کرتا ہے؟",
+      answer: "rclpy.spin() node کو چلتا رکھتا ہے اور callbacks (timers، messages) کو process کرتا ہے۔ یہ ایک blocking call ہے جو Ctrl+C سے interrupt ہونے تک چلتا ہے۔",
+      category: "Node Lifecycle"
+    },
+    {
+      id: 7,
+      question: "کون سا ROS 2 CLI command topic پر real-time messages دکھاتا ہے؟",
+      answer: "ros2 topic echo /topic_name - یہ specified topic سے گزرنے والے تمام messages کو Ctrl+C تک real-time میں display کرتا ہے۔",
+      category: "Debugging"
+    }
+  ]}
+/>
+
+---
+
 ## اہم نکات
 
 ✅ **rclpy** ROS 2 کے لیے Python client library ہے (`import rclpy` استعمال کریں)

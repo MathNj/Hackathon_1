@@ -303,4 +303,58 @@ These **must match** or you'll see: "Transform [lidar_link] does not exist."
 
 ---
 
+## Interactive Flashcards
+
+import Flashcards from '@site/src/components/Flashcards';
+
+<Flashcards
+  title="Sensor Simulation Review"
+  cards={[
+    {
+      id: 1,
+      question: "Why simulate sensors instead of buying them?",
+      answer: "Physical sensors are expensive (LiDAR ~$1,500, depth camera ~$200). Gazebo lets you develop perception algorithms using simulated sensors before purchasing hardware. Once your algorithm works in simulation, you can confidently buy the real sensor.",
+      category: "Motivation"
+    },
+    {
+      id: 2,
+      question: "How does LiDAR work?",
+      answer: "LiDAR (Light Detection and Ranging) is like a 360° tape measure that shoots laser beams and calculates distance by measuring how long light takes to bounce back. Distance = (Speed of Light × Time) / 2.",
+      category: "LiDAR Basics"
+    },
+    {
+      id: 3,
+      question: "How does Gazebo simulate LiDAR using ray tracing?",
+      answer: "Gazebo shoots rays from the LiDAR sensor origin (virtual laser beams), performs GPU collision detection to find where each ray hits objects, calculates distances, and publishes sensor_msgs/LaserScan messages to ROS 2.",
+      category: "Ray Tracing"
+    },
+    {
+      id: 4,
+      question: "Why is GPU required for sensor simulation?",
+      answer: "A 16-beam LiDAR at 10 Hz shoots 2.3 million rays per second. CPU would take ~10 seconds per frame. RTX GPU does it in 0.003 seconds (300 FPS) - a 3000x speedup making real-time development possible.",
+      category: "Performance"
+    },
+    {
+      id: 5,
+      question: "What does the update_rate parameter control?",
+      answer: "update_rate sets how many scans per second. Higher = more data but more CPU/GPU load. 10 Hz is standard for navigation (good balance), 20 Hz for high-speed navigation (autonomous cars), 5 Hz for low-end systems.",
+      category: "Sensor Parameters"
+    },
+    {
+      id: 6,
+      question: "Why add Gaussian noise to simulated sensors?",
+      answer: "Real sensors have noise! Adding Gaussian noise (e.g., stddev 0.01 for ±1cm error) makes simulation more realistic and helps your algorithms be robust to real-world sensor imperfections. Remove noise for perfect measurements when debugging.",
+      category: "Realism"
+    },
+    {
+      id: 7,
+      question: "What is the performance difference between RTX GPU and CPU?",
+      answer: "For 16-beam LiDAR at 10 Hz: RTX 4070 Ti achieves 300 FPS vs. 2 FPS on CPU. For 64-beam LiDAR at 20 Hz: 60 FPS vs. <1 FPS. For depth cameras at 640×480, 30 Hz: 200 FPS vs. 1 FPS. GPU is 10-100x faster.",
+      category: "Hardware"
+    }
+  ]}
+/>
+
+---
+
 **Next**: Learn when to use Unity instead of Gazebo in [**High-Fidelity Rendering in Unity**](./04-unity-visualization.md)! 🎨

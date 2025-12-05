@@ -269,4 +269,52 @@ nvidia-smi
 
 ---
 
+## Interactive Flashcards
+
+import Flashcards from '@site/src/components/Flashcards';
+
+<Flashcards
+  title="Gazebo Physics Review"
+  cards={[
+    {
+      id: 1,
+      question: "What is Gazebo Fortress and why use it?",
+      answer: "Gazebo Fortress (formerly Ignition Gazebo) is the industry-standard physics simulator for ROS 2. Unlike game engines, it focuses on physics accuracy critical for testing control algorithms, navigation, and manipulation tasks.",
+      category: "Gazebo"
+    },
+    {
+      id: 2,
+      question: "What is a rigid body?",
+      answer: "A rigid body is an object that doesn't deform - it only translates (moves) and rotates. This simplification is computationally efficient and accurate enough for most robotics applications.",
+      category: "Physics"
+    },
+    {
+      id: 3,
+      question: "What are the key physics parameters in Gazebo?",
+      answer: "Mass (weight in kg), Inertia (3x3 tensor for rotation resistance), Gravity (force pulling down, -9.81 m/s² on Earth), Friction (surface interaction coefficients), and Damping (energy dissipation simulating air resistance).",
+      category: "Physics Parameters"
+    },
+    {
+      id: 4,
+      question: "When should you use URDF vs SDF?",
+      answer: "Use URDF for robot descriptions (familiar from Module 1, works with xacro). Use SDF for simulation worlds (ground planes, obstacles, lighting) and when you need advanced physics like complex collisions or custom surface properties.",
+      category: "File Formats"
+    },
+    {
+      id: 5,
+      question: "Why is the time step set to 1ms (0.001s)?",
+      answer: "1ms is the sweet spot for stability and speed. Smaller time steps (0.0001s) are more accurate but slower. Larger time steps (0.01s) are faster but objects may tunnel through each other. 1ms balances both for most robotics applications.",
+      category: "Simulation"
+    },
+    {
+      id: 6,
+      question: "How do you install Gazebo Fortress with ROS 2 integration?",
+      answer: "Run: sudo apt install ros-humble-ros-gz. This installs Gazebo Fortress (gz-sim7), ros_gz_bridge (ROS 2 ↔ Gazebo communication), ros_gz_sim (spawn robots, control simulation), and ros_gz_image (camera/depth sensor integration).",
+      category: "Installation"
+    }
+  ]}
+/>
+
+---
+
 **Next**: Learn how to add sensors (LiDAR, cameras) to your robot in [**Adding Eyes & Ears (Sensors)**](./03-simulating-sensors.md)! 🤖

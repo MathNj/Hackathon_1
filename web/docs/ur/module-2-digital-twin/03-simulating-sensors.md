@@ -303,4 +303,58 @@ ls /opt/ros/humble/lib/ | grep gazebo_ros_ray
 
 ---
 
+## انٹرایکٹو فلیش کارڈز
+
+import Flashcards from '@site/src/components/Flashcards';
+
+<Flashcards
+  title="سینسر سمیولیشن کا جائزہ"
+  cards={[
+    {
+      id: 1,
+      question: "سینسرز خریدنے کی بجائے انہیں simulate کیوں کریں؟",
+      answer: "Physical sensors مہنگے ہیں (LiDAR ~$1,500، depth camera ~$200)۔ Gazebo آپ کو ہارڈویئر خریدنے سے پہلے simulated sensors استعمال کرتے ہوئے perception algorithms تیار کرنے دیتا ہے۔ جب آپ کا algorithm simulation میں کام کرے، تو آپ پراعتماد طریقے سے real sensor خرید سکتے ہیں۔",
+      category: "محرک"
+    },
+    {
+      id: 2,
+      question: "LiDAR کیسے کام کرتا ہے؟",
+      answer: "LiDAR (Light Detection and Ranging) 360° ٹیپ میژر کی طرح ہے جو لیزر بیم شوٹ کرتا ہے اور روشنی کی واپسی میں لگنے والے وقت کی پیمائش کر کے فاصلہ calculate کرتا ہے۔ فاصلہ = (Speed of Light × Time) / 2۔",
+      category: "LiDAR بنیادی باتیں"
+    },
+    {
+      id: 3,
+      question: "Gazebo ray tracing استعمال کرتے ہوئے LiDAR کو کیسے simulate کرتا ہے؟",
+      answer: "Gazebo LiDAR sensor origin سے rays shoot کرتا ہے (ورچوئل لیزر بیم)، GPU collision detection کرتا ہے تاکہ معلوم کرے کہ ہر ray کہاں objects سے ٹکراتی ہے، فاصلے calculate کرتا ہے، اور ROS 2 کو sensor_msgs/LaserScan messages publish کرتا ہے۔",
+      category: "Ray Tracing"
+    },
+    {
+      id: 4,
+      question: "سینسر سمیولیشن کے لیے GPU کیوں ضروری ہے؟",
+      answer: "10 Hz پر 16-beam LiDAR 2.3 million rays فی سیکنڈ شوٹ کرتا ہے۔ CPU ~10 سیکنڈ فی فریم لیتا ہے۔ RTX GPU 0.003 سیکنڈ (300 FPS) میں کرتا ہے - 3000x speedup جو real-time development کو ممکن بناتا ہے۔",
+      category: "کارکردگی"
+    },
+    {
+      id: 5,
+      question: "update_rate parameter کیا control کرتا ہے؟",
+      answer: "update_rate سیٹ کرتا ہے کہ کتنے scans فی سیکنڈ ہوں۔ زیادہ = زیادہ data لیکن زیادہ CPU/GPU load۔ 10 Hz navigation کے لیے معیاری ہے (اچھا توازن)، 20 Hz high-speed navigation (autonomous cars) کے لیے، 5 Hz low-end systems کے لیے۔",
+      category: "سینسر پیرامیٹرز"
+    },
+    {
+      id: 6,
+      question: "Simulated sensors میں Gaussian noise کیوں شامل کریں؟",
+      answer: "حقیقی sensors میں noise ہوتا ہے! Gaussian noise شامل کرنا (مثلاً ±1cm error کے لیے stddev 0.01) simulation کو زیادہ realistic بناتا ہے اور آپ کے algorithms کو real-world sensor کی خامیوں سے robust بننے میں مدد کرتا ہے۔ Debugging کے وقت perfect measurements کے لیے noise ہٹائیں۔",
+      category: "حقیقت پسندی"
+    },
+    {
+      id: 7,
+      question: "RTX GPU اور CPU کے درمیان performance میں کیا فرق ہے؟",
+      answer: "10 Hz پر 16-beam LiDAR کے لیے: RTX 4070 Ti 300 FPS حاصل کرتا ہے بمقابلہ CPU پر 2 FPS۔ 20 Hz پر 64-beam LiDAR کے لیے: 60 FPS بمقابلہ <1 FPS۔ 640×480، 30 Hz پر depth cameras کے لیے: 200 FPS بمقابلہ 1 FPS۔ GPU 10-100x تیز ہے۔",
+      category: "ہارڈویئر"
+    }
+  ]}
+/>
+
+---
+
 **اگلا**: جانیں کہ Gazebo کے بجائے Unity کب استعمال کرنا ہے [**Unity میں High-Fidelity Rendering**](./04-unity-visualization.md)! 🎨

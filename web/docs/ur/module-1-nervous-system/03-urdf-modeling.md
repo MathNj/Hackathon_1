@@ -560,6 +560,139 @@ URDF کے بغیر، آپ کا SLAM algorithm نہیں جان سکتا کہ came
 
 ---
 
+## Module 1 کوئز
+
+import Quiz from '@site/src/components/Quiz';
+
+<Quiz
+  title="Module 1: ROS 2 اور URDF مہارت کوئز"
+  questions={[
+    {
+      id: 1,
+      question: "ROS 2 میں URDF کا بنیادی مقصد کیا ہے؟",
+      options: [
+        "روبوٹ control کے لیے Python code لکھنا",
+        "Links، joints، اور sensor placements کے ساتھ robot structure describe کرنا",
+        "Embedded systems کے لیے C++ programs compile کرنا",
+        "Graphical user interfaces بنانا"
+      ],
+      correctAnswer: 1,
+      explanation: "URDF (Unified Robot Description Format) ایک XML-based زبان ہے جو robot structure بیان کرتی ہے جس میں links (ہڈیاں)، joints (motors)، اور sensor positions شامل ہیں۔ یہ software algorithms اور physical hardware کے درمیان پل بناتا ہے۔"
+    },
+    {
+      id: 2,
+      question: "ROS 2 میں 'node' کیا ہے؟",
+      options: [
+        "ایک physical motor یا actuator",
+        "ایک single-purpose executable process جو ایک اچھی طرح سے متعین task انجام دیتا ہے",
+        "Memory میں data storage location",
+        "Sensor reading کی ایک قسم"
+      ],
+      correctAnswer: 1,
+      explanation: "Node ایک single-purpose executable process ہے (nervous system میں neuron کی طرح)۔ ہر node آزادانہ طور پر چلتا ہے، ایک unique نام رکھتا ہے، اور Python، C++، یا دیگر supported زبانوں میں لکھا جا سکتا ہے۔"
+    },
+    {
+      id: 3,
+      question: "Revolute joint اور prismatic joint میں کیا فرق ہے؟",
+      options: [
+        "Revolute joints robots کے لیے ہیں، prismatic joints drones کے لیے",
+        "Revolute joints axis کے گرد گھومتے ہیں (کہنی کی طرح)، prismatic joints لکیری طور پر slide ہوتے ہیں (telescope کی طرح)",
+        "Revolute joints fixed ہیں، prismatic joints آزادانہ حرکت کرتے ہیں",
+        "کوئی فرق نہیں، یہ تبدیل ہو سکتے ہیں"
+      ],
+      correctAnswer: 1,
+      explanation: "Revolute joints axis کے گرد rotational movement کی اجازت دیتے ہیں (1 degree of freedom rotation) کہنی یا کندھے کی طرح۔ Prismatic joints linear sliding motion کی اجازت دیتے ہیں (1 degree of freedom translation) elevator یا telescope extension کی طرح۔"
+    },
+    {
+      id: 4,
+      question: "URDF models کو 3D میں visualize کرنے کے لیے کون سا command استعمال ہوتا ہے؟",
+      options: [
+        "gazebo_viewer",
+        "ros2_visualizer",
+        "rviz2",
+        "urdf_display"
+      ],
+      correctAnswer: 2,
+      explanation: "RViz2 (ROS Visualization 2) URDF models، TF frames، sensor data، اور robot states کو real-time 3D میں visualize کرنے کا tool ہے۔ آپ RobotModel display add کرتے ہیں اور fixed frame set کرتے ہیں اپنا robot دیکھنے کے لیے۔"
+    },
+    {
+      id: 5,
+      question: "Publish-subscribe pattern میں کیا ہوتا ہے اگر publisher publish کرے لیکن کوئی subscribers نہ سن رہے ہوں؟",
+      options: [
+        "Program error کے ساتھ crash ہو جاتا ہے",
+        "Messages پھر بھی publish ہوتے ہیں (publishers subscribers کا انتظار نہیں کرتے)",
+        "Publisher خودکار طور پر بند ہو جاتا ہے",
+        "System میں تمام nodes کو notify کیا جاتا ہے"
+      ],
+      correctAnswer: 1,
+      explanation: "Publishers subscribers سے decoupled ہیں - وہ messages asynchronously publish کرتے ہیں قطع نظر اس سے کہ کوئی سن رہا ہے یا نہیں۔ یہ flexibility اور scalability کے لیے publish-subscribe pattern کا ایک اہم فائدہ ہے۔"
+    },
+    {
+      id: 6,
+      question: "ROS 2 Python node میں rclpy.spin() کیا کرتا ہے؟",
+      options: [
+        "روبوٹ کو physically گھماتا ہے",
+        "Node کو چلتا رکھتا ہے اور callbacks (timers، messages) کو process کرتا ہے جب تک interrupt نہ ہو",
+        "Python code کو compile کرتا ہے",
+        "نیا subscriber بناتا ہے"
+      ],
+      correctAnswer: 1,
+      explanation: "rclpy.spin() ایک blocking call ہے جو node کو زندہ رکھتا ہے اور callbacks (timer ticks، incoming messages) کو process کرتا ہے۔ Program اس function میں رہتا ہے جب تک آپ Ctrl+C سے node کو shut down نہ کریں۔"
+    },
+    {
+      id: 7,
+      question: "ROS 2 میں TF (Transform) tree کا مقصد کیا ہے؟",
+      options: [
+        "روبوٹ operations سے log files store کرنا",
+        "Coordinate frame relationships define کرنا اور روبوٹ کے مختلف حصوں کے درمیان position queries enable کرنا",
+        "Nodes کے درمیان network connections manage کرنا",
+        "URDF files کو executable code میں compile کرنا"
+      ],
+      correctAnswer: 1,
+      explanation: "TF tree روبوٹ کے مختلف حصوں کے درمیان coordinate frame relationships (transforms) define کرتا ہے۔ یہ ROS 2 کو سوالات کے جواب دینے دیتا ہے جیسے 'camera base کے مقابلے میں کہاں ہے؟' یا 'link2 کی position world coordinates میں کیا ہے؟' - sensor fusion اور control کے لیے ضروری۔"
+    },
+    {
+      id: 8,
+      question: "کون سا ROS 2 CLI command topic سے گزرنے والے تمام messages کو real-time میں دکھاتا ہے؟",
+      options: [
+        "ros2 topic list",
+        "ros2 topic info /topic_name",
+        "ros2 topic echo /topic_name",
+        "ros2 topic show /topic_name"
+      ],
+      correctAnswer: 2,
+      explanation: "ros2 topic echo /topic_name اس topic پر publish ہونے والے تمام messages کو real-time میں display کرتا ہے۔ یہ debugging کے لیے ضروری ہے - آپ بالکل دیکھ سکتے ہیں کہ کیا data بھیجا جا رہا ہے، کس rate پر، اور کس format میں۔"
+    },
+    {
+      id: 9,
+      question: "ہر URDF link کی تین اہم properties کیا ہیں؟",
+      options: [
+        "نام، رنگ، اور سائز",
+        "Visual geometry، collision geometry، اور inertial properties",
+        "X، Y، اور Z coordinates",
+        "Publisher، subscriber، اور service"
+      ],
+      correctAnswer: 1,
+      explanation: "ہر link میں: (1) Visual geometry - RViz/simulation میں کیسا نظر آتا ہے، (2) Collision geometry - physics collision detection کے لیے استعمال ہونے والی shape (اکثر simplified)، (3) Inertial properties - dynamics simulation کے لیے mass، center of mass، اور moment of inertia ہیں۔"
+    },
+    {
+      id: 10,
+      question: "آپ کو topics کی بجائے ROS 2 services کب استعمال کرنی چاہئیں؟",
+      options: [
+        "مسلسل sensor data streaming کے لیے",
+        "تمام nodes کو emergency stop broadcasts کے لیے",
+        "One-time calculations یا configuration queries کے لیے جن میں response کی ضرورت ہو",
+        "ہر 50ms پر بھیجے جانے والے motor control commands کے لیے"
+      ],
+      correctAnswer: 2,
+      explanation: "Services کو request-response interactions کے لیے استعمال کریں جیسے one-time calculations (inverse kinematics) یا configuration queries ('current robot state حاصل کریں')۔ Topics کو continuous data streams (sensor readings، motor commands) کے لیے استعمال کریں۔ Services responses کا انتظار کرتے ہیں؛ topics asynchronous ہیں۔"
+    }
+  ]}
+  passingScore={70}
+/>
+
+---
+
 ## اہم نکات
 
 ✅ **URDF** (Unified Robot Description Format) robot structure describe کرنے کے لیے ایک XML-based زبان ہے

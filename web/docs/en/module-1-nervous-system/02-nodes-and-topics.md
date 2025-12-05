@@ -614,6 +614,60 @@ Ready to define your first robot? Continue to [**URDF Modeling Basics**](./03-ur
 
 ---
 
+## Interactive Flashcards
+
+import Flashcards from '@site/src/components/Flashcards';
+
+<Flashcards
+  title="ROS 2 Programming Review"
+  cards={[
+    {
+      id: 1,
+      question: "What is rclpy?",
+      answer: "rclpy is the ROS 2 Python client library that provides the Node class and functions for creating publishers, subscribers, timers, and services in Python.",
+      category: "Python Client"
+    },
+    {
+      id: 2,
+      question: "What are the three parameters needed to create a publisher?",
+      answer: "Message type (e.g., String), topic name (e.g., 'topic'), and queue size (e.g., 10 for buffering messages).",
+      category: "Publishers"
+    },
+    {
+      id: 3,
+      question: "How do you create a timer in ROS 2?",
+      answer: "Use self.create_timer(period, callback_function) where period is in seconds (e.g., 0.5 for every 0.5 seconds) and callback_function is called at each interval.",
+      category: "Timers"
+    },
+    {
+      id: 4,
+      question: "What is a callback function in ROS 2?",
+      answer: "A callback function is triggered automatically when events occur, such as timer ticks or message arrivals. It's like a reflex arc - stimulus triggers response.",
+      category: "Callbacks"
+    },
+    {
+      id: 5,
+      question: "Why must publisher and subscriber use the same topic name?",
+      answer: "Topics are named communication channels - like phone numbers. If the publisher uses 'topic' and subscriber uses 'topic2', they won't communicate. Names must match exactly (case-sensitive).",
+      category: "Topics"
+    },
+    {
+      id: 6,
+      question: "What does rclpy.spin() do?",
+      answer: "rclpy.spin() keeps the node running and processing callbacks (timers, messages). It's a blocking call that runs until interrupted with Ctrl+C.",
+      category: "Node Lifecycle"
+    },
+    {
+      id: 7,
+      question: "What ROS 2 CLI command shows real-time messages on a topic?",
+      answer: "ros2 topic echo /topic_name - This displays all messages flowing through the specified topic in real-time until you press Ctrl+C.",
+      category: "Debugging"
+    }
+  ]}
+/>
+
+---
+
 ## Key Takeaways
 
 ✅ **rclpy** is the Python client library for ROS 2 (use `import rclpy`)
