@@ -28,10 +28,14 @@ import { auth } from "./auth.config.js";
 const app = express();
 const PORT = process.env.AUTH_PORT || 3001;
 
-// CORS configuration
-const CORS_ORIGINS = (
-  process.env.CORS_ORIGINS || "http://localhost:3000,http://localhost:8000"
-).split(",");
+// CORS configuration with better whitespace handling
+const CORS_ORIGINS_RAW = process.env.CORS_ORIGINS || "http://localhost:3000,http://localhost:8000,https://mathnj.github.io";
+const CORS_ORIGINS = CORS_ORIGINS_RAW
+  .split(",")
+  .map(origin => origin.trim())  // Strip whitespace/newlines from each origin
+  .filter(origin => origin.length > 0);  // Remove empty strings
+
+console.log("🌐 CORS Origins:", CORS_ORIGINS);
 
 app.use(
   cors({
