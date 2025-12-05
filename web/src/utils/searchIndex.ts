@@ -14,147 +14,81 @@ export interface SearchDocument {
 
 // Search index - all documentation pages
 const documentIndex: SearchDocument[] = [
-  // Module 0 - Setup & Environment
+  // Module 0 - Workstation Setup
   {
-    title: "Introduction to Physical AI",
-    content: "Module 0: Setup & Environment. Welcome to the Physical AI Textbook Platform. This platform offers an interactive learning experience for robotics and embodied AI. Learn about ROS 2, Docker, development tools, and setting up your environment for robotics development.",
+    title: "Module 0: Workstation Setup",
+    content: "Before diving into Physical AI and Humanoid Robotics, you need to set up your development workstation. Install Ubuntu 22.04 LTS, NVIDIA drivers, CUDA toolkit, ROS 2 Humble Hawksbill. Hardware requirements: NVIDIA RTX GPU, AMD Ryzen or Intel Core i7, 32GB RAM. Setup for Jetson Orin Nano edge device.",
     url: "/Hackathon_1/docs/en/module-0-setup/intro",
     module: "Module 0"
   },
-  {
-    title: "Development Environment Setup",
-    content: "Setting up your development environment. Install ROS 2 Humble, Docker, VS Code, and essential tools for robotics development. Configure your workspace and verify installations.",
-    url: "/Hackathon_1/docs/en/module-0-setup/development-setup",
-    module: "Module 0"
-  },
-  {
-    title: "ROS 2 Basics",
-    content: "Introduction to ROS 2 (Robot Operating System). Learn about nodes, topics, services, actions, and the ROS 2 communication architecture. Understand publishers, subscribers, and message passing.",
-    url: "/Hackathon_1/docs/en/module-0-setup/ros2-basics",
-    module: "Module 0"
-  },
 
-  // Module 1 - Robot Eyes (Computer Vision)
+  // Module 1 - Nervous System (ROS 2)
   {
-    title: "Computer Vision Introduction",
-    content: "Module 1: Robot Eyes - Computer Vision. Learn how robots perceive the world through cameras and sensors. Topics include image processing, object detection, semantic segmentation, and depth estimation using neural networks.",
-    url: "/Hackathon_1/docs/en/module-1-robot-eyes/intro",
+    title: "Introduction to ROS 2 - The Robot's Nervous System",
+    content: "ROS 2 (Robot Operating System 2) is the de facto industry standard for robotics. Used by Boston Dynamics, NASA, Waymo, Amazon. ROS 2 is a middleware framework providing inter-process communication, hardware abstraction, distributed computing. Learn about nodes, topics, services, publishers, subscribers, and the nervous system analogy.",
+    url: "/Hackathon_1/docs/en/module-1-nervous-system/01-intro-to-ros2",
     module: "Module 1"
   },
   {
-    title: "Image Processing Fundamentals",
-    content: "Fundamentals of image processing for robotics. Learn about image filtering, edge detection, color spaces, transformations, and preprocessing techniques for computer vision tasks.",
-    url: "/Hackathon_1/docs/en/module-1-robot-eyes/image-processing",
+    title: "Nodes and Topics in ROS 2",
+    content: "Learn ROS 2 nodes and topics architecture. Nodes are independent processes that communicate via topics. Publisher-subscriber pattern for message passing. Understanding the ROS 2 graph and communication patterns.",
+    url: "/Hackathon_1/docs/en/module-1-nervous-system/02-nodes-and-topics",
     module: "Module 1"
   },
   {
-    title: "Object Detection with YOLO",
-    content: "Object detection using YOLO (You Only Look Once). Real-time object detection for robotics applications. Learn to detect and classify objects in images and video streams.",
-    url: "/Hackathon_1/docs/en/module-1-robot-eyes/object-detection",
-    module: "Module 1"
-  },
-  {
-    title: "Semantic Segmentation",
-    content: "Semantic segmentation for scene understanding. Pixel-level classification to identify different regions and objects in images. Applications in navigation and manipulation.",
-    url: "/Hackathon_1/docs/en/module-1-robot-eyes/segmentation",
+    title: "URDF Modeling for Robots",
+    content: "URDF (Unified Robot Description Format) for modeling robot geometry and kinematics. Define robot links, joints, and physical properties. Create robot models for simulation and visualization in RViz.",
+    url: "/Hackathon_1/docs/en/module-1-nervous-system/03-urdf-modeling",
     module: "Module 1"
   },
 
-  // Module 2 - Robot Hands (Manipulation)
+  // Module 2 - Digital Twin
   {
-    title: "Robot Manipulation Introduction",
-    content: "Module 2: Robot Hands - Manipulation and Grasping. Learn how robots interact with objects through manipulation. Topics include kinematics, inverse kinematics, motion planning, and grasp planning.",
-    url: "/Hackathon_1/docs/en/module-2-robot-hands/intro",
+    title: "The Digital Twin - Introduction to Simulation",
+    content: "A digital twin is a virtual clone of your physical robot. Safe testing ground for algorithms before deploying to real hardware. Boston Dynamics tested Spot 100,000 times in simulation. Learn about sim-to-real transfer, Gazebo Fortress, Unity visualization. Save money and iterate rapidly.",
+    url: "/Hackathon_1/docs/en/module-2-digital-twin/01-intro-digital-twin",
     module: "Module 2"
   },
   {
-    title: "Forward and Inverse Kinematics",
-    content: "Robot kinematics for manipulation. Forward kinematics to compute end-effector position from joint angles. Inverse kinematics to compute joint angles for desired position.",
-    url: "/Hackathon_1/docs/en/module-2-robot-hands/kinematics",
+    title: "Gazebo Fortress Setup",
+    content: "Setup Gazebo Fortress simulation environment. Photorealistic physics simulation for robots. Configure sensors, world files, and robot models. Integration with ROS 2 for testing algorithms.",
+    url: "/Hackathon_1/docs/en/module-2-digital-twin/02-gazebo-fortress-setup",
     module: "Module 2"
   },
   {
-    title: "Motion Planning",
-    content: "Motion planning for robot arms. Path planning algorithms including RRT, PRM, and trajectory optimization. Collision avoidance and smooth motion generation.",
-    url: "/Hackathon_1/docs/en/module-2-robot-hands/motion-planning",
+    title: "Simulating Sensors in Gazebo",
+    content: "Simulate cameras, LiDAR, IMU, and other sensors in Gazebo. Generate sensor data for testing perception algorithms. Configure sensor plugins and visualize data in RViz.",
+    url: "/Hackathon_1/docs/en/module-2-digital-twin/03-simulating-sensors",
     module: "Module 2"
   },
   {
-    title: "Grasp Planning",
-    content: "Grasp planning and execution. Learn to compute stable grasps for different objects. Force closure, contact points, and grasp quality metrics.",
-    url: "/Hackathon_1/docs/en/module-2-robot-hands/grasping",
+    title: "Unity Visualization for Robotics",
+    content: "Use Unity game engine for photorealistic robot visualization. Real-time rendering, UI overlays, and augmented reality interfaces. Integration with ROS 2 for interactive visualization.",
+    url: "/Hackathon_1/docs/en/module-2-digital-twin/04-unity-visualization",
     module: "Module 2"
   },
 
-  // Module 3 - Robot Brain (Navigation & Planning)
+  // Module 3 - Robot Brain (Perception & Navigation)
   {
-    title: "Robot Navigation Introduction",
-    content: "Module 3: Robot Brain - Navigation and Path Planning. Learn how robots navigate and plan paths in their environment. Topics include SLAM, localization, path planning, and obstacle avoidance.",
+    title: "The Robot Brain - Perception and Navigation",
+    content: "Build the brain of autonomous robots using NVIDIA Isaac Sim, Visual SLAM, and Nav2. Learn Visual SLAM with ORB-SLAM3 and RTAB-Map. Configure Nav2 for autonomous navigation, obstacle avoidance with costmaps, path planning with DWA and TEB planners. Deploy on Jetson Orin edge devices. Used by BMW, Volvo, Amazon Robotics.",
     url: "/Hackathon_1/docs/en/module-3-robot-brain/intro",
     module: "Module 3"
   },
-  {
-    title: "SLAM - Simultaneous Localization and Mapping",
-    content: "SLAM for robot navigation. Build maps while localizing the robot. Techniques include particle filters, EKF-SLAM, and graph-based SLAM.",
-    url: "/Hackathon_1/docs/en/module-3-robot-brain/slam",
-    module: "Module 3"
-  },
-  {
-    title: "Path Planning Algorithms",
-    content: "Path planning for mobile robots. A* algorithm, Dijkstra, RRT, and other planning methods. Global and local planning strategies.",
-    url: "/Hackathon_1/docs/en/module-3-robot-brain/path-planning",
-    module: "Module 3"
-  },
-  {
-    title: "Obstacle Avoidance",
-    content: "Dynamic obstacle avoidance for safe navigation. Reactive methods, potential fields, and dynamic window approach for real-time collision avoidance.",
-    url: "/Hackathon_1/docs/en/module-3-robot-brain/obstacle-avoidance",
-    module: "Module 3"
-  },
 
-  // Module 4 - The Mind (Deep Learning & AI)
+  // Module 4 - The Mind (VLA Models)
   {
-    title: "Deep Learning for Robotics",
-    content: "Module 4: The Mind - Deep Learning and AI. Learn how neural networks power intelligent robot behavior. Topics include reinforcement learning, imitation learning, and end-to-end learning.",
+    title: "The Mind - Vision-Language-Action Models",
+    content: "Cutting edge Physical AI with Large Language Models (LLMs), Vision-Language-Action (VLA) models, and Whisper speech recognition. Integrate GPT-4V and Claude 3 Opus for robot reasoning. Implement RT-2 and OpenVLA for manipulation. Build agentic workflows with tool-calling. Voice-controlled robots with natural language understanding. Used by Google DeepMind, Meta AI, OpenAI.",
     url: "/Hackathon_1/docs/en/module-4-the-mind/intro",
-    module: "Module 4"
-  },
-  {
-    title: "Reinforcement Learning",
-    content: "Reinforcement learning for robot control. Q-learning, policy gradients, actor-critic methods, and deep RL. Train robots to learn behaviors through trial and error.",
-    url: "/Hackathon_1/docs/en/module-4-the-mind/reinforcement-learning",
-    module: "Module 4"
-  },
-  {
-    title: "Imitation Learning",
-    content: "Imitation learning from demonstrations. Behavioral cloning, inverse reinforcement learning, and learning from expert trajectories.",
-    url: "/Hackathon_1/docs/en/module-4-the-mind/imitation-learning",
-    module: "Module 4"
-  },
-  {
-    title: "End-to-End Learning",
-    content: "End-to-end learning for robotics. Neural networks that map sensors directly to actions. Vision-based control and learned policies.",
-    url: "/Hackathon_1/docs/en/module-4-the-mind/end-to-end",
     module: "Module 4"
   },
 
   // Module 5 - Capstone Project
   {
-    title: "Capstone Project Overview",
-    content: "Module 5: Capstone Project - Integrating Everything. Build a complete robot system integrating vision, manipulation, navigation, and AI. Real-world robotics application.",
+    title: "Capstone Project - Autonomous Humanoid Robot",
+    content: "Final challenge: Build a fully autonomous humanoid robot. Household Assistant Challenge: Navigate home environment, respond to voice commands, fetch objects from different rooms. Integrate voice recognition (Whisper), vision (GPT-4V), navigation (Nav2), and manipulation (VLA models). Complete end-to-end autonomous system.",
     url: "/Hackathon_1/docs/en/module-5-capstone/intro",
-    module: "Module 5"
-  },
-  {
-    title: "Project Requirements",
-    content: "Capstone project requirements and guidelines. System architecture, integration strategies, testing, and deployment of your robot system.",
-    url: "/Hackathon_1/docs/en/module-5-capstone/requirements",
-    module: "Module 5"
-  },
-  {
-    title: "Final Exam",
-    content: "Final exam to test your knowledge. 20 multiple-choice questions covering all modules. Topics include computer vision, manipulation, navigation, and deep learning for robotics.",
-    url: "/Hackathon_1/docs/en/module-5-capstone/exam",
     module: "Module 5"
   }
 ];

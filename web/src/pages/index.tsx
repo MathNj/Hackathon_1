@@ -276,13 +276,13 @@ export default function Home(): JSX.Element {
                 module: "Module 1",
                 title: "The Nervous System",
                 topics: "Sensors, Actuators, Hardware Integration",
-                path: "/docs/en/module-1-nervous-system/intro",
+                path: "/docs/en/module-1-nervous-system/01-intro-to-ros2",
               },
               {
                 module: "Module 2",
                 title: "Digital Twin",
                 topics: "Gazebo, URDF, Simulation",
-                path: "/docs/en/module-2-digital-twin/intro",
+                path: "/docs/en/module-2-digital-twin/01-intro-digital-twin",
               },
               {
                 module: "Module 3",
