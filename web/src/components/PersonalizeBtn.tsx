@@ -29,6 +29,15 @@ export default function PersonalizeBtn(): JSX.Element | null {
   // Get background from session (already loaded by SessionContext)
   const background = session?.user?.background || "";
 
+  // DEBUG: Log session and path info
+  useEffect(() => {
+    console.log("🔍 PersonalizeBtn Debug:");
+    console.log("  - Session:", session);
+    console.log("  - User:", session?.user);
+    console.log("  - Pathname:", typeof window !== "undefined" ? window.location.pathname : "SSR");
+    console.log("  - Includes /docs/:", typeof window !== "undefined" ? window.location.pathname.includes("/docs/") : "SSR");
+  }, [session]);
+
   // ESC key to close modal
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
@@ -44,11 +53,13 @@ export default function PersonalizeBtn(): JSX.Element | null {
   }, [showModal]);
 
   if (!session?.user) {
+    console.log("⚠️ PersonalizeBtn: No session/user, not rendering");
     return null;
   }
 
   // Hide on homepage
   if (typeof window !== "undefined" && (window.location.pathname === "/" || window.location.pathname === "")) {
+    console.log("⚠️ PersonalizeBtn: On homepage, not rendering");
     return null;
   }
 
@@ -239,10 +250,15 @@ export default function PersonalizeBtn(): JSX.Element | null {
   const isDocPage = typeof window !== 'undefined' &&
     (window.location.pathname.includes('/docs/'));
 
+  console.log("🔍 PersonalizeBtn: isDocPage =", isDocPage, "pathname =", typeof window !== 'undefined' ? window.location.pathname : "SSR");
+
   // Don't show on non-doc pages
   if (!isDocPage) {
+    console.log("⚠️ PersonalizeBtn: Not a doc page, not rendering");
     return null;
   }
+
+  console.log("✅ PersonalizeBtn: All checks passed, rendering button");
 
   return (
     <>
