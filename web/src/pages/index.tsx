@@ -270,35 +270,42 @@ export default function Home(): JSX.Element {
                 module: "Module 0",
                 title: "Setup & Environment",
                 topics: "ROS 2, Docker, Development Tools",
+                path: "/docs/en/module-0-setup/intro",
               },
               {
                 module: "Module 1",
                 title: "The Nervous System",
                 topics: "Sensors, Actuators, Hardware Integration",
+                path: "/docs/en/module-1-nervous-system/intro",
               },
               {
                 module: "Module 2",
                 title: "Digital Twin",
                 topics: "Gazebo, URDF, Simulation",
+                path: "/docs/en/module-2-digital-twin/intro",
               },
               {
                 module: "Module 3",
                 title: "The Robot Brain",
                 topics: "Navigation, SLAM, Path Planning",
+                path: "/docs/en/module-3-robot-brain/intro",
               },
               {
                 module: "Module 4",
                 title: "The Mind",
                 topics: "Vision-Language-Action Models, AI Integration",
+                path: "/docs/en/module-4-the-mind/intro",
               },
               {
                 module: "Module 5",
                 title: "Capstone Project",
                 topics: "Build Your Own Humanoid Robot",
+                path: "/docs/en/module-5-capstone/intro",
               },
             ].map((module, idx) => (
-              <div
+              <Link
                 key={idx}
+                to={module.path}
                 style={{
                   padding: "28px",
                   background: "white",
@@ -306,15 +313,15 @@ export default function Home(): JSX.Element {
                   border: "2px solid var(--ifm-color-emphasis-200)",
                   transition: "all 0.3s ease",
                   cursor: "pointer",
+                  textDecoration: "none",
+                  color: "inherit",
+                  display: "block",
                 }}
-                onClick={() =>
-                  history.push(
-                    `/docs/en/module-${idx}-${module.title
-                      .toLowerCase()
-                      .replace(/\s+/g, "-")
-                      .replace(/&/g, "")}/intro`
-                  )
-                }
+                onClick={(e) => {
+                  // Let Link handle navigation, don't use history.push
+                  e.stopPropagation();
+                }}
+
                 onMouseEnter={(e) => {
                   e.currentTarget.style.borderColor =
                     "var(--ifm-color-primary)";
@@ -354,7 +361,7 @@ export default function Home(): JSX.Element {
                 >
                   {module.topics}
                 </p>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
