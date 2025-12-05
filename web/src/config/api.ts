@@ -9,7 +9,7 @@ const isProduction = typeof window !== 'undefined' && window.location.hostname =
 
 // Auth Server (Vercel Serverless)
 export const AUTH_API_URL = isProduction
-  ? 'https://textbook-auth-2nj0473wv-mathnjs-projects.vercel.app/api'
+  ? 'https://textbook-auth-hyzjkom4z-mathnjs-projects.vercel.app/api'
   : 'http://localhost:3001/api';
 
 // API Server (Vercel Serverless)
@@ -19,7 +19,7 @@ export const API_BASE_URL = isProduction
 
 // Auth Client Base URL (for Better Auth)
 export const AUTH_BASE_URL = isProduction
-  ? 'https://textbook-auth-2nj0473wv-mathnjs-projects.vercel.app'
+  ? 'https://textbook-auth-hyzjkom4z-mathnjs-projects.vercel.app'
   : 'http://localhost:3001';
 
 // API Endpoints
