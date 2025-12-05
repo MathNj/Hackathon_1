@@ -7,9 +7,11 @@ import React, { useEffect, useState } from "react";
 import Layout from "@theme/Layout";
 import { authClient } from "../lib/auth-client";
 import { useHistory } from "@docusaurus/router";
+import useBaseUrl from "@docusaurus/useBaseUrl";
 
 export default function Logout(): JSX.Element {
   const history = useHistory();
+  const baseUrl = useBaseUrl('/');
   const [status, setStatus] = useState<"loading" | "success" | "error">("loading");
   const [error, setError] = useState("");
 
@@ -22,7 +24,7 @@ export default function Logout(): JSX.Element {
               setStatus("success");
               // Redirect to home after 1 second
               setTimeout(() => {
-                history.push("/");
+                history.push(baseUrl);
               }, 1000);
             },
             onError: (ctx) => {
@@ -116,7 +118,7 @@ export default function Logout(): JSX.Element {
                 {error}
               </p>
               <button
-                onClick={() => history.push("/")}
+                onClick={() => history.push(baseUrl)}
                 style={{
                   marginTop: "20px",
                   padding: "10px 20px",

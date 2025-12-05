@@ -12,9 +12,11 @@ import React, { useState } from "react";
 import Layout from "@theme/Layout";
 import { useSession } from "../contexts/SessionContext";
 import { useHistory } from "@docusaurus/router";
+import useBaseUrl from "@docusaurus/useBaseUrl";
 
 export default function Login(): JSX.Element {
   const history = useHistory();
+  const baseUrl = useBaseUrl('/');
   const { session, login: sessionLogin, signup: sessionSignup, loading: sessionLoading } = useSession();
   const [isSignup, setIsSignup] = useState(false);
   const [email, setEmail] = useState("");
@@ -29,9 +31,9 @@ export default function Login(): JSX.Element {
   React.useEffect(() => {
     if (!sessionLoading && session?.user) {
       console.log("User already logged in, redirecting to home...");
-      window.location.href = "/";
+      window.location.href = baseUrl;
     }
-  }, [session, sessionLoading]);
+  }, [session, sessionLoading, baseUrl]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -52,7 +54,7 @@ export default function Login(): JSX.Element {
 
       // Reload page to update navbar and session state
       setTimeout(() => {
-        window.location.href = "/";
+        window.location.href = baseUrl;
       }, 1000);
 
     } catch (err: any) {
