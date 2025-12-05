@@ -279,6 +279,9 @@ async def search(request: SearchRequest):
     try:
         logger.info(f"Searching for: {request.query}")
 
+        # Initialize agent to access Qdrant search
+        agent = get_agent()
+
         # Use the agent's search_textbook method which queries Qdrant
         search_results = await agent.search_textbook(request.query, top_k=request.limit)
 
