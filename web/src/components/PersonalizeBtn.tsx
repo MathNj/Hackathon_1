@@ -18,7 +18,7 @@ import { API_ENDPOINTS } from "../config/api";
 type ViewMode = "replace" | "side-by-side";
 
 export default function PersonalizeBtn(): JSX.Element | null {
-  const { session } = useSession();
+  const { session, loading } = useSession();
   const [isPersonalizing, setIsPersonalizing] = useState(false);
   const [originalContent, setOriginalContent] = useState<string | null>(null);
   const [personalizedContent, setPersonalizedContent] = useState<string | null>(null);
@@ -32,11 +32,12 @@ export default function PersonalizeBtn(): JSX.Element | null {
   // DEBUG: Log session and path info
   useEffect(() => {
     console.log("🔍 PersonalizeBtn Debug:");
+    console.log("  - Loading:", loading);
     console.log("  - Session:", session);
     console.log("  - User:", session?.user);
     console.log("  - Pathname:", typeof window !== "undefined" ? window.location.pathname : "SSR");
     console.log("  - Includes /docs/:", typeof window !== "undefined" ? window.location.pathname.includes("/docs/") : "SSR");
-  }, [session]);
+  }, [session, loading]);
 
   // ESC key to close modal
   useEffect(() => {
@@ -51,6 +52,12 @@ export default function PersonalizeBtn(): JSX.Element | null {
       return () => document.removeEventListener("keydown", handleEscape);
     }
   }, [showModal]);
+
+  // Wait for session to load
+  if (loading) {
+    console.log("⏳ PersonalizeBtn: Session still loading...");
+    return null;
+  }
 
   if (!session?.user) {
     console.log("⚠️ PersonalizeBtn: No session/user, not rendering");
